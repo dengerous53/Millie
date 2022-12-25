@@ -931,7 +931,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "sourcedata":
-        await message.reply_photo(
+        await message.send_photo(
             photo="https://te.legra.ph/file/5b2ec8d541fee97e63037.jpg",
             caption=f"This boy's source is private if you want the source just contact developer \n\ndev 1: [Millie bobby brown](https://t.me/millie_rmvzz)\n\ndev2 : [Daddy ](https://t.me/renish_rgi)",
             disable_web_page_preview=True,
