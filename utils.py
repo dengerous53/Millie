@@ -68,8 +68,8 @@ def clear_queue(chat_id):
 
 # temp db for banned 
 class temp(object):
-    PRIM_USERS = []
-    PRIM_CHATS = []
+#    PRIM_USERS = []
+#    PRIM_CHATS = []
     BANNED_USERS = []
     BANNED_CHATS = []
     ME = None
