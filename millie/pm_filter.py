@@ -1443,7 +1443,7 @@ async def pm_AutoFilter(client, msg, pmspoll=False):
         cap = f"Here is what i found for your query {search}"
     if imdb and imdb.get('poster'):
         try:
-            hehe = await message.reply_photophoto=random.choice(PICS),, caption=cap, reply_markup=InlineKeyboardMarkup(btn))
+            hehe = await message.reply_photophoto=random.choice(PICS), caption=cap, reply_markup=InlineKeyboardMarkup(btn))
             await asyncio.sleep(IMDB_DELET_TIME)
             await hehe.delete()            
         except (MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty):
