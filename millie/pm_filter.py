@@ -933,6 +933,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
+    elif query.data == "sourcedata":
+        await message.reply_photo(
+            photo=random.choice(PICS),
+            caption=f'This boy's source is private if you want the source just contact developer \n\ndev 1: [Millie bobby brown](https://t.me/millie_rmvzz)\n\ndev2 : [Daddy ](https://t.me/renish_rgi)',
+            disable_web_page_preview=True,
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
     elif query.data == "restric":
         buttons = [[
             InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='help')
@@ -940,7 +948,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.RESTRIC_TXT,
-            disable_web_page_preview=True,
+            disable_web_page_preview=True, 
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
