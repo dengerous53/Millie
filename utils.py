@@ -15,9 +15,8 @@ from bs4 import BeautifulSoup
 import requests
 
 
-AUTH_USERS = (PRIM_USERS + AUSERS) if PRIM_USERS else []
-AUTH_GROUPS = (PRIM_CHATS + AGROUP) if PRIM_CHATS else []
-
+AUTH_USERS = AUSERS
+AUTH_GROUPS = AGROUP
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
