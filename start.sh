@@ -1,12 +1,8 @@
-if [ -z $UPSTREAM_REPO ]
-then
-  echo "Cloning main Repository"
-  git clone https://github.com/Millie-bobby/Millie /Millie 
-else
-  echo "Cloning Custom Repo from $UPSTREAM_REPO "
-  git clone $UPSTREAM_REPO /Millie 
-fi
-cd /Millie 
+echo "copying your bot data ...."
+git clone https://github.com/Renishbot/Millie-1.git /Millie
+cd /Millie
+echo "installing some packages..."
 pip3 install -U -r requirements.txt
 echo "Starting Bot...."
+echo "MILLIE DEPLOYED SUCCESSFULLY"
 python3 millie.py
