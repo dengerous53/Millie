@@ -11,7 +11,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
-HELP1 = [[
+BUTTON_1 = [[
             InlineKeyboardButton('🔮bot status 🔮', callback_data='stats'),            
             ],[
             InlineKeyboardButton('𝙼𝙰𝙽𝚄𝙴𝙻 𝙵𝙸𝙻𝚃𝙴𝚁', callback_data='manuelfilter'),
@@ -46,11 +46,10 @@ HELP1 = [[
 
 @Client.on_message(filters.command("help"))
 async def help(client, message):
-        reply_markup = InlineKeyboardMarkup(HELP1)
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.HELP_TXT.format(message.from_user.mention),
-            reply_markup=reply_markup,
+            reply_markup=InlineKeyboardMarkup(BUTTON_1),
             parse_mode=enums.ParseMode.HTML
         )
 
