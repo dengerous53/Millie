@@ -49,7 +49,9 @@ async def help(client, message):
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.HELP_TXT.format(message.from_user.mention),
-            reply_markup=InlineKeyboardMarkup(BUTTON_1)
+            reply_markup=InlineKeyboardMarkup(BUTTON_1),
+            reply_to_message_id=massage.id,
+            parse_mode=enums.ParseMode.HTML
         )
 
 @Client.on_message(filters.command('id'))
