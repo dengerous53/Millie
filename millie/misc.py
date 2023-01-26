@@ -30,7 +30,7 @@ BUTTON_1 = [[
             InlineKeyboardButton('📨SHARE TEXT📨', callback_data='sharetxt'),
             InlineKeyboardButton('🗃️FILE STORE🗃️', callback_data='newdata')
             ],[                       
-            InlineKeyboardButton('◀️BACK◀️', callback_data='next1'),
+            InlineKeyboardButton('◀️BACK◀️', callback_data='next2'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
             InlineKeyboardButton('▶️NEXT▶️', callback_data='next2')
         ]]
@@ -56,7 +56,7 @@ BUTTON_2 = [[
             ],[
             InlineKeyboardButton('◀️BACK◀️', callback_data='next1'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
-            InlineKeyboardButton('▶️NEXT▶️', callback_data='next2')
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='next1')
         ]]
 
 @Client.on_message(filters.command("help"))
