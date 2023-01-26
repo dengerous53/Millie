@@ -885,10 +885,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "next2":
         buttons = BUTTON_2
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text=script.HELP_TXT,
-            disable_web_page_preview=True, 
+        reply_markup = InlineKeyboardMarkup(buttons)             
+        await query.message.edit_text(                     
+            text=script.HELP_TXT.format(query.from_user.mention),
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
