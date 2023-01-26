@@ -32,7 +32,7 @@ BUTTON_1 = [[
             ],[                       
             InlineKeyboardButton('◀️BACK◀️', callback_data='start'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
-            InlineKeyboardButton('▶️NEXT▶️', callback_data='next2')
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='millie')
         ]]
 
 BUTTON_2 = [[
