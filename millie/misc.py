@@ -1,4 +1,5 @@
 import os
+import random
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
 from info import IMDB_TEMPLATE, PICS
@@ -61,11 +62,12 @@ BUTTON_2 = [[
 
 @Client.on_message(filters.command("help"))
 async def help(client, message):
-        buttons=BUTTON_1
-        await message.reply_photo(
-            photo=random.choice(PICS),
-            caption=script.HELP_TXT.format(message.from_user.mention),
-            reply_markup=InlineKeyboardMarkup(buttons),
+        buttons = BUTTON_1
+        reply_markup = InlineKeyboardMarkup(buttons)             
+        await query.message.reply_photo(       
+            photo=random.choice(PICS),              
+            caption=script.HELP_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
 
