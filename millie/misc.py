@@ -30,7 +30,7 @@ BUTTON_1 = [[
             InlineKeyboardButton('📨SHARE TEXT📨', callback_data='sharetxt'),
             InlineKeyboardButton('🗃️FILE STORE🗃️', callback_data='newdata')
             ],[                       
-            InlineKeyboardButton('◀️BACK◀️', callback_data='start'),
+            InlineKeyboardButton('◀️BACK◀️', callback_data='next2'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
             InlineKeyboardButton('▶️NEXT▶️', callback_data='next2')
         ]]
@@ -42,22 +42,21 @@ BUTTON_2 = [[
             InlineKeyboardButton('🔊 TTS 🔊', callback_data='ttss'),           
             InlineKeyboardButton('🗑️PURGE🗑️', callback_data='purges')
             ],[
-            InlineKeyboardButton('𝙿𝙰𝚂𝚃𝙴', callback_data='pastes'),
-            InlineKeyboardButton("𝙸𝙼𝙰𝙶𝙴", callback_data='image'),
-            InlineKeyboardButton('𝙿𝙸𝙽𝙶', callback_data='pings')                                   
+            InlineKeyboardButton('📬PASTE📬', callback_data='pastes'),
+            InlineKeyboardButton('📸IMAGE📸', callback_data='image'),
+            InlineKeyboardButton('🏌️PING🏌️', callback_data='pings')                                   
             ],[                               
-            InlineKeyboardButton('𝙼𝚄𝚃𝙴', callback_data='restric'),
-            InlineKeyboardButton('𝙺𝙸𝙲𝙺', callback_data='zombies'),
-            InlineKeyboardButton('𝙿𝙸𝙽', callback_data='pin')
+            InlineKeyboardButton('🔇MUTE🔇', callback_data='restric'),
+            InlineKeyboardButton('🦵KICK🦵', callback_data='zombies'),
+            InlineKeyboardButton('📌PIN📌', callback_data='pin')
             ],[
-            InlineKeyboardButton('𝙲𝙰𝚁𝙱𝙾𝙽', callback_data='carb'),
-            InlineKeyboardButton('𝙵𝙾𝙽𝙳', callback_data='fond'),
-            InlineKeyboardButton('𝚉𝙾𝙼𝙱𝙸𝙴', callback_data='zombies')
+            InlineKeyboardButton('🔳CARBON🔳', callback_data='carb'),
+            InlineKeyboardButton('💟FONTS💟', callback_data='fond'),
+            InlineKeyboardButton('🛠️EXTRAS🛠️', callback_data='extra')
             ],[
-            InlineKeyboardButton('extra', callback_data='extra')
-            ],[
-            InlineKeyboardButton('🚫 𝙲𝙻𝙾𝚂𝙴', callback_data='close_data'),
-            InlineKeyboardButton('🏠 𝙷𝙾𝙼𝙴 🏠', callback_data='start')           
+            InlineKeyboardButton('◀️BACK◀️', callback_data='help'),
+            InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='help')
         ]]
 
 @Client.on_message(filters.command("help"))
