@@ -11,14 +11,13 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
-HELP1 =  [[
+HELP1 = [[
             InlineKeyboardButton('afk', callback_data='help')
          ]]
 
 @Client.on_message(filters.command("help"))
 async def help(client, message):
-        buttons = HELP1
-        reply_markup = InlineKeyboardMarkup(buttons)
+        reply_markup = InlineKeyboardMarkup(HELP1)
         await message.reply_photo(
             photo=random.choice(PICS),
             caption=script.HELP_TXT.format(message.from_user.mention),
