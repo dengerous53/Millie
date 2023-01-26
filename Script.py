@@ -14,6 +14,84 @@ Click 👇👇 source button for source
 
 <b>DEVS:</b>
 <a href=https://t.me/millie_rmvzz>Millie Bobby brown</a>"""
+    
+    AFK_TXT = """
+Coming soon....
+XxxxxxxxxxxxxxxxxxxxxxX
+When someone mentions you in a chat, 
+the user will be notified you are AFK. 
+You can even provide a reason for going AFK,
+which will be provided to the user as well.
+
+- `/afk` - This will set you offline.
+- `/afk [Reason]` - This will set you offline with a reason.
+- `/afk [Replied to a Sticker/Photo]` - This will set you offline with an image or sticker.
+- `/afk [Replied to a Sticker/Photo] [Reason]` - This will set you afk with an image and reason both.
+"""
+
+    RULES_TXT = """
+Coming soon....
+XxxxxxxxxxxxxxxxxxxxxxX
+Every chat works with different rules; this module will help make those rules clearer!
+
+**User commands:**
+- /rules: Check the current chat rules.
+
+**Admin commands:**
+- /setrules `<text>`: Set the rules for this chat. Supports markdown, buttons, fillings, etc.
+- /privaterules `<yes/no/on/off>`: on|off whether the rules should be sent in private.
+- /clearrules: Reset the chat rules to default.
+"""
+
+    NOTES_TXT = """
+Coming soon....
+XxxxxxxxxxxxxxxxxxxxxxX
+Save data for future users with notes!
+Notes are great to save random tidbits of information; a phone number, a nice gif, a funny picture - anything!
+
+**User commands:**
+- /get `<notename>`: Get a note.
+- #notename: Same as `/get`.
+
+**Admin commands:**
+- /save `<notename>` `<note text>`: Save a new note called "word". Replying to a message will save that message. Even works on media!
+- /clear `<notename>`: Delete the associated note.
+- /notes: List all notes in the current chat.
+- /saved: Same as /notes.
+- /clearall: Delete ALL notes in a chat. This cannot be undone.
+"""
+
+    LOCKS_TXT = """
+Coming soon....
+XxxxxxxxxxxxxxxxxxxxxxX
+**Locks**
+Do stickers annoy you? or want to avoid people sharing links? or pictures? You're in the right place!
+The locks module allows you to lock away some common items in the telegram world; the bot will automatically delete them!
+
+**Admin commands:**
+- /lock <item(s)>: Lock one or more items. Now, only admins can use this type!
+- /unlock <item(s)>: Unlock one or more items. Everyone can use this type again!
+- /locks: List currently locked items.
+- /locktypes: Show the list of all lockable items.
+
+**Examples:**
+- Lock stickers with:
+• `/lock sticker`
+- You can lock/unlock multiple items by chaining them:
+• `/lock sticker photo gif video`
+"""
+
+    CHATBOT_TXT = """
+Coming soon....
+XxxxxxxxxxxxxxxxxxxxxxX
+**Chatbot**
+AI based chatbot allows rose to talk and provides a more interactive group chat experience.
+- /chatbot [ON/OFF]: Enables and disables Affiliate + AI Chat bot.
+**Available chatbots**
+• Luna - Advanced, inteligent and cute chatbot which will keep you happy all time.. 
+**Language Support**
+Rose AI chatbot support almost all languages in world .
+"""
 
     FILE_TXT = """➤ 𝐇𝐞𝐥𝐩: 𝐅𝐢𝐥𝐞 𝐒𝐭𝐨𝐫𝐞 𝐌𝐨𝐝𝐮𝐥𝐞../
 
