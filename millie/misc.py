@@ -12,19 +12,35 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 BUTTON_1 = [[
-            InlineKeyboardButton('🔮bot status 🔮', callback_data='stats'),            
+            InlineKeyboardButton('🌹MILLIE update channel🌹', url='https://t.me/millie_robot_update'),            
             ],[
-            InlineKeyboardButton('𝙼𝙰𝙽𝚄𝙴𝙻 𝙵𝙸𝙻𝚃𝙴𝚁', callback_data='manuelfilter'),
-            InlineKeyboardButton('𝙰𝚄𝚃𝙾 𝙵𝙸𝙻𝚃𝙴𝚁', callback_data='autofilter'),
-            InlineKeyboardButton('𝙲𝙾𝙽𝙽𝙴𝙲𝚃𝙸𝙾𝙽𝚂', callback_data='coct')
+            InlineKeyboardButton('⌨️AFK⌨️', callback_data='afk'),
+            InlineKeyboardButton('📋RULES📋', callback_data='rules'),
+            InlineKeyboardButton('📑NOTES📑', callback_data='notes')
+            ],[
+            InlineKeyboardButton('🔒LOCKS🔒', callback_data='locks'),
+            InlineKeyboardButton('🤖CHATBOT🤖', callback_data='chatbot'),
+            InlineKeyboardButton('🧧STATUS🧧', callback_data='stats')
+            ],[
+            InlineKeyboardButton('🎩MANUEL FIL.🎩', callback_data='manuelfilter'),
+            InlineKeyboardButton('⏳AUTO FIL.⏳', callback_data='autofilter'),
+            InlineKeyboardButton('🧲CONNECTION🧲', callback_data='coct')
             ],[                       
-            InlineKeyboardButton('𝚃𝙴𝙻𝙴𝙶𝚁𝙰𝙿𝙷', callback_data='tele'),
-            InlineKeyboardButton('𝚂𝙷𝙰𝚁𝙴-𝚃𝙴𝚇𝚃', callback_data='sharetxt'),
-            InlineKeyboardButton('𝙵𝙸𝙻𝙴-𝚂𝚃𝙾𝚁𝙴', callback_data='newdata')
-            ],[           
-            InlineKeyboardButton('𝙹𝚂𝙾𝙽𝙴', callback_data='son'),
-            InlineKeyboardButton('𝚃𝚃𝚂', callback_data='ttss'),           
-            InlineKeyboardButton('𝙿𝚄𝚁𝙶𝙴', callback_data='purges')
+            InlineKeyboardButton('📊TELEGRAPH📊', callback_data='tele'),
+            InlineKeyboardButton('📨SHARE TEXT📨', callback_data='sharetxt'),
+            InlineKeyboardButton('🗃️FILE STORE🗃️', callback_data='newdata')
+            ],[                       
+            InlineKeyboardButton('◀️BACK◀️', callback_data='start'),
+            InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='next2')
+        ]]
+
+BUTTON_2 = [[
+            InlineKeyboardButton('🌹MILLIE update channel🌹', url='https://t.me/millie_robot_update'),            
+            ],[
+            InlineKeyboardButton('🪅JSON🪅', callback_data='son'),
+            InlineKeyboardButton('🔊 TTS 🔊', callback_data='ttss'),           
+            InlineKeyboardButton('🗑️PURGE🗑️', callback_data='purges')
             ],[
             InlineKeyboardButton('𝙿𝙰𝚂𝚃𝙴', callback_data='pastes'),
             InlineKeyboardButton("𝙸𝙼𝙰𝙶𝙴", callback_data='image'),
