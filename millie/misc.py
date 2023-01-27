@@ -1,7 +1,9 @@
 import os
+import random
 from pyrogram import Client, filters, enums
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, MediaEmpty, PhotoInvalidDimensions, WebpageMediaEmpty
-from info import IMDB_TEMPLATE
+from info import IMDB_TEMPLATE, PICS
+from Script import script
 from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
@@ -9,6 +11,65 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQ
 import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
+
+BUTTON_1 = [[
+            InlineKeyboardButton('🌹MILLIE update channel🌹', url='https://t.me/millie_robot_update'),            
+            ],[
+            InlineKeyboardButton('⌨️AFK⌨️', callback_data='afk'),
+            InlineKeyboardButton('📋RULES📋', callback_data='rules'),
+            InlineKeyboardButton('📑NOTES📑', callback_data='notes')
+            ],[
+            InlineKeyboardButton('🔒LOCKS🔒', callback_data='locks'),
+            InlineKeyboardButton('🤖CHATBOT🤖', callback_data='chatbot'),
+            InlineKeyboardButton('🧧STATUS🧧', callback_data='stats')
+            ],[
+            InlineKeyboardButton('🎩MANUEL FIL.🎩', callback_data='manuelfilter'),
+            InlineKeyboardButton('⏳AUTO FIL.⏳', callback_data='autofilter'),
+            InlineKeyboardButton('🧲CONNECTION🧲', callback_data='coct')
+            ],[                       
+            InlineKeyboardButton('📊TELEGRAPH📊', callback_data='tele'),
+            InlineKeyboardButton('📨SHARE TEXT📨', callback_data='sharetxt'),
+            InlineKeyboardButton('🗃️FILE STORE🗃️', callback_data='newdata')
+            ],[                       
+            InlineKeyboardButton('◀️BACK◀️', callback_data='start'),
+            InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='millie')
+        ]]
+
+BUTTON_2 = [[
+            InlineKeyboardButton('🌹MILLIE update channel🌹', url='https://t.me/millie_robot_update'),            
+            ],[
+            InlineKeyboardButton('🪅JSON🪅', callback_data='son'),
+            InlineKeyboardButton('🔊 TTS 🔊', callback_data='ttss'),           
+            InlineKeyboardButton('🗑️PURGE🗑️', callback_data='purges')
+            ],[
+            InlineKeyboardButton('📬PASTE📬', callback_data='pastes'),
+            InlineKeyboardButton('📸IMAGE📸', callback_data='image'),
+            InlineKeyboardButton('🏌️PING🏌️', callback_data='pings')                                   
+            ],[                               
+            InlineKeyboardButton('🔇MUTE🔇', callback_data='restric'),
+            InlineKeyboardButton('🦵KICK🦵', callback_data='zombies'),
+            InlineKeyboardButton('📌PIN📌', callback_data='pin')
+            ],[
+            InlineKeyboardButton('🔳CARBON🔳', callback_data='carb'),
+            InlineKeyboardButton('💟FONTS💟', callback_data='fond'),
+            InlineKeyboardButton('🛠️EXTRAS🛠️', callback_data='extra')
+            ],[
+            InlineKeyboardButton('◀️BACK◀️', callback_data='help'),
+            InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='start')
+        ]]
+
+@Client.on_message(filters.command("help"))
+async def help(client, message):
+        buttons = BUTTON_1
+        reply_markup = InlineKeyboardMarkup(buttons)             
+        await query.message.reply_photo(       
+            photo=random.choice(PICS),              
+            caption=script.HELP_TXT.format(query.from_user.mention),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
