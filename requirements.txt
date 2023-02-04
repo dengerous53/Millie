@@ -3,3 +3,4 @@ tgcrypto
 git+https://github.com/cinemagoer/cinemagoer
 yt_dlp
 youtube_search
+youtubesearchpython
