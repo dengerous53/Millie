@@ -2,7 +2,7 @@ git+https://github.com/MKN-BOTZ/pyrogram
 pyrogram>=2.0.30
 
 
-
+motor==2.5.1
 marshmallow==3.14.1
 umongo==3.0.1
 requests
@@ -15,7 +15,6 @@ aiofiles
 ffmpeg-python
 ffmpeg
 youtube_search
-youtube_search_python
 youtube-search-python==1.4.6
 yt-dlp
 youtube-dl
