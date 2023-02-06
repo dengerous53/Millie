@@ -12,6 +12,7 @@ aiofiles
 ffmpeg-python
 ffmpeg
 youtube_search
+youtubesearchpython
 youtube-search-python==1.4.6
 yt-dlp
 youtube-dl
