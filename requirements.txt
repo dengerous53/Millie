@@ -1,4 +1,4 @@
-git+https://github.com/Renishrplay/pyrogram
+git+https://github.com/MKN-BOTZ/pyrogram
 pyrogram>=2.0.30
 tgcrypto
 pymongo[srv]==3.12.3
