@@ -16,13 +16,6 @@ def is_enabled(value, default):
     else:
         return default
 
-MillieCli = Client(
-    session_name=SESSION,
-    api_id=API_ID,
-    api_hash=API_HASH,
-    bot_token=BOT_TOKEN
-)
-
 # Bot information
 PORT = environ.get("PORT", "8080")
 SESSION = environ.get('SESSION', 'Media_search')
