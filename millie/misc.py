@@ -61,7 +61,7 @@ BUTTON_2 = [[
         ]]
 
 @Client.on_message(filters.command("help"))
-async def help(client, message):
+async def helped(client, message):
         buttons = BUTTON_1
         reply_markup = InlineKeyboardMarkup(buttons)             
         await query.message.reply_photo(       
