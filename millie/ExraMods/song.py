@@ -33,10 +33,10 @@ def song(client, message):
     rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
 
     query = ''
-    query = query.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
-    query = query.replace("?feature=share", "")
     for i in message.command[1:]:
         query += ' ' + str(i)
+        query = query.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
+        query = query.replace("?feature=share", "")
     print(query)
     m = message.reply("**ѕєαrchíng чσur ѕσng...!**")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
