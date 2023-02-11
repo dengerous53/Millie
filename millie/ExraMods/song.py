@@ -33,6 +33,8 @@ def song(client, message):
     rpk = "["+user_name+"](tg://user?id="+str(user_id)+")"
 
     query = ''
+    query = query.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
+    query = query.replace("?feature=share", "")
     for i in message.command[1:]:
         query += ' ' + str(i)
     print(query)
@@ -140,9 +142,12 @@ async def vsong(client, message: Message):
     c_time = time.time()
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"""
+.
 **𝚃𝙸𝚃𝙻𝙴 :** [{thum}]({mo})
+.
 **𝚁𝙴𝚀𝚄𝙴𝚂𝚃𝙴𝙳 𝙱𝚈 :** {message.from_user.mention}
-**@ᴄᴄᴏᴍ_ᴛᴇᴀᴍ**
+.
+**@Millie_power_robot**
 """
     await client.send_video(
         message.chat.id,
