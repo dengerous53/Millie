@@ -32,3 +32,4 @@ aiohttp
 python-math
 Pillow
 speedtest-cli         
+ffmpeg
