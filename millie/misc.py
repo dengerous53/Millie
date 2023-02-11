@@ -66,7 +66,7 @@ async def help(client, message):
         reply_markup = InlineKeyboardMarkup(buttons)             
         await query.message.reply_photo(       
             photo=random.choice(PICS),              
-            caption=script.HELP_TXT.format(query.from_user.mention),
+            caption="Here is my help command",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
