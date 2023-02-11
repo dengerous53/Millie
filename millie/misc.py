@@ -80,7 +80,7 @@ async def help_search(client, message):
         await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
     else:
         btn = BUTTON_1
-        await message.reply(script.HELP_TXT.format({from_user.mention}))
+        await message.reply(script.HELP_TXT)
         
 
 @Client.on_message(filters.command('id'))
