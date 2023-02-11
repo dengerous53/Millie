@@ -57,8 +57,21 @@ BUTTON_2 = [[
             ],[
             InlineKeyboardButton('◀️BACK◀️', callback_data='help'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),
-            InlineKeyboardButton('▶️NEXT▶️', callback_data='start')
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='renish')
         ]]
+
+BUTTON_3 =  [[
+            InlineKeyboardButton('🌹MILLIE update channel🌹', url='https://t.me/millie_robot_update'),            
+            ],[
+            InlineKeyboardButton('🎞️ YOUTUBE 🎞️', callback_data='ytdl'),
+            InlineKeyboardButton('🔊 AUDIO 🔊', callback_data='audl'),           
+            InlineKeyboardButton('📹 VIDEO 📹', callback_data='vudl')
+            ],[
+            InlineKeyboardButton(◀️BACK◀️', callback_data='millie'),
+            InlineKeyboardButton('🏠HOME🏠', callback_data='start'),           
+            InlineKeyboardButton('▶️NEXT▶️', callback_data='start')
+            ]]
+
 
 @Client.on_message(filters.command("help"))
 async def help(client, message):
