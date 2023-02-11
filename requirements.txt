@@ -1,5 +1,6 @@
 git+https://github.com/MKN-BOTZ/pyrogram
 TgCrypto
+PhantomJS
 pyrogram>=2.0.30
 marshmallow==3.14.1
 umongo==3.0.1
