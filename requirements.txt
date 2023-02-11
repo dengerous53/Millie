@@ -1,3 +1,5 @@
 git+https://github.com/MKN-BOTZ/pyrogram         
 tgcrypto
+TgCrypto
+PhantomJS
 git+https://github.com/cinemagoer/cinemagoer
