@@ -79,9 +79,9 @@ async def help_search(client, message):
         ]
         await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply(script.HELP_TXT)
         btn = BUTTON_1
-
+        await message.reply(script.HELP_TXT.format(query.from_user.mention))
+        
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
