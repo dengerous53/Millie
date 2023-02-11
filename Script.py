@@ -9,6 +9,49 @@ class script(object):
 ✯ 𝙱𝙾𝚃 𝚂𝙴𝚁𝚅𝙴𝚁 : 𝙰𝙽𝚈𝚆𝙷𝙴𝚁𝙴
 ✯ 𝙱𝚄𝙸𝙻𝙳 𝚅𝙴𝚁𝚂𝙸𝙾𝙽: 𝙿𝚁𝙾𝙵𝙴𝚂𝚂𝙾𝚁-𝙱𝙾𝚃 𝚟3.0.0"""
 
+    YOUTUBE_TXT = """ ⭐⭐ NEW UPDATE ⭐⭐
+Download video
+Download song
+Download shorts
+From YouTube using this bot
+Command.  /video , /mp4 , /vsonng , /yt , /ytdl , /short , /shorts for video
+/audio , /mp3 , /asong , /song , /ayt , /aytdl , /ashort , /ashorts for audio
+EXAMPLE & more information
+is on video & audio buttons """
+
+    AUDIO_TXT = """⭐⭐⭐ NEW UPDATE ⭐⭐⭐
+Download audio song from YouTube
+You can download shorts too
+
+Use command
+/audio , /mp3 , /asong , /song , /ayt , /aytdl , /ashort , /ashorts 
+
+EXAMPLE :- 
+1. /MP3 tum hi ho 
+For search 
+2. /MP3 https://youtu.be/Umqb9KENgmk
+For using your link 
+3. /MP3 https://youtube.com/shorts/ag84IxglCfY?feature=share
+For shorts video
+"""
+
+
+    VIDEO_TXT = """⭐⭐⭐ NEW UPDATE ⭐⭐⭐
+Download video song from YouTube
+You can download shorts too
+
+Use command
+/video , /mp4 , /vsonng , /yt , /ytdl , /short , /shorts
+
+EXAMPLE :- 
+1. /MP4 tum hi ho 
+For search 
+2. /MP4 https://youtu.be/Umqb9KENgmk
+For using your link 
+3. /MP4 https://youtube.com/shorts/ag84IxglCfY?feature=share
+For shorts video
+"""
+
     SOURCE_TXT = """<b>NOTE:</b>
 Click 👇👇 source button for source 
 
