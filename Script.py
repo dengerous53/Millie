@@ -58,6 +58,22 @@ Click 👇👇 source button for source
 <b>DEVS:</b>
 <a href=https://t.me/millie_rmvzz>Millie Bobby brown</a>"""
     
+    REPORT_TXT = """👉 HELP For REPORT 🚨
+
+This command helps you to report a message or a user to admins on the respective group.
+
+Don't misuse this command
+Otherwise you will block
+Or ban from group & admin
+
+⭐⭐ Command ⭐⭐
+/Report
+@admin
+@admins
+⭐⭐ Example to use ⭐⭐
+
+👉 /Report  - 𝖳𝗈 𝗋𝖾𝗉𝗈𝗋𝗍 𝖺 𝗎𝗌𝖾𝗋 𝗍𝗈 𝗍𝗁𝖾 𝖺𝖽𝗆𝗂𝗇𝗌 (𝗋𝖾𝗉𝗅𝗒 𝗍𝗈 𝖺 𝗆𝖾𝗌𝗌𝖺𝗀𝖾)."""
+    
     AFK_TXT = """
 Coming soon....
 XxxxxxxxxxxxxxxxxxxxxxX
