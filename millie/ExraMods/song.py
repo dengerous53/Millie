@@ -108,6 +108,7 @@ async def vsong(client, message: Message):
     if not urlissed:
         await pablo.edit("Invalid Command Syntax Please Check help Menu To Know More!")
         return
+    pablo.edit(script.VIDEO_TXT)
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
     mi = search.result()
