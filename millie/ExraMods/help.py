@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message, 
 from millie.misc import BUTTON_1
 from Script import script
 
-@Client.on_message(filters.command("help"))
+@Client.on_message(filters.command(["help"]))
 async def helpless(_, message):
     the_real_message = "hear is my help command"
     reply_to_id = None
