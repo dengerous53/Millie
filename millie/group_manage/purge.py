@@ -1,6 +1,7 @@
 import asyncio
 from pyrogram import Client, filters, enums 
-from millie.helper.admin_check import admin_check
+
+admin_check = await bot.get_chat_members(chat_id=message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS)
 
 
 @Client.on_message(filters.command("purge") & (filters.group | filters.channel))                   
