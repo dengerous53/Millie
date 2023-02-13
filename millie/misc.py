@@ -60,28 +60,6 @@ BUTTON_2 = [[
             InlineKeyboardButton('▶️NEXT▶️', callback_data='start')
         ]]
 
-@Client.on_message(filters.command(["help", 'help_search']))
-async def help_search(client, message):
-    if ' ' in message.text:
-        k = await message.reply('loding....')
-        r, title = message.text.split(None, 1)
-        movies = await get_poster(title, bulk=True)
-        if not movies:
-            return await message.reply("No results Found")
-        btn = [
-            [
-                InlineKeyboardButton(
-                    text=f"{movie.get('title')} - {movie.get('year')}",
-                    callback_data=f"imdb#{movie.movieID}",
-                )
-            ]
-            for movie in movies
-        ]
-        await k.edit('Here is what i found on IMDb', reply_markup=InlineKeyboardMarkup(btn))
-    else:
-        btn = BUTTON_1
-        await message.reply(script.HELP_TXT)
-        
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
