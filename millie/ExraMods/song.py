@@ -105,8 +105,6 @@ async def vsong(client, message: Message):
     pablo = await client.send_message(
         message.chat.id, f"**𝙵𝙸𝙽𝙳𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 𝚅𝙸𝙳𝙴𝙾** `{urlissed}`"
     )
-    if urlissed := None:
-        await pablo.edit("hi")
     if not urlissed:
         await pablo.edit("Invalid Command Syntax Please Check help Menu To Know More!")
         return
