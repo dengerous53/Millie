@@ -142,8 +142,7 @@ async def vsong(client, message: Message):
     massage.edit("**dσwnlσαdíng чσur ѕσng...!**")
     try:
         await event.edit(event, f"**𝙳𝚘𝚠𝚗𝚕𝚘𝚊𝚍 𝙵𝚊𝚒𝚕𝚎𝚍 𝙿𝚕𝚎𝚊𝚜𝚎 𝚃𝚛𝚢 𝙰𝚐𝚊𝚒𝚗..♥️** \n**Error :** `{str(e)}`")
-        return
-    c_time = time.time()
+        return 
     file_stark = f"{ytdl_data['id']}.mp4"
     capy = f"""
 .
