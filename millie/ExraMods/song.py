@@ -10,6 +10,7 @@ import time
 
 import wget
 import aiofiles
+from Script import script
 
 from pyrogram import filters, Client, enums
 from pyrogram.errors import FloodWait, MessageNotModified
@@ -25,7 +26,7 @@ def time_to_seconds(time):
     return sum(int(x) * 60 ** i for i, x in enumerate(reversed(stringt.split(':'))))
 
 
-@Client.on_message(filters.command('song'))
+@Client.on_message(filters.command(["audio", "mp3", "asong", "song", "ayt", "aytdl", "ashort", "ashorts"]))
 def song(client, message):
 
     user_id = message.from_user.id 
@@ -57,9 +58,7 @@ def song(client, message):
         views = results[0]["views"]
 
     except Exception as e:
-        m.edit(
-            "**𝙵𝙾𝚄𝙽𝙳 𝙽𝙾𝚃𝙷𝙸𝙽𝙶 𝙿𝙻𝙴𝙰𝚂𝙴 𝙲𝙾𝚁𝚁𝙴𝙲𝚃 𝚃𝙷𝙴 𝚂𝙿𝙴𝙻𝙻𝙸𝙽𝙶 𝙾𝚁 𝚂𝙴𝙰𝚁𝙲𝙷 𝙰𝙽𝚈 𝙾𝚃𝙷𝙴𝚁 𝚂𝙾𝙽𝙶**"
-        )
+        m.edit(script.AUDIO_TXT)
         print(str(e))
         return
     m.edit("**dσwnlσαdíng чσur ѕσng...!**")
@@ -76,7 +75,7 @@ def song(client, message):
         message.reply_audio(audio_file, caption=rep, parse_mode=enums.ParseMode.MARKDOWN,quote=False, title=title, duration=dur, performer=performer, thumb=thumb_name)
         m.delete()
     except Exception as e:
-        m.edit("**🚫 𝙴𝚁𝚁𝙾𝚁 🚫**")
+        m.edit("**🚫 download failed try again or try another 🚫**")
         print(e)
 
     try:
@@ -97,7 +96,7 @@ def get_text(message: Message) -> [None,str]:
         return None
 
 
-@Client.on_message(filters.command(["video", "mp4"]))
+@Client.on_message(filters.command(["video", "mp4", "vsonng", "yt", "ytdl", "short", "shorts"]))
 async def vsong(client, message: Message):
     urlissed = get_text(message)
     urlissed = urlissed.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
@@ -137,6 +136,11 @@ async def vsong(client, message: Message):
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url, download=True)
     except Exception as e:
+        massage.edit(script.AUDIO_TXT)
+        print(str(e))
+        return
+    massage.edit("**dσwnlσαdíng чσur ѕσng...!**")
+    try:
         await event.edit(event, f"**𝙳𝚘𝚠𝚗𝚕𝚘𝚊𝚍 𝙵𝚊𝚒𝚕𝚎𝚍 𝙿𝚕𝚎𝚊𝚜𝚎 𝚃𝚛𝚢 𝙰𝚐𝚊𝚒𝚗..♥️** \n**Error :** `{str(e)}`")
         return
     c_time = time.time()
