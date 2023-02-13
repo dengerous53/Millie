@@ -58,7 +58,7 @@ def song(client, message):
         views = results[0]["views"]
 
     except Exception as e:
-        m.edit(script.AUDIO_TXT)
+        m.edit("hi")
         print(str(e))
         return
     m.edit("**dσwnlσαdíng чσur ѕσng...!**")
@@ -107,8 +107,9 @@ async def vsong(client, message: Message):
     )
     if not urlissed:
         await pablo.edit("Invalid Command Syntax Please Check help Menu To Know More!")
+    elif urlissed == noun:
+        await pablo.edit("hi")
         return
-    pablo.edit(script.VIDEO_TXT)
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
     mi = search.result()
