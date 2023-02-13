@@ -105,6 +105,8 @@ async def vsong(client, message: Message):
     pablo = await client.send_message(
         message.chat.id, f"**𝙵𝙸𝙽𝙳𝙸𝙽𝙶 𝚈𝙾𝚄𝚁 𝚅𝙸𝙳𝙴𝙾** `{urlissed}`"
     )
+    if urlissed = Noun:
+        await pablo.edit("hi")
     if not urlissed:
         await pablo.edit("Invalid Command Syntax Please Check help Menu To Know More!")
         return
@@ -135,7 +137,7 @@ async def vsong(client, message: Message):
     try:
         with YoutubeDL(opts) as ytdl:
             ytdl_data = ytdl.extract_info(url, download=True)
-    elif Exception as e:
+    except Exception as e:
         await event.edit(event, f"**𝙳𝚘𝚠𝚗𝚕𝚘𝚊𝚍 𝙵𝚊𝚒𝚕𝚎𝚍 𝙿𝚕𝚎𝚊𝚜𝚎 𝚃𝚛𝚢 𝙰𝚐𝚊𝚒𝚗..♥️** \n**Error :** `{str(e)}`")
         return
     c_time = time.time()
@@ -162,4 +164,3 @@ async def vsong(client, message: Message):
     for files in (sedlyf, file_stark):
         if files and os.path.exists(files):
             os.remove(files)
-    except await pablo.edit("hi")
