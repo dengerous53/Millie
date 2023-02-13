@@ -107,7 +107,7 @@ async def vsong(client, message: Message):
     )
     if not urlissed:
         await pablo.edit("Invalid Command Syntax Please Check help Menu To Know More!")
-    elif urlissed == None:
+    elif message == None:
         await pablo.edit("hi")
         return
 
