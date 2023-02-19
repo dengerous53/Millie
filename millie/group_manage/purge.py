@@ -1,5 +1,6 @@
 import asyncio
 from pyrogram import Client, filters, enums 
+from millie.helper.admin_check import admin_check
 
 
 @Client.on_message(filters.command("purge") & (filters.group | filters.channel))                   
@@ -7,7 +8,6 @@ async def purge(client, message):
     if message.chat.type not in ((enums.ChatType.SUPERGROUP, enums.ChatType.CHANNEL)):
         return
     is_admin = await admin_check(message)
-    admin_check = await bot.get_chat_members(chat_id=message.chat.id, filter=enums.ChatMembersFilter.ADMINISTRATORS)
     if not is_admin:
         return
 
