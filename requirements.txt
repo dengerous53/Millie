@@ -36,3 +36,4 @@ python-math
 Pillow
 speedtest-cli         
 ffmpeg
+cv2
