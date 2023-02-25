@@ -199,7 +199,7 @@ InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='statrfr')
 def statsmsg(client, message):
     message.reply_photo(
     photo=random.choice(PICS),
-    caption = script.STATUS_TXT.format(temp.T_FILES, temp.T_USERS, temp.T_CHATS, temp.T_SIZE, temp.F_SIZE),
+    caption = script.STATUS_TXT.format(temp.T_FILES, temp.T_USERS, temp.T_CHATS, temp.U_SIZE, temp.F_SIZE),
     reply_markup = InlineKeyboardMarkup(STATSBTN)
     )
 
