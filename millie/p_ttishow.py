@@ -192,24 +192,24 @@ async def re_paid_chat(bot, message):
     await message.reply("Chat Succesfully add to free chat")
 
 
-@Client.on_message(filters.command('stats') & filters.incoming)
-async def get_ststs(bot, message):
+@Client.on_message(filters.command('stats'))
+def get_stats(client, message):
     buttons = [[
             InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
         ]]
-    reply_markup = InlineKeyboardMarkup(buttons)
-    rju = await message.reply_photo(photo=random.choice(PICS), caption="𝙰𝙲𝙲𝙴𝚂𝚂𝙸𝙽𝙶 𝚂𝚃𝙰𝚃𝚄𝚂 𝙳𝙴𝚃𝙰𝙸𝙻𝚂...", reply_markup=InlineKeyboardMarkup(buttons))
-    total_users = await db.total_users_count()
-    totl_chats = await db.total_chat_count()
-    files = await Media.count_documents()
-    size = await db.get_db_size()
+    total_users = db.total_users_count()
+    totl_chats = db.total_chat_count()
+    files = Media.count_documents()
+    size = db.get_db_size()
     free = 536870912 - size
     size = get_size(size)
     free = get_size(free)
-    await rju.edit(script.STATUS_TXT.format(files, total_users, totl_chats, size, free, 
-        reply_markup=reply_markup,
-        quote=True,
-        parse_mode=enums.ParseMode.HTML))
+    message.reply_photo(
+    photo=random.choice(PICS),
+    caption = script.STATUS_TXT.format(files, total_users, totl_chats, size, free),
+    reply_markup = InlineKeyboardMarkup(buttons)
+    )
+
 
 # വാഴ മരത്തെ കളിയാക്കിയവർ തന്നെ പേടിച്ചു ഓടിപ്പോയി
 @Client.on_message(filters.command('invite') & filters.user(ADMINS))
