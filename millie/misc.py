@@ -63,7 +63,7 @@ BUTTON_2 = [[
 @Client.on_message(filters.command('help'))
 def helpmsg(client, message):
     message.reply(
-    text = "This is my help command"
+    text = "This is my help command",
     reply_markup = InlineKeyboardMarkup(BUTTON_1)
     )
 
