@@ -64,7 +64,7 @@ BUTTON_2 = [[
 def helpmsg(client, message):
     message.reply_photo(
     photo=random.choice(PICS),
-    caption = "This is my help command",
+    caption = script.HELP_TXT.format(query.from_user.mention),
     reply_markup = InlineKeyboardMarkup(BUTTON_1)
     )
 
