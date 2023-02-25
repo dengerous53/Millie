@@ -75,16 +75,14 @@ BUTTON_3 =  [[
             ]]
 
 
-@Client.on_message(filters.command("help"))
-async def help(client, message):
-        buttons = BUTTON_1
-        reply_markup = InlineKeyboardMarkup(buttons)             
-        await query.message.reply_photo(       
-            photo=random.choice(PICS),              
-            caption="Here is my help command",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )
+
+@Client.on_message(filters.command('help'))
+def helpmsg(client, message):
+    message.reply_photo(
+    photo=random.choice(PICS),
+    caption = script.HELP_TXT.format(message.from_user.mention),
+    reply_markup = InlineKeyboardMarkup(BUTTON_1)
+    )
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
