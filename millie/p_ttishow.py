@@ -191,23 +191,24 @@ async def re_paid_chat(bot, message):
     temp.PRIM_CHATS.remove(int(chat_))
     await message.reply("Chat Succesfully add to free chat")
 
+STATSBTN = [[
+InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='statrfr')
+        ]]
+
+total = await Media.count_documents()
+users = await db.total_users_count()
+chats = await db.total_chat_count()
+monsize = await db.get_db_size()
+free = 536870912 - monsize
+monsize = get_size(monsize)
+free = get_size(free)
 
 @Client.on_message(filters.command('stats'))
-async def get_stats(bot, message):
-    buttons = [[
-            InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
-        ]]
-    total_users = await db.total_users_count()
-    totl_chats = await db.total_chat_count()
-    files = await Media.count_documents()
-    size = await db.get_db_size()
-    free = 536870912 - size
-    size = get_size(size)
-    free = get_size(free)
-    message.send_photo(
+def statsmsg(client, message):
+    message.reply_photo(
     photo=random.choice(PICS),
-    caption = script.STATUS_TXT.format(files, total_users, totl_chats, size, free),
-    reply_markup = InlineKeyboardMarkup(buttons)
+    caption = script.STATUS_TXT.format(total, users, chats, monsize, free),
+    reply_markup = InlineKeyboardMarkup(STATSBTN)
     )
 
 
