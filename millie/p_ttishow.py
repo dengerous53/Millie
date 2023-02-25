@@ -204,7 +204,7 @@ async def get_stats(client, message):
     free = 536870912 - size
     size = get_size(size)
     free = get_size(free)
-    message.reply_photo(
+    message.send_photo(
     photo=random.choice(PICS),
     caption = script.STATUS_TXT.format(files, total_users, totl_chats, size, free),
     reply_markup = InlineKeyboardMarkup(buttons)
