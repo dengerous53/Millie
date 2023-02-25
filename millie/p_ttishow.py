@@ -193,7 +193,7 @@ async def re_paid_chat(bot, message):
 
 
 @Client.on_message(filters.command('stats'))
-def get_ststs(bot, message):
+async def get_ststs(bot, message):
     total_users = await db.total_users_count()
     totl_chats = await db.total_chat_count()
     files = await Media.count_documents()
