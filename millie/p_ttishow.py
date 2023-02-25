@@ -195,19 +195,12 @@ STATSBTN = [[
 InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='statrfr')
         ]]
 
-total = await Media.count_documents()
-users = await db.total_users_count()
-chats = await db.total_chat_count()
-monsize = await db.get_db_size()
-free = 536870912 - monsize
-monsize = get_size(monsize)
-free = get_size(free)
 
 @Client.on_message(filters.command('stats'))
 def statsmsg(client, message):
     message.reply_photo(
     photo=random.choice(PICS),
-    caption = script.STATUS_TXT.format(total, users, chats, monsize, free),
+    caption = script.STATUS_TXT.format(temp.T_FILES, temp.T_USERS, temp.T_CHATS, 536870912, temp.F_SIZE),
     reply_markup = InlineKeyboardMarkup(STATSBTN)
     )
 
