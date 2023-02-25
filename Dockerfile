@@ -6,7 +6,7 @@ COPY requirements.txt /requirements.txt
 
 RUN cd /
 
-WORKDIR /Millie
+WORKDIR /Millie-1
 
 COPY start.sh /start.sh
 
