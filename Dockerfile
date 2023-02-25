@@ -10,5 +10,5 @@ RUN mkdir /Millie
 WORKDIR /Millie
 
 COPY start.sh /start.sh
-COPY . .
+
 CMD ["/bin/bash", "/start.sh"]
