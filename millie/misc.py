@@ -60,6 +60,12 @@ BUTTON_2 = [[
             InlineKeyboardButton('▶️NEXT▶️', callback_data='start')
         ]]
 
+@Client.on_message(filters.command('help'))
+def helpmsg(client, message):
+    message.reply(
+    text = "This is my help command"
+    reply_markup = InlineKeyboardMarkup(BUTTON_1)
+    )
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
