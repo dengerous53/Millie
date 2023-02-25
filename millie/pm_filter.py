@@ -1198,6 +1198,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='statrfr')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
+        await client.edit_message_media(
+            query.message.chat.id, 
+            query.message.id, 
+            InputMediaPhoto(random.choice(PICS))
+        )
         await query.message.edit_text(
             text=script.STATUS_TXT.format(temp.T_FILES, temp.T_USERS, temp.T_CHATS, temp.U_SIZE, temp.F_SIZE),
             reply_markup=reply_markup,
