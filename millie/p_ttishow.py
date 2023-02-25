@@ -199,8 +199,8 @@ async def get_ststs(bot, message):
         ]]
     reply_markup = InlineKeyboardMarkup(buttons)
     rju = await message.reply_photo(
-    photo=random.choice(PICS),
-    caption = '<b>𝙰𝙲𝙲𝙴𝚂𝚂𝙸𝙽𝙶 𝚂𝚃𝙰𝚃𝚄𝚂 𝙳𝙴𝚃𝙰𝙸𝙻𝚂...</b>')
+    photo = random.choice(PICS),
+    caption = "𝙰𝙲𝙲𝙴𝚂𝚂𝙸𝙽𝙶 𝚂𝚃𝙰𝚃𝚄𝚂 𝙳𝙴𝚃𝙰𝙸𝙻𝚂...")
     total_users = await db.total_users_count()
     totl_chats = await db.total_chat_count()
     files = await Media.count_documents()
