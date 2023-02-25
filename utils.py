@@ -80,6 +80,11 @@ class temp(object):
     B_NAME = None
     B_LINK = None
     SETTINGS = {}
+    T_FILES = []
+    U_SIZE = []
+    T_USERS = []
+    T_CHATS = []
+    
 
 async def is_subscribed(bot, query):
     try:
@@ -98,7 +103,10 @@ async def get_poster(query, bulk=False, id=False, file=None):
     if not id:
         # https://t.me/GetTGLink/4183
         query = (query.strip()).lower()
-        title = query
+        title = queryT_FILES = []
+    T_SIZE = []
+    T_USERS = []
+    T_CHATS = []
         year = re.findall(r'[1-2]\d{3}$', query, re.IGNORECASE)
         if year:
             year = list_to_str(year[:1])
