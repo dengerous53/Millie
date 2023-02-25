@@ -80,6 +80,11 @@ class temp(object):
     B_NAME = None
     B_LINK = None
     SETTINGS = {}
+    T_FILES = []
+    T_SIZE = []
+    T_USERS = []
+    T_CHATS = []
+    
 
 async def is_subscribed(bot, query):
     try:
