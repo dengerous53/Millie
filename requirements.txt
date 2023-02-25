@@ -1,7 +1,6 @@
 git+https://github.com/MKN-BOTZ/pyrogram
 TgCrypto
 PhantomJS
-pyrogram>=2.0.30
 marshmallow==3.14.1
 umongo==3.0.1
 motor==2.5.1
@@ -12,7 +11,6 @@ git+https://github.com/cinemagoer/cinemagoer
 Heroku3
 search_engine_parser
 wget
-aiofiles
 ffmpeg-python
 ffmpeg
 youtube_search
@@ -20,8 +18,6 @@ youtube-search-python==1.4.6
 yt-dlp
 youtube-dl
 requests
-aiohttp==3.7.4
-gTTS
 googletrans==3.1.0a0
 telegraph
 PyPDF2
@@ -38,10 +34,6 @@ speedtest-cli
 ffmpeg        
 tgcrypto
 pymongo[srv]==3.12.3
-marshmallow==3.14.1
-motor==2.0.0
-umongo==3.0.1
-googletrans==3.1.0a0
 gTTS==2.3.1
 requests
 bs4
@@ -63,7 +55,5 @@ py-tgcalls
 python-dotenv
 ujson
 beautifulsoup4
-pytz
-youtube-search
-youtube-search-python
-yt-dlp
+
+
