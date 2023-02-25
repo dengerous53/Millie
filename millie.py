@@ -45,10 +45,17 @@ class Bot(Client):
         await super().start()
         await Media.ensure_indexes()
         me = await self.get_me()
+        monsize = await db.get_db_size()
+        free = 536870912 - monsize
         temp.ME = me.id
         temp.U_NAME = me.username
         temp.B_NAME = me.first_name
         temp.B_LINK = me.mention
+        temp.T_FILES = await Media.count_documents()
+        temp.T_SIZE = get_size(monsize)
+        temp.T_USERS = await db.total_users_count()
+        temp.T_CHATS = await db.total_chat_count()
+        temp.F_SIZE = get_size(free)
         self.username = '@' + me.username
         curr = datetime.now(timezone(TIMEZONE))
         date = curr.strftime('%d %B, %Y')
