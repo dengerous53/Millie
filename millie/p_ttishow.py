@@ -193,7 +193,7 @@ async def re_paid_chat(bot, message):
 
 
 @Client.on_message(filters.command('stats'))
-async def get_stats(client, message):
+async def get_stats(bot, message):
     buttons = [[
             InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='rfrsh')
         ]]
