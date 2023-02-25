@@ -62,8 +62,9 @@ BUTTON_2 = [[
 
 @Client.on_message(filters.command('help'))
 def helpmsg(client, message):
-    message.reply(
-    text = "This is my help command",
+    message.reply_photo(
+    photo=random.choice(PICS),
+    caption = "This is my help command",
     reply_markup = InlineKeyboardMarkup(BUTTON_1)
     )
 
