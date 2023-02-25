@@ -1193,6 +1193,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )      
+    elif query.data == "statrfr":
+        buttons = [[
+            InlineKeyboardButton('𝚁𝙴𝙵𝚁𝙴𝚂𝙷', callback_data='statrfr')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.STATUS_TXT.format(temp.T_FILES, temp.T_USERS, temp.T_CHATS, temp.T_SIZE, temp.F_SIZE),
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )             
     elif query.data == "ytdl":
         buttons = [[
             InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='renish')
