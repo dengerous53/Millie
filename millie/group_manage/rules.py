@@ -5,25 +5,9 @@ from utils import temp
 
 admin_filter=enums.ChatMembersFilter.ADMINISTRATORS
 
-def ikb(rows=None):
-    if rows is None:
-        rows = []
-    lines = []
-    for row in rows:
-        line = []
-        for button in row:
-            button = rtn(*button) 
-            line.append(button)
-        lines.append(line)
-    return InlineKeyboardMarkup(inline_keyboard=lines)
-
-
-def rtn(text, value, type="callback_data"):
-    return InlineKeyboardButton(text, **{type: value})
-
 
 @Client.on_message(filters.command("rules") & filters.group)
-async def get_rules(client, message: Message, _):
+async def get_rules(Client: client, message: Message):
     db = Rules(message.chat.id)
     msg_id = message.reply_to_message.message_id if message.reply_to_message else message.message_id
     rules = db.get_rules()
@@ -45,7 +29,7 @@ async def get_rules(client, message: Message, _):
 
 
 @Client.on_message(filters.command("setrules") & admin_filter)
-async def set_rules(client, message: Message, _):
+async def set_rules(Client: client, message: Message):
     db = Rules(message.chat.id)
     if message.reply_to_message and message.reply_to_message.text:
         rules = message.reply_to_message.text.markdown
@@ -59,7 +43,7 @@ async def set_rules(client, message: Message, _):
 
 
 @Client.on_message(filters.command(["pmrules", "privaterules"]) & admin_filter)
-async def priv_rules(client, message: Message, _):
+async def priv_rules(Client: client, message: Message):
     db = Rules(message.chat.id)
     if len(message.text.split()) == 2:
         option = (message.text.split())[1]
@@ -81,7 +65,7 @@ async def priv_rules(client, message: Message, _):
 
 
 @Client.on_message(filters.command("clearrules") & admin_filter)
-async def clear_rules(client, message: Message, _):
+async def clear_rules(Client: client, message: Message):
     db = Rules(message.chat.id)
     rules = db.get_rules()
     if not rules:
