@@ -63,7 +63,7 @@ async def get_rules(rules):
     return texts
 
 
-async def delete_rule(message, text, rules):
+async def delete_rules(message, text, rules):
     mycol = mydb[str(rules)]
     
     myquery = {'text':text }
