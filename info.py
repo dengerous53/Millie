@@ -8,7 +8,7 @@ from pyrogram import Client
 from time import time
 from logging import WARNING, getLogger
 
-getL/ogger("pyrogram").setLevel(WARNING)
+getLogger("pyrogram").setLevel(WARNING)
 LOGGER = getLogger(__name__)
 
 id_pattern = re.compile(r'^.\d+$')
