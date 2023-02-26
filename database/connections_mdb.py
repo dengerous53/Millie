@@ -16,7 +16,7 @@ try:
 except PyMongoError as f:
     LOGGER.error(f"Error in Mongodb: {f}")
     exiter(1)
-millie_main_db = alita_db_client[DATABASE_NAME]
+millie_main_db = millie_db_client[DATABASE_NAME]
 
 async def add_connection(group_id, user_id):
     query = mycol.find_one(
