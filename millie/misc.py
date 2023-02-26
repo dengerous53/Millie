@@ -83,11 +83,6 @@ async def showid(client, message):
             quote=True
         )
         rules = Rules(m.chat.id).get_rules()
-    elif rules:
-        kb = InlineKeyboardButton(
-            "Rules 📋",
-            url=f"https://t.me/{BOT_USERNAME}?start=rules_{m.chat.id}",
-        )
     elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         _id = ""
         _id += (
