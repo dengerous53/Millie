@@ -7,7 +7,7 @@ admin_filter=enums.ChatMembersFilter.ADMINISTRATORS
 
 
 @Client.on_message(filters.command("rules") & filters.group)
-async def get_rules(Client: client, message: Message):
+async def get_rules(client: Client, message: Message):
     db = Rules(message.chat.id)
     msg_id = message.reply_to_message.message_id if message.reply_to_message else message.message_id
     rules = db.get_rules()
@@ -29,7 +29,7 @@ async def get_rules(Client: client, message: Message):
 
 
 @Client.on_message(filters.command("setrules") & admin_filter)
-async def set_rules(Client: client, message: Message):
+async def set_rules(client: Client, message: Message):
     db = Rules(message.chat.id)
     if message.reply_to_message and message.reply_to_message.text:
         rules = message.reply_to_message.text.markdown
@@ -43,7 +43,7 @@ async def set_rules(Client: client, message: Message):
 
 
 @Client.on_message(filters.command(["pmrules", "privaterules"]) & admin_filter)
-async def priv_rules(Client: client, message: Message):
+async def priv_rules(client: Client, message: Message):
     db = Rules(message.chat.id)
     if len(message.text.split()) == 2:
         option = (message.text.split())[1]
@@ -65,7 +65,7 @@ async def priv_rules(Client: client, message: Message):
 
 
 @Client.on_message(filters.command("clearrules") & admin_filter)
-async def clear_rules(Client: client, message: Message):
+async def clear_rules(client: Client, message: Message):
     db = Rules(message.chat.id)
     rules = db.get_rules()
     if not rules:
