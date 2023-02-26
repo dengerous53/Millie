@@ -6,6 +6,7 @@ from info import IMDB_TEMPLATE, PICS
 from Script import script
 from utils import extract_user, get_file_id, get_poster, last_online
 import time
+from database.rules_db import Rules
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 import logging
