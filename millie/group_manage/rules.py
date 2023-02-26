@@ -1,9 +1,9 @@
-from pyrogram import filters, Client
+from pyrogram import filters, Client, enums
 from database.rulesdb import Rules
-from millie.helper.admin_check import admin_filter
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
 from utils import temp
 
+admin_filter=enums.ChatMembersFilter.ADMINISTRATORS
 
 def ikb(rows=None):
     if rows is None:
