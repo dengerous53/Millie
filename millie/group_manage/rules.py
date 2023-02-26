@@ -90,16 +90,3 @@ async def clear_rules(client, message: Message, _):
         reply_markup=ikb([[("⚠️ Confirm", "clear_rules"), ("❌ Cancel", "close_data")]]))
     
 
-
-__MODULE__ = Rule
-__HELP__ = """
-Every chat works with different rules; this module will help make those rules clearer!
-
-**User commands:**
-- /rules: Check the current chat rules.
-
-**Admin commands:**
-- /setrules `<text>`: Set the rules for this chat. Supports markdown, buttons, fillings, etc.
-- /privaterules `<yes/no/on/off>`: on|off whether the rules should be sent in private.
-- /clearrules: Reset the chat rules to default.
-"""
