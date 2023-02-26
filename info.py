@@ -6,6 +6,10 @@ from collections import defaultdict
 from typing import Dict, List, Union
 from pyrogram import Client
 from time import time
+from logging import WARNING, getLogger
+
+getL/ogger("pyrogram").setLevel(WARNING)
+LOGGER = getLogger(__name__)
 
 id_pattern = re.compile(r'^.\d+$')
 def is_enabled(value, default):
