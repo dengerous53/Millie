@@ -119,14 +119,7 @@ class Database:
         return p_users, p_chats
     
 
-   async def get_rules(self):
-        privchats = self.grp.find({'privrules_status.is_set_privrules': True})
-        chats = self.grp.find({'rules_status.is_set_rules': True})
-        rules_chats = [chat['id'] async for chat in chats]
-        privrules_chats = [privchats['id'] async for privchat in privchats]
-        return privrules_chats, rules_chats
-
-    async def add_chat(self, chat, title, username):
+   async def add_chat(self, chat, title, username):
         chat = self.new_group(chat, title, username)
         await self.grp.insert_one(chat)
     
@@ -144,17 +137,6 @@ class Database:
         await self.grp.update_one({'id': int(id)}, {'$set': {'chat_status': chat_status}})
   
 
-    async def set_rules_chat(self, id):
-        rules_status=dict(
-            set_rules_chat=False,
-            rules="",
-            )
-        await self.grp.update_one({'id': int(id)}, {'$set': {'rules_status': rules_status}})
-        
-    async def update_settings(self, id, settings):
-        await self.grp.update_one({'id': int(id)}, {'$set': {'settings': settings}})
-        
-    
     async def get_settings(self, id):
         default = {
             'button': SINGLE_BUTTON,
