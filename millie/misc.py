@@ -81,7 +81,12 @@ async def showid(client, message):
             f"<b>➲ First Name:</b> {first}\n<b>➲ Last Name:</b> {last}\n<b>➲ Username:</b> {username}\n<b>➲ Telegram ID:</b> <code>{user_id}</code>\n<b>➲ Data Centre:</b> <code>{dc_id}</code>",
             quote=True
         )
-
+        rules = Rules(m.chat.id).get_rules()
+    elif rules:
+        kb = InlineKeyboardButton(
+            "Rules 📋",
+            url=f"https://t.me/{BOT_USERNAME}?start=rules_{m.chat.id}",
+        )
     elif chat_type in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
         _id = ""
         _id += (
