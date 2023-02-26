@@ -55,7 +55,7 @@ async def addrule(client, message):
         await message.reply_text("Command Incomplete :(", quote=True)
         return
 
-    extracted = split_quotes([1])
+    extracted = split_quotes(args[1])
     text = extracted[0].lower()
 
     if not message.reply_to_message and len(extracted) < 2:
