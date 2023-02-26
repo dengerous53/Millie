@@ -119,7 +119,7 @@ class Database:
         return p_users, p_chats
     
 
-   async def add_chat(self, chat, title, username):
+    async def add_chat(self, chat, title, username):
         chat = self.new_group(chat, title, username)
         await self.grp.insert_one(chat)
     
