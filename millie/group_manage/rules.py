@@ -2,7 +2,7 @@ from pyrogram import filters, Client
 from database.rulesdb import Rules
 from millie.helper.admin_check import admin_filter
 from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup
-from utils import temp.U_NAME as BOT_USERNAME
+from utils import temp
 
 
 def ikb(rows=None):
@@ -31,7 +31,7 @@ async def get_rules(client, message: Message, _):
         return await message.reply_text(_["rules1"])
     priv_rules_status = db.get_privrules()
     if priv_rules_status:
-        pm_kb = ikb([[("Rules",f"https://t.me/{BOT_USERNAME}?start=rules_{message.chat.id}","url")]])
+        pm_kb = ikb([[("Rules",f"https://t.me/{temp.U_NAME}?start=rules_{message.chat.id}","url")]])
         return await message.reply_text(_["rules2"],
             quote=True,
             reply_markup=pm_kb,
