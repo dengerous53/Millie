@@ -1,5 +1,4 @@
 import pymongo
-from pymongo import MongoClient
 from info import DATABASE_URI, DATABASE_NAME, LOGGER
 
 import logging
@@ -11,12 +10,6 @@ mydb = myclient[DATABASE_NAME]
 mycol = mydb['CONNECTION']   
 
 
-try:
-    millie_db_client = MongoClient(DATABASE_URI)
-except PyMongoError as f:
-    LOGGER.error(f"Error in Mongodb: {f}")
-    exiter(1)
-millie_main_db = millie_db_client[DATABASE_NAME]
 
 async def add_connection(group_id, user_id):
     query = mycol.find_one(
@@ -145,7 +138,7 @@ class MongoDB:
     """Class for interacting with Bot database."""
 
     def __init__(self, collection) -> None:
-        self.collection = millie_main_db[collection]
+        self.collection = mydb[collection]
 
     # Insert one entry into collection
     def insert_one(self, document):
@@ -192,7 +185,7 @@ class MongoDB:
 
     @staticmethod
     def close():
-        return millie_db_client.close()
+        return myclient.close()
 
 
 def __connect_first():
