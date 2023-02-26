@@ -2,7 +2,7 @@ from threading import RLock
 from time import time
 
 from info import LOGGER
-from database.connections_mdb import MongoDB
+from database.connections_mdb import mycol as MongoDB
 
 INSERTION_LOCK = RLock()
 
