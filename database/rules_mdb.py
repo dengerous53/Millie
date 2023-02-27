@@ -79,16 +79,16 @@ async def delete_rules(message, text, rules):
         await message.reply_text("Couldn't find that rule!", quote=True)
 
 async def del_allrules(message, rules):
-    if str(rules) not in mydb.list_collection_names():
-        await message.edit_text("Nothin!")
+    if str(group_id) not in mydb.list_collection_names():
+        await message.edit_text(f"Nothing to remove in {title}!")
         return
 
-    mycol = mydb[str(rules)]
+    mycol = mydb[str(group_id)]
     try:
         mycol.drop()
-        await message.edit_text(f"All filters has been removed")
+        await message.edit_text(f"All rules from {title} has been removed")
     except:
-        await message.edit_text("Couldn't remove all filters!")
+        await message.edit_text("Couldn't remove all rules from group!")
         return
 
 async def count_rules(rules):
