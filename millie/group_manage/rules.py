@@ -179,7 +179,7 @@ async def get_all(client, message):
         parse_mode=enums.ParseMode.HTML
     )
         
-@Client.on_message(filters.command('del') & filters.incoming)
+@Client.on_message(filters.command(['delrules', 'clearrules', 'delrules', 'clearrules']) & filters.incoming)
 async def deleterule(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
@@ -231,7 +231,7 @@ async def deleterule(client, message):
     await delete_rules(message, query, grp_id)
         
 
-@Client.on_message(filters.command('delall') & filters.incoming)
+@Client.on_message(filters.command('delallrules') & filters.incoming)
 async def delallconfirm(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
