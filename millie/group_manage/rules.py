@@ -232,7 +232,7 @@ async def deleterule(client, message):
         
 
 @Client.on_message(filters.command('delallrules') & filters.incoming)
-async def delallconfirm(client, message):
+async def delallrules(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
@@ -265,7 +265,7 @@ async def delallconfirm(client, message):
         await message.reply_text(
             f"This will delete all rules from '{title}'.\nDo you want to continue??",
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton(text="YES",callback_data="delallconfirm")],
+                [InlineKeyboardButton(text="YES",callback_data="delallrules")],
                 [InlineKeyboardButton(text="CANCEL",callback_data="delallcancel")]
             ]),
             quote=True
