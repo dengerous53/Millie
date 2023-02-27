@@ -19,7 +19,7 @@ async def addrule(client, message):
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
     chat_type = message.chat.type
-    args = message.text.html.split("rules", 1)
+    args = message.text.html.split(None, 1)
 
     if chat_type == enums.ChatType.PRIVATE:
         grpid = await active_connection(str(userid))
