@@ -232,8 +232,9 @@ async def deleterule(client, message):
     await delete_rules(message, query, grp_id)
         
 
-@Client.on_message(filters.command('del_allrules') & filters.incoming)
-async def del_allrules(client, message):
+
+@Client.on_message(filters.command('del_all') & filters.incoming)
+async def delallconfirm(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
@@ -260,29 +261,15 @@ async def del_allrules(client, message):
     else:
         return
 
+
     st = await client.get_chat_member(grp_id, userid)
     if (st.status == enums.ChatMemberStatus.OWNER) or (str(userid) in ADMINS):
         await message.reply_text(
-            f"This will delete all rules from '{title}'.\nDo you want to continue??",
+            f"This will delete all filters from '{title}'.\nDo you want to continue??",
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton(text="YES",callback_data="del_allrules")],
-                [InlineKeyboardButton(text="CANCEL",callback_data="close")]
+                [InlineKeyboardButton(text="YES",callback_data="delallconfirm")],
+                [InlineKeyboardButton(text="CANCEL",callback_data="delallcancel")]
             ]),
             quote=True
         )
 
-    try:
-        cmd, text = message.text.split(" ", 1)
-    except:
-        await message.reply_text(
-            "<i>Mention the rulename which you wanna delete!</i>\n\n"
-            "<code>/del rulename</code>\n\n"
-            "Use /viewrules to view all available rules",
-            quote=True
-        )
-        return
-
-    query = text.lower()
-
-    await del_allrules(message, query, grp_id)
-        
