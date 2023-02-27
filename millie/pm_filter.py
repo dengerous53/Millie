@@ -331,7 +331,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await del_all(query.message, grp_id, title)
         else:
             await query.answer("You need to be Group Owner or an Auth User to do that!", show_alert=True)
-        elif query.data == "delallconfirmrules":
+    elif query.data == "delallconfirmrules":
         userid = query.from_user.id
         chat_type = query.message.chat.type
 
