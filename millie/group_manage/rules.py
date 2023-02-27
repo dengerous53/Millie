@@ -219,7 +219,6 @@ async def deleterule(client, message):
     try:
         cmd, text = message.text.split(" ", 1)
     except:
-        await del_allrules(message, query, grp_id)
         await message.reply_text(
             "<i>Mention the rulename which you wanna delete!</i>\n\n"
             "<code>/del rulename</code>\n\n"
