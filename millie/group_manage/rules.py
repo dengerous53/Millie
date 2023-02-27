@@ -5,6 +5,7 @@ from database.rules_mdb import(
    add_rule,
    get_rules,
    delete_rules,
+   del_allrules,
    count_rules
 )
 
@@ -231,8 +232,8 @@ async def deleterule(client, message):
     await delete_rules(message, query, grp_id)
         
 
-@Client.on_message(filters.command('delallrules') & filters.incoming)
-async def delallrules(client, message):
+@Client.on_message(filters.command('del_allrules') & filters.incoming)
+async def del_allrules(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
         return await message.reply(f"You are anonymous admin. Use /connect {message.chat.id} in PM")
@@ -265,8 +266,8 @@ async def delallrules(client, message):
         await message.reply_text(
             f"This will delete all rules from '{title}'.\nDo you want to continue??",
             reply_markup=InlineKeyboardMarkup([
-                [InlineKeyboardButton(text="YES",callback_data="delallrules")],
-                [InlineKeyboardButton(text="CANCEL",callback_data="delallcancel")]
+                [InlineKeyboardButton(text="YES",callback_data="del_allrules")],
+                [InlineKeyboardButton(text="CANCEL",callback_data="close")]
             ]),
             quote=True
         )
