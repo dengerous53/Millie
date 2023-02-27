@@ -159,7 +159,7 @@ async def get_all(client, message):
         rulelist = f"Total number of rules in **{title}** : {count}\n\n"
 
         for text in texts:
-            keywords = " ×  {}\n".format(text)
+            keywords = " ×  \n\n\n{}\n\n\n\n\n\n".format(text)
 
             rulelist += keywords
 
