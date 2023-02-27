@@ -13,7 +13,7 @@ from utils import get_file_id, parser, split_quotes
 from info import ADMINS
 
 
-@Client.on_message(filters.command(['rule', 'add']) & filters.incoming)
+@Client.on_message(filters.command(['setrule', 'addrule', 'setrules', 'addrules']) & filters.incoming)
 async def addrule(client, message):
     userid = message.from_user.id if message.from_user else None
     if not userid:
