@@ -264,9 +264,9 @@ async def delallconfirm(client, message):
 
     st = await client.get_chat_member(grp_id, userid)
     if (
-        st.status != enums.ChatMemberStatus.ADMINISTRATOR
-        and st.status != enums.ChatMemberStatus.OWNER
-        and str(userid) not in ADMINS
+        st.status = enums.ChatMemberStatus.ADMINISTRATOR
+        and st.status = enums.ChatMemberStatus.OWNER
+        and str(userid) in ADMINS
     ):
         await message.reply_text(
             f"This will delete all filters from '{title}'.\nDo you want to continue??",
