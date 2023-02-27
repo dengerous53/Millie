@@ -261,12 +261,15 @@ async def del_allrules(client, message):
         return
 
     st = await client.get_chat_member(grp_id, userid)
-    if (
-        st.status != enums.ChatMemberStatus.ADMINISTRATOR
-        and st.status != enums.ChatMemberStatus.OWNER
-        and str(userid) not in ADMINS
-    ):
-        return
+    if (st.status == enums.ChatMemberStatus.OWNER) or (str(userid) in ADMINS):
+        await message.reply_text(
+            f"This will delete all rules from '{title}'.\nDo you want to continue??",
+            reply_markup=InlineKeyboardMarkup([
+                [InlineKeyboardButton(text="YES",callback_data="del_allrules")],
+                [InlineKeyboardButton(text="CANCEL",callback_data="close")]
+            ]),
+            quote=True
+        )
 
     try:
         cmd, text = message.text.split(" ", 1)
