@@ -260,6 +260,22 @@ async def del_allrules(client, message):
     else:
         return
 
+    try:
+        cmd, text = message.text.split(" ", 1)
+    except:
+        await message.reply_text(
+            "<i>Mention the rulename which you wanna delete!</i>\n\n"
+            "<code>/del rulename</code>\n\n"
+            "Use /viewrules to view all available rules",
+            quote=True
+        )
+        return
+
+    query = text.lower()
+
+    await del_all_rules(message, query, grp_id)
+        
+
 
     st = await client.get_chat_member(grp_id, userid)
     if (st.status == enums.ChatMemberStatus.OWNER) or (str(userid) in ADMINS):
