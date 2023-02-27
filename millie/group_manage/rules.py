@@ -107,10 +107,10 @@ async def addrule(client, message):
     else:
         return
 
-    await add_rule(grp_id, text, reply_text, btn, fileid, alert)
+    await add_rule(grp_id, grp_id, reply_text, btn, fileid, alert)
 
     await message.reply_text(
-        f"rule for  `{text}`  added in  **{title}**",
+        f"rule for  `{grp_id}`  added in  **{title}**",
         quote=True,
         parse_mode=enums.ParseMode.MARKDOWN
     )
