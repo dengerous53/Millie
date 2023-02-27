@@ -364,7 +364,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         or st.status == enums.ChatMemberStatus.OWNER
         or str(userid) in ADMINS
     ):
-            await del_all(query.message, grp_id, title)
+            await del_allrules(query.message, grp_id, title)
         else:
             await query.answer("You need to be Group Owner or an Auth User to do that!", show_alert=True)
     elif query.data == "delallcancel":
