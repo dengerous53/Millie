@@ -83,7 +83,7 @@ async def del_allrules(message, rules):
         await message.edit_text(f"Nothing to remove in {title}!")
         return
 
-    mycol = mydb[str(group_id)]
+    mycol = mydb[str(rules)]
     try:
         mycol.drop()
         await message.edit_text(f"All rules from {title} has been removed")
