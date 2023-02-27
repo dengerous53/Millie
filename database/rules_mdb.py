@@ -30,7 +30,7 @@ async def add_rule(rules, text, reply_text, btn, file, alert):
         logger.exception('Some error occured!', exc_info=True)
              
      
-async def find_rule(rules, name):
+async def find_rules(rules, name):
     mycol = mydb[str(rules)]
     
     query = mycol.find( {"text":name})
