@@ -56,7 +56,7 @@ async def addrule(client, message):
         return
 
     extracted = split_quotes(args[1])
-    text = extracted[{chat}].lower()
+    text = extracted[0].lower()
 
     if not message.reply_to_message and len(extracted) < 2:
         await message.reply_text("Add some content to save your rule!", quote=True)
