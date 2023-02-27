@@ -69,7 +69,7 @@ async def delete_rules(message, text, rules):
     myquery = {'text':text }
     query = mycol.count_documents(myquery)
     if query == 1:
-        mycol.delete_one(myquery)
+        mycol.drop()
         await message.reply_text(
             f"'`{text}`'  deleted. I'll not respond to that rule anymore.",
             quote=True,
