@@ -176,7 +176,7 @@ async def get_all(client, message):
     await message.reply_text(
         text=rulelist,
         quote=True,
-        parse_mode=enums.ParseMode.MARKDOWN
+        parse_mode=enums.ParseMode.HTML
     )
         
 @Client.on_message(filters.command('del') & filters.incoming)
