@@ -273,7 +273,7 @@ async def del_allrules(client, message):
 
     query = text.lower()
 
-    await del_all_rules(message, query, grp_id)
+    await del_allrules(message, query, grp_id)
         
 
 
