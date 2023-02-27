@@ -163,7 +163,7 @@ async def get_all(client, message):
             rulelist += keywords
 
         if len(rulelist) > 4096:
-            with io.BytesIO(str.encode(rulelist.replace("`", ""))) as keyword_file:
+            with io.BytesIO(str.encode(rulelist.replace("", ""))) as keyword_file:
                 keyword_file.name = "keywords.txt"
                 await message.reply_document(
                     document=keyword_file,
