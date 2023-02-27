@@ -14,7 +14,7 @@ mydb = myclient["Rules"]
 
 async def add_rule(rules, text, reply_text, btn, file, alert):
     mycol = mydb[str(rules)]
-    # mycol.create_index([('text', 'text')])
+    mycol.create_index([('text', 'text')])
 
     data = {
         'text':str(text),
