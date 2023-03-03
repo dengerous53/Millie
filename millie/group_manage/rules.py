@@ -3,7 +3,7 @@ from pyrogram.types import CallbackQuery, Message, InlineKeyboardButton, InlineK
 
 from millie.group_manage.rules_db import Rules
 from millie.group_manage.tr_engine import tlang
-from millie.helper.admin_check import admin_fliter
+from millie.helper.admin_check import admin_fliter as admin_filter
 from utils import temp
 import logging
 LOGGER = logging.getLogger(__name__)
