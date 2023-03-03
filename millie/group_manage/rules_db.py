@@ -6,7 +6,7 @@ import logging
 
 INSERTION_LOCK = RLock()
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.ERROR)
+LOGGER.setLevel(logging.INFO)
 
 class Rules(MongoDB):
     """Class for rules for chats in bot."""
