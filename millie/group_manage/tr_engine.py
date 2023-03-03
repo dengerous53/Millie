@@ -9,7 +9,7 @@ from pyrogram.types import CallbackQuery
 from yaml import FullLoader
 from yaml import load as load_yml
 
-from millie.group_manage.lang_db import Langs
+from millie.group_manage.database.lang_db import Langs
 import logging
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
