@@ -8,7 +8,7 @@ from utils import temp
 import logging
 LOGGER = logging.getLogger(__name__)
 
-logger.setLevel(logging.INFO)
+LOGGER.setLevel(logging.INFO)
 
 def ikb(rows=None):
     if rows is None:
