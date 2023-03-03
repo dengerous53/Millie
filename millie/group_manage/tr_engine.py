@@ -12,7 +12,7 @@ from yaml import load as load_yml
 from millie.group_manage.lang_db import Langs
 import logging
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.ERROR)
+LOGGER.setLevel(logging.INFO)
 
 # Initialise
 LANG_LOCK = RLock()
