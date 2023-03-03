@@ -6,9 +6,8 @@ from millie.group_manage.rules_db import Rules
 from millie.group_manage.tr_engine import tlang
 from millie.helper.admin_check import admin_fliter
 from utils import temp
-import logging, WARNING
+import logging
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.WARNING)
 
 def ikb(rows=None):
     if rows is None:
