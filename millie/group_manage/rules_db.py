@@ -2,11 +2,11 @@ from threading import RLock
 from time import time
 
 from millie.group_manage import MongoDB
-import logging, WARNING
+import logging
 
 INSERTION_LOCK = RLock()
 LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.WARNING)
+
 
 class Rules(MongoDB):
     """Class for rules for chats in bot."""
