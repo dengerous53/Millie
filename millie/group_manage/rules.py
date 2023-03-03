@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import CallbackQuery, Message, InlineKeyboardButton, InlineKeyboardMarkup
 
-from millie.group_manage.rules_db import Rules
+from millie.group_manage.database.rules_db import Rules
 from millie.group_manage.tr_engine import tlang
 from millie.helper.admin_check import admin_fliter as admin_filter
 from utils import temp
