@@ -4,6 +4,8 @@ from time import time
 from millie.group_manage import MongoDB
 import logging
 LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.ERROR)
+
 
 INSERTION_LOCK = RLock()
 
