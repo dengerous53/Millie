@@ -7,6 +7,8 @@ from millie.helper.admin_check import admin_fliter as admin_filter
 from utils import temp
 import logging
 LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.ERROR)
+
 
 def ikb(rows=None):
     if rows is None:
