@@ -2,6 +2,14 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 import asyncio
 from info import DATABASE_NAME, DATABASE_URI, LOGGER
+import logging
+
+LOGGER = logging.getLogger(__name__)
+
+LOGGER.setLevel(logging.INFO)
+
+
+
 
 DB_NAME = DATABASE_NAME
 DB_URI = DATABASE_URI
