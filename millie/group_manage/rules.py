@@ -79,6 +79,7 @@ async def get_rules(Client, m: Message):
 @Client.on_message(filters.command("setrules") & admin_filter)
 async def set_rules(Client, m: Message):
     db = Rules(m.chat.id)
+    LOGGER.info(f"{m.from_user.id} trying to set rules in {m.chat.id}")
     if m and not m.from_user:
         return
 
