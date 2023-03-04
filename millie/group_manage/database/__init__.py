@@ -10,6 +10,11 @@ LOGGER.setLevel(logging.INFO)
 DB_NAME = DATABASE_NAME
 DB_URI = DATABASE_URI
 
+myapp = pymongo.MongoClient(MONGO_URL)
+dbx = myapp["AsyncIOMotorCursor"]
+federation = dbx['federation']
+nm = dbx['Nightmode']
+
 try:
     alita_db_client = MongoClient(DB_URI)
 except PyMongoError as f:
