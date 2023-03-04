@@ -4,9 +4,12 @@ from time import time
 from millie.group_manage.database import MongoDB
 import logging
 
-INSERTION_LOCK = RLock()
 LOGGER = logging.getLogger(__name__)
+
 LOGGER.setLevel(logging.INFO)
+
+INSERTION_LOCK = RLock()
+
 
 class Rules(MongoDB):
     """Class for rules for chats in bot."""
