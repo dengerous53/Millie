@@ -56,4 +56,4 @@ python-dotenv
 ujson
 beautifulsoup4
 pyyaml
-
+cachetools
