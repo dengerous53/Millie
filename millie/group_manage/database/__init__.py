@@ -76,9 +76,5 @@ class MongoDB:
         return alita_db_client.close()
 
 
-async def __connect_first():
-    LOGGER.info("Initialized Database!\n")
-    
-loop = asyncio.get_event_loop()
-loop.run_until_complete(__connect_first())
-loop.close()
+
+
