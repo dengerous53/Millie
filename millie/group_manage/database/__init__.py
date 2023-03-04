@@ -2,7 +2,7 @@ from pymongo import MongoClient
 from pymongo.errors import PyMongoError
 from motor.motor_asyncio import AsyncIOMotorClient
 from info import DATABASE_NAME, DATABASE_URI
-
+import pymongo
 import logging
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
