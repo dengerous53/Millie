@@ -86,9 +86,9 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
 app = Client(
     "app2", 
-    bot_token=Config.BOT_TOKEN, 
-    api_id=Config.API_ID1, 
-    api_hash=Config.API_HASH1)
+    bot_token=BOT_TOKEN, 
+    api_id=API_ID, 
+    api_hash=API_HASH)
 app.start()
 
 #log srt
