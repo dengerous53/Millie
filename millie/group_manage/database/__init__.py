@@ -18,7 +18,7 @@ class MongoDB:
     """Class for interacting with Bot database."""
 
     async def __init__(self, collection) -> None:
-        await self.collection = alita_main_db[collection]
+        await self.collection == alita_main_db[collection]
 
     # Insert one entry into collection
     async def insert_one(self, document):
