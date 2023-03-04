@@ -16,7 +16,7 @@ db = mongo_client.wbb
 
 afkusers = db.afkusers
 
-myapp = pymongo.MongoClient(MONGO_URL)
+myapp = pymongo.MongoClient(DB_URI)
 dbx = myapp["AsyncIOMotorCursor"]
 federation = dbx['federation']
 nm = dbx['Nightmode']
