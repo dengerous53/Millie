@@ -68,7 +68,7 @@ class MongoDB:
         return alita_db_client.close()
 
 
-def __connect_first():
+async def __connect_first():
     LOGGER.info("Initialized Database!\n")
 
 
