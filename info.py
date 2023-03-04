@@ -7,7 +7,11 @@ from typing import Dict, List, Union
 from pyrogram import Client
 from time import time
 from logging import WARNING, getLogger
+import logging
 
+LOGGER = logging.getLogger(__name__)
+
+LOGGER.setLevel(logging.INFO)
 getLogger("pyrogram").setLevel(WARNING)
 LOGGER = getLogger(__name__)
 
@@ -79,6 +83,14 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-100
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
+
+app = Client(
+    "app2", 
+    bot_token=Config.BOT_TOKEN, 
+    api_id=Config.API_ID1, 
+    api_hash=Config.API_HASH1)
+app.start()
+LOGGER.info(f"{"bot2 has started")
 
 #log srt
 LOG_STR = "Current Cusomized Configurations are:-\n"
