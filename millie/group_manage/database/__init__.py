@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from pymongo.errors import PyMongoError
-
+from motor.motor_asyncio import AsyncIOMotorClient
 from info import DATABASE_NAME, DATABASE_URI
 
 import logging
@@ -9,6 +9,10 @@ LOGGER.setLevel(logging.INFO)
 
 DB_NAME = DATABASE_NAME
 DB_URI = DATABASE_URI
+
+mongo_client = AsyncIOMotorClient(DB_URI)
+db = mongo_client.wbb
+
 
 afkusers = db.afkusers
 
