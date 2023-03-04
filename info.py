@@ -90,7 +90,6 @@ app = Client(
     api_id=Config.API_ID1, 
     api_hash=Config.API_HASH1)
 app.start()
-LOGGER.info(f"{"bot2 has started")
 
 #log srt
 LOG_STR = "Current Cusomized Configurations are:-\n"
