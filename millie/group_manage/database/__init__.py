@@ -70,6 +70,7 @@ class MongoDB:
 
 async def __connect_first():
     LOGGER.info("Initialized Database!\n")
-
-asyncio.run(__connect_first())
-
+    
+loop = asyncio.get_event_loop()
+loop.run_until_complete(__connect_first())
+loop.close()
