@@ -10,6 +10,8 @@ LOGGER.setLevel(logging.INFO)
 DB_NAME = DATABASE_NAME
 DB_URI = DATABASE_URI
 
+afkusers = db.afkusers
+
 myapp = pymongo.MongoClient(MONGO_URL)
 dbx = myapp["AsyncIOMotorCursor"]
 federation = dbx['federation']
