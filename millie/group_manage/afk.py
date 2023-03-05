@@ -38,6 +38,7 @@ async def going_afk(_, message: Message):
     user_id = message.from_user.id
     verifier, reasondb = await is_afk(user_id)
     if verifier:
+        await asyncio.sleep(1)
         await remove_afk(user_id)
         try:
             afktype = reasondb["type"]
@@ -61,8 +62,7 @@ async def going_afk(_, message: Message):
                     return await message.reply_photo(photo=f"downloads/{user_id}.jpg",caption=f"**{message.from_user.first_name}** is back online and was away for {seenago}\n\nReason: `{reasonafk}`")
         except Exception as e:
             print(e)
-            return await asyncio.sleep(1)
-                   await message.reply_text(f"**{message.from_user.first_name}** is back online",disable_web_page_preview=True)
+            return await message.reply_text(f"**{message.from_user.first_name}** is back online",disable_web_page_preview=True)
     if len(message.command) == 1 and not message.reply_to_message:
         details = {"type": "text","time": time.time(),"data": None,"reason": None}
     elif len(message.command) > 1 and not message.reply_to_message:
