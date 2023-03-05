@@ -1,5 +1,5 @@
 from millie.group_manage.database import afkusers
-import asyncio
+
 
 async def is_afk(user_id: int) -> bool:
     user = await afkusers.find_one({"user_id": user_id})
@@ -15,7 +15,6 @@ async def add_afk(user_id: int, mode):
 
 
 async def remove_afk(user_id: int):
-    await asyncio.sleep(1)
     user = await afkusers.find_one({"user_id": user_id})
     if user:
         return await afkusers.delete_one({"user_id": user_id})
