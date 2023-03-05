@@ -101,7 +101,7 @@ async def going_afk(_, message: Message):
     await message.reply_text(f"{message.from_user.first_name} is now afk!")
 
 @app.on_message(filters.incoming,group=afkcheacker)
-async def chat_watcher_func(app, message):
+async def chat_watcher_func(_, message):
     if message.sender_chat:
         return
     userid = message.from_user.id
