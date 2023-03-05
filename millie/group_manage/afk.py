@@ -6,7 +6,7 @@ from pyrogram.types import Message
 from info import app
 from millie.group_manage.database.afkdb import is_afk, add_afk, remove_afk, get_afk_users
 
-afkcheacker = 31
+afkcheacker = 1
 
 def get_readable_time(seconds: int) -> str:
     count = 0
