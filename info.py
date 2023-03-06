@@ -107,7 +107,8 @@ CAPTION_BUTTON_URL = "https://telegram.me/Movies_Web0"
 
 
 app2 = TelegramClient("MissRaya-Telethon", api_id=API_ID, api_hash=API_HASH)
-app2.start()
+app2.start(bot_token=BOT_TOKEN)
+print("user bot started")
 
 app = Client(
     "app2", 
