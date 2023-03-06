@@ -58,3 +58,4 @@ beautifulsoup4
 pyyaml
 cachetools
 Heroku3
+telethon
