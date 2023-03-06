@@ -102,6 +102,10 @@ async def give_filter(client, message):
             else:
                 await auto_filter(client, message)   
 
+@Client.on_message(filters.private & filters.text & filters.incoming)
+async def private_give_filter(client, message):
+        await auto_filter(client, message)
+
 
 @Client.on_message(filters.private & filters.text & filters.chat(AUTH_USERS) if AUTH_USERS else filters.text & filters.private)
 async def pm_filter(client, message):
