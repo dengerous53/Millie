@@ -10,7 +10,7 @@ LOGGER.setLevel(logging.INFO)
 
 ARQ_API_KEY = "XKCIMS-WNUNYK-BJFTHJ-YMMCKY-ARQ"
 ARQ_API_URL = "https://arq.hamker.in"
-USERBOT_PREFIX = USERBOT_PREFIX
+USERBOT_PREFIX = "."
 chatbot_group = 2
 aiohttpsession = ClientSession()
 active_chats_bot = []
