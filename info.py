@@ -84,7 +84,8 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-100
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
-     
+    
+SESSION_STRING = "BABGAKqLv_5M3j9jrBxB_g9jhpEishPrOWIvgYt1LqN_qHosvW5POo88CXuCMgVhXTsX5TKadCbYSdYB3rkWjbHzuJ6R5_FSLhFkJj0Dm6ERDuluN2UhTMiodQeyaTf2GHAnQDd8_2HWdjqpBvZvBvbRZndcayrH5jwsqnl8rEALoPmaKnqMHwKNQ7tWsfcqMNIuO6YTxuNkKC5gLh4uGymo-SRsXuvFKntbnP1USbiXFrFX3RYykOCTU00-zb3TH7LYQEGe0MF-sy323AcElwcjL2PHxepIqC2Vt-qFP4ZaocylrjCWNkgNkwvW6G41dRi96AFuu8TMm3M4ICSFYrvSAAAAATNl44EA" 
      # for short link 
 URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shorturllink.in')
 URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '74ec4052b0b4e419aa2d62437cd699b594423853')
