@@ -57,3 +57,4 @@ ujson
 beautifulsoup4
 pyyaml
 cachetools
+Heroku3
