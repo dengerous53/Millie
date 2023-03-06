@@ -7,7 +7,7 @@ from typing import Dict, List, Union
 from pyrogram import Client
 from time import time
 from logging import WARNING, getLogger
-from heroku3 import HEROKU
+import heroku3 as HEROKU
 import logging
 
 LOGGER = logging.getLogger(__name__)
