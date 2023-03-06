@@ -15,6 +15,7 @@ db = mongo_client.wbb
 
 
 afkusers = db.afkusers
+chatb = db.chatbot
 
 myapp = pymongo.MongoClient(DB_URI)
 dbx = myapp["AsyncIOMotorCursor"]
