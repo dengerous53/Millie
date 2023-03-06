@@ -83,6 +83,25 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-100
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
+     
+     # for short link 
+URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shorturllink.in')
+URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '74ec4052b0b4e419aa2d62437cd699b594423853')
+
+     # Auto Delete For Group Message (Self Delete) #
+SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 1000))
+SELF_DELETE = environ.get('SELF_DELETE', True)
+if SELF_DELETE == "True":
+    SELF_DELETE = True
+
+    # Download Tutorial Button #
+DOWNLOAD_TEXT_NAME = "HOW TO DOWNLOAD"
+DOWNLOAD_TEXT_URL = "https://telegram.me/Movies_Web0"
+
+   # Custom Caption Under Button #
+CAPTION_BUTTON = "JOIN BACKUP"
+CAPTION_BUTTON_URL = "https://telegram.me/Movies_Web0"
+
 
 app = Client(
     "app2", 
