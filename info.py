@@ -104,10 +104,10 @@ DOWNLOAD_TEXT_URL = "https://telegram.me/Movies_Web0"
 CAPTION_BUTTON = "JOIN BACKUP"
 CAPTION_BUTTON_URL = "https://telegram.me/Movies_Web0"
 
-if not HEROKU:
+if HEROKU:
     app2 = Client(
         "userbot",
-        phone_number=PHONE_NUMBER,
+        phone_number='+243901435020',
         api_id=API_ID,
         api_hash=API_HASH,
     )
