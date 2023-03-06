@@ -7,6 +7,7 @@ from info import app
 from millie.group_manage.database.afkdb import is_afk, add_afk, remove_afk, get_afk_users
 
 afkcheacker = 1
+HANDLER = ".,?+"
 
 def get_readable_time(seconds: int) -> str:
     count = 0
@@ -31,7 +32,7 @@ def get_readable_time(seconds: int) -> str:
     ping_time += ":".join(time_list)
     return ping_time
 
-@app.on_message(filters.command(["afk", f"afk@szrosebot"]) & filters.incoming)
+@app.on_message(filters.command(["afk", f"afk@szrosebot", HANDLER]) & filters.incoming & filters.me)
 async def going_afk(_, message: Message):
     if message.sender_chat:
         return
