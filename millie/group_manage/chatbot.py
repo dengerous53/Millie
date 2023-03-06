@@ -4,8 +4,7 @@ from pyrogram.types import Message
 from googletrans import Translator
 from info import *
 from millie.group_manage.tr_engine import tlang as language
-from millie.group_manage.database import chatb
-from Rose.plugins.antlangs import get_arg
+from millie.group_manage.database import chatb  
 from millie.helper.admin_check import admin_fliter as admin_filter
 
 
@@ -15,6 +14,15 @@ tr = Translator()
 CBOT = "chatbot"
 CBOTA = "millie"
 cbot = 2
+
+def get_arg(message):
+    msg = message.text
+    msg = msg.replace(" ", "", 1) if msg[1] == " " else msg
+    split = msg[1:].replace("\n", " \n").split(" ")
+    if " ".join(split[1:]).strip() == "":
+        return ""
+    return " ".join(split[1:])
+
 
 @app.on_message(filters.command("chatbot") & ~filters.private& admin_filter)
 @language
