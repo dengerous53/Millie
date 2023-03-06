@@ -7,6 +7,7 @@ from typing import Dict, List, Union
 from pyrogram import Client
 from time import time
 from logging import WARNING, getLogger
+from telethon import TelegramClient
 import heroku3 as HEROKU
 import logging
 
