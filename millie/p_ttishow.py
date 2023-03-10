@@ -372,6 +372,20 @@ async def list_users(bot, message):
             outfile.write(out)
         await message.reply_document('users.txt', caption="List Of Users")
 
+@Client.on_message(filters.command('pusers') & filters.user(ADMINS))
+async def plist_users(bot, message):
+    sps = await message.reply('Getting List Of Users')
+    users = await db.get_ban_status()
+    out = "Users Saved In DB Are:\n\n"
+    async for user in users:
+        out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
+    try:
+        await sps.edit_text(out)
+    except MessageTooLong:
+        with open('pusers.txt', 'w+') as outfile:
+            outfile.write(out)
+        await message.reply_document('pusers.txt', caption="List Of paid Users")
+
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
 async def list_chats(bot, message):
     sps = await message.reply('Getting List Of chats')
