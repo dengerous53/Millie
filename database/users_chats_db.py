@@ -73,6 +73,9 @@ class Database:
             return default
         return user.get('ban_status', default)
 
+    async def get_all_users(self):
+        return self.col.find({})
+
     async def remove_paid(self, id):
         paid_status = dict(
             is_paid=False,
@@ -97,7 +100,7 @@ class Database:
             return default
         return user.get('paid_status', default)
 
-    async def get_all_users(self):
+    async def get_paid_users(self):
         return self.col.find({})
     
 
