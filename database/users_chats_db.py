@@ -20,8 +20,8 @@ class Database:
                 ban_reason="",
             ),
             paid_status = dict(
-            is_paid=False,
-            paid_reason=''
+                is_paid=False,
+                paid_reason='',
             ),
         )
 
@@ -75,7 +75,7 @@ class Database:
 
     async def remove_paid(self, id):
         paid_status = dict(
-            is_paid=True,
+            is_paid=False,
             paid_reason=''
         )
         await self.col.update_one({'id': id}, {'$set': {'paid_status': paid_status}})
