@@ -98,6 +98,9 @@ def get_text(message: Message) -> [None,str]:
 
 @Client.on_message(filters.command(["video", "mp4", "vsonng", "yt", "ytdl", "short", "shorts"]))
 async def vsong(client, message: Message):
+    if not urlissed:
+        await client.send_message("Invalid Command Syntax Please Check help Menu To Know More!")
+        return 
     urlissed = get_text(message)
     urlissed = urlissed.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
     urlissed = urlissed.replace("?feature=share", "")
