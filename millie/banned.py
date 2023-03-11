@@ -10,7 +10,7 @@ async def prime_users(_, client, message: Message):
         message.from_user is not None or not message.sender_chat
     ) and message.from_user.id in temp.PRIM_USERS
 
-Paid_user = filters.create(paid_users)
+prime_users = filters.create(prime_users)
 
 async def banned_users(_, client, message: Message):
     return (
