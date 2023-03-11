@@ -116,8 +116,8 @@ class Database:
 
 
     async def get_paid(self):
-        users = self.col.find({'paid_status.is_paid': False})
-        chats = self.grp.find({'chat_status.is_paid': False})
+        users = self.col.find({'paid_status.is_paid': True})
+        chats = self.grp.find({'chat_status.is_paid': True})
         p_chats = [chat['id'] async for chat in chats]
         p_users = [user['id'] async for user in users]
         return p_users, p_chats
