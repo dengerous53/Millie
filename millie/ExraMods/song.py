@@ -100,7 +100,7 @@ def get_text(message: Message) -> [None,str]:
 async def vsong(client, message: Message):
     if not message.reply_to_message:
           await message.reply_text("Please reply to a message")
-        except Exception as e:
+        try:
           urlissed = get_text(message)
           urlissed = urlissed.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
           urlissed = urlissed.replace("?feature=share", "")
