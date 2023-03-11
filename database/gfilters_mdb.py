@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 myclient = pymongo.MongoClient(DATABASE_URI)
-mydb = myclient["GlobalFilters"]
+mydb = myclient[DATABASE_NAME]
 
 
 
