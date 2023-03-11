@@ -89,7 +89,7 @@ class Database:
 
     async def get_paid_status(self, id):
         default = dict(
-            is_paid=False,
+            is_paid=True,
             paid_reason=''
         )
         user = await self.col.find_one({'id':int(id)})
