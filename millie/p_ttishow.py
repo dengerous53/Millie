@@ -376,10 +376,9 @@ async def list_users(bot, message):
 async def plist_users(bot, message):
     sps = await message.reply('Getting List Of Users')
     jar = await db.get_all_users()
-    users = int(temp.PRIM_USERS)
+    users = jar['is_paid']
     out = "Users Saved In DB Are:\n\n"
     async for user in users:
-        users = jar['is_paid']
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
     try:
         await sps.edit_text(out)
