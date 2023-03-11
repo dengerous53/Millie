@@ -19,6 +19,10 @@ class Database:
                 is_banned=False,
                 ban_reason="",
             ),
+            paid_status = dict(
+                is_paid=False,
+                paid_reason='',
+            ),
         )
 
 
@@ -74,18 +78,18 @@ class Database:
             is_paid=False,
             paid_reason=''
         )
-        await self.col.update_one({'id': id}, {'$set': {'paid_status': ban_status}})
+        await self.col.update_one({'id': id}, {'$set': {'paid_status': paid_status}})
     
     async def paid_user(self, user_id, paid_reason="No Reason"):
         paid_status = dict(
             is_paid=True,
             paid_reason=paid_reason
         )
-        await self.col.update_one({'id': user_id}, {'$set': {'paid_status': ban_status}})
+        await self.col.update_one({'id': user_id}, {'$set': {'paid_status': paid_status}})
 
     async def get_paid_status(self, id):
         default = dict(
-            is_paid=False,
+            is_paid=True,
             paid_reason=''
         )
         user = await self.col.find_one({'id':int(id)})
