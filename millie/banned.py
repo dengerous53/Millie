@@ -5,6 +5,13 @@ from database.users_chats_db import db
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from info import SUPPORT_CHAT
 
+async def prime_users(_, client, message: Message):
+    return (
+        message.from_user is not None or not message.sender_chat
+    ) and message.from_user.id in temp.PRIM_USERS
+
+Paid_user = filters.create(paid_users)
+
 async def banned_users(_, client, message: Message):
     return (
         message.from_user is not None or not message.sender_chat
