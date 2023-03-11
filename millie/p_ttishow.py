@@ -375,7 +375,7 @@ async def list_users(bot, message):
 @Client.on_message(filters.command('pusers') & filters.user(ADMINS))
 async def plist_users(bot, message):
     sps = await message.reply('Getting List Of Users')
-    users = await db.get_paid_status()
+    users = prime_user
     out = "Users Saved In DB Are:\n\n"
     async for user in users:
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
