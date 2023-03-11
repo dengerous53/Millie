@@ -316,7 +316,7 @@ async def paid_a_user(bot, message):
     else:
         jar = await db.get_paid_status(k.id)
         if jar['is_paid']:
-            return await message.reply(f"{k.mention} is already banned\nReason: {jar['paid_reason']}")
+            return await message.reply(f"{k.mention} is already paid for me\nReason: {jar['paid_reason']}")
         await db.paid_user(k.id, reason)
         temp.PRIM_USERS.append(k.id)
         await message.reply(f"Succesfully add to prime user {k.mention}")
