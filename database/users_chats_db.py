@@ -19,6 +19,10 @@ class Database:
                 is_banned=False,
                 ban_reason="",
             ),
+            paid_status = dict(
+            is_paid=False,
+            paid_reason=''
+            ),
         )
 
 
