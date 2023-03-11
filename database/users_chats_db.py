@@ -144,6 +144,11 @@ class Database:
         await self.grp.update_one({'id': int(id)}, {'$set': {'chat_status': chat_status}})
   
 
+
+    async def update_settings(self, id, settings):
+        await self.grp.update_one({'id': int(id)}, {'$set': {'settings': settings}})
+
+
     async def get_settings(self, id):
         default = {
             'button': SINGLE_BUTTON,
@@ -152,6 +157,7 @@ class Database:
             'imdb': IMDB,
             'spell_check': SPELL_CHECK_REPLY,
             'welcome': MELCOW_NEW_USERS,
+            'auto_delete': AUTO_DELETE,
             'template': IMDB_TEMPLATE,
             'shortlink': SHORTLINK_URL,
             'shortlink_api': SHORTLINK_API,
