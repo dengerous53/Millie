@@ -20,7 +20,7 @@ class Database:
                 ban_reason="",
             ),
             paid_status = dict(
-                is_paid=True,
+                is_paid=False,
                 paid_reason='',
             ),
         )
