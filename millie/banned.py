@@ -22,7 +22,7 @@ async def prime_users(_, client, message: Message):
         message.from_user is not None or not message.sender_chat
     ) and message.from_user.id in temp.PRIM_USERS
 
-banned_user = filters.create(banned_users)
+prime_user = filters.create(prime_users)
 
 @Client.on_message(filters.private & banned_user & filters.incoming)
 async def ban_reply(bot, message):
