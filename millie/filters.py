@@ -237,12 +237,11 @@ async def import_all(client, message):
             return
     else:
         filterlist = f"There are no active filters in **{title}**"
-        try:
-            filterlist = get_filters(data)
-            with open('filters.txt', 'w+') as outfile:
-                outfile.write(out)
-            await message.reply_document('chats.txt', caption="List Of Chats")
-
+        filterlist = get_filters(data)
+        with open('filters.txt', 'w+') as outfile:
+            outfile.write(out)
+        await message.reply_document('chats.txt', caption="List Of Chats")
+            
 
 
 @Client.on_message(filters.command('del') & filters.incoming)
