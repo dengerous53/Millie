@@ -98,6 +98,13 @@ def get_text(message: Message) -> [None,str]:
 
 @Client.on_message(filters.command(["video", "mp4", "vsonng", "yt", "ytdl", "short", "shorts"]))
 async def vsong(client, message: Message):
+ 
+    try: 
+         args = message.text.split(None, 1)[1].lower() 
+      except: 
+         return await message.reply("**𝙸𝙽𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙴 𝙲𝙾𝙼𝙼𝙰𝙽𝙳...**")
+      
+
     urlissed = get_text(message)
     urlissed = urlissed.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
     urlissed = urlissed.replace("?feature=share", "")
