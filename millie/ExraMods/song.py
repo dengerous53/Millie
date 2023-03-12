@@ -98,6 +98,14 @@ def get_text(message: Message) -> [None,str]:
 
 @Client.on_message(filters.command(["video", "mp4", "vsonng", "yt", "ytdl", "short", "shorts"]))
 async def vsong(client, message: Message):
+
+
+    try: 
+         args = message.text.split(None, 1)[1].lower() 
+    except: 
+         return await message.reply(script.VIDEO_TXT)
+      
+
     urlissed = get_text(message)
     urlissed = urlissed.replace("youtube.com/shorts/", "www.youtube.com/watch?v=")
     urlissed = urlissed.replace("?feature=share", "")
