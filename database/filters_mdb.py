@@ -90,6 +90,23 @@ async def del_all(message, group_id, title):
         await message.edit_text("Couldn't remove all filters from group!")
         return
 
+async def export_all(message, group_id, title):
+    if str(group_id) not in mydb.list_collection_names():
+        await message.edit_text(f"Nothing to export in {title}!")
+        return
+
+    mycol = mydb[str(group_id)]
+    try:
+        export = mydb.list_collection_names()
+        await sps.edit_text(out)
+    except MessageTooLong:
+        with open('export.txt', 'w+') as outfile:
+            outfile.write(out)
+        await message.reply_document('export.txt', caption="filter")
+    except:
+        await message.edit_text("Couldn't export all filters from group!")
+        return
+
 
 async def count_filters(group_id):
     mycol = mydb[str(group_id)]
