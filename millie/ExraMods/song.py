@@ -101,7 +101,7 @@ async def vsong(client, message: Message):
  
     try: 
          args = message.text.split(None, 1)[1].lower() 
-      except: 
+    except: 
          return await message.reply("**𝙸𝙽𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙴 𝙲𝙾𝙼𝙼𝙰𝙽𝙳...**")
       
 
