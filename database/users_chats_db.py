@@ -105,9 +105,6 @@ class Database:
             is_paid=True,
             paid_reason=''
         )
-        user = await self.col.find_one({'id':int(id)})
-        if not user:
-            return default
         return self.col.find('paid_status', default)
     
 
