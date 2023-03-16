@@ -362,10 +362,11 @@ async def list_users(bot, message):
     # വാഴ മരത്തെ കളിയാക്കിയവർ തന്നെ പേടിച്ചു ഓടിപ്പോയി
     sps = await message.reply('Getting List Of Users')
     users = await db.get_all_users()
+    pusts = await db.get_paid_status(['is_paid'])
     out = "Users Saved In DB Are:\n\n"
     async for user in users:
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
-        out += f"<code>{user['id']}</code>PRIMIUM\n" if await db.get_paid_status(['is_paid']) else f"<code>{user['id']}</code>free user\n"
+        out += f"<code>{user['id']}</code> {pusts}\n"
     try:
         await sps.edit_text(out)
     except MessageTooLong:
