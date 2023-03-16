@@ -379,7 +379,7 @@ async def plist_users(bot, message):
     users = temp.PRIM_USERS
     out = "Users Saved In DB Are:\n\n"
     async for user in users:
-    out += f"{user['name']}\n"
+        out += f"{user['name']}\n"
     try:
         await sps.edit_text(out)
     except MessageTooLong:
