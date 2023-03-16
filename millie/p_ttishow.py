@@ -366,12 +366,7 @@ async def list_users(bot, message):
     async for user in users:
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
         out += f"<code>{user['id']}</code>\n"
-        out += f"{jar}\n"
-        jar = await db.get_paid_status({user['id']})
-                if not jar['is_paid']:
-                    return jar = "free user"
-                else:
-                    jar = "prime user"   
+        out += f"{jar}\n".format(jar= await db.get_paid_status(['is_paid']) else jar = "prime free user")  
     except MessageTooLong:
         with open('users.txt', 'w+') as outfile:
             outfile.write(out)
