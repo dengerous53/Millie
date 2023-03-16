@@ -377,7 +377,7 @@ async def plist_users(bot, message):
     sps = await message.reply('Getting List Of Users')
     users = temp.PRIM_USERS
     out = "Users Saved In DB Are:\n\n"
-    out += f"<a href=tg://user?id={users['id']}>{users['name']}</a>\n"
+    out += f"<a href=tg://user?id={users['id']}>{users['name']}</a>\n<code>{users['id']}</code>\n"
     try:
         await sps.edit_text(out)
     except MessageTooLong:
