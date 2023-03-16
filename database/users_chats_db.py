@@ -101,7 +101,14 @@ class Database:
         return user.get('paid_status', default)
 
     async def get_paid_users(self):
-        return self.col.find({})
+        default = dict(
+            is_paid=True,
+            paid_reason=''
+        )
+        user = await self.col.find_one({'id':int(id)})
+        if not user:
+            return default
+        return self.col.find('paid_status', default)
     
 
     async def delete_user(self, user_id):
