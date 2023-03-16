@@ -364,7 +364,8 @@ async def list_users(bot, message):
     users = await db.get_all_users()
     out = "Users Saved In DB Are:\n\n"
     async for user in users:
-        out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n<code>{users['id']}</code>\n"
+        out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
+        out += f"<code>{users['id']}</code>\n"
     try:
         await sps.edit_text(out)
     except MessageTooLong:
