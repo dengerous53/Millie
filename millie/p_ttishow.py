@@ -367,6 +367,8 @@ async def list_users(bot, message):
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
         out += f"<code>{user['id']}</code>\n"
         out += ("PRIMIUM" if await db.get_paid_status(['is_paid']) else "free user")  
+    try:
+        await sps.edit_text(out)
     except MessageTooLong:
         with open('users.txt', 'w+') as outfile:
             outfile.write(out)
