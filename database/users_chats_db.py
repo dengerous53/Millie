@@ -73,6 +73,9 @@ class Database:
             return default
         return user.get('ban_status', default)
 
+    async def get_all_users(self):
+        return self.col.find({})
+
     async def remove_paid(self, id):
         paid_status = dict(
             is_paid=False,
@@ -97,8 +100,9 @@ class Database:
             return default
         return user.get('paid_status', default)
 
-    async def get_all_users(self):
-        return self.col.find({})
+    async def get_paid_users(self):
+        users = self.col.find({'paid_status.is_paid': True})
+        return users
     
 
     async def delete_user(self, user_id):
@@ -116,13 +120,12 @@ class Database:
 
 
     async def get_paid(self):
-        users = self.col.find({'paid_status.is_paid': False})
-        chats = self.grp.find({'chat_status.is_paid': False})
+        users = self.col.find({'paid_status.is_paid': True})
+        chats = self.grp.find({'chat_status.is_paid': True})
         p_chats = [chat['id'] async for chat in chats]
         p_users = [user['id'] async for user in users]
         return p_users, p_chats
     
-
 
     async def add_chat(self, chat, title, username):
         chat = self.new_group(chat, title, username)
@@ -140,14 +143,16 @@ class Database:
             reason="",
             )
         await self.grp.update_one({'id': int(id)}, {'$set': {'chat_status': chat_status}})
-        
+  
+
+
     async def update_settings(self, id, settings):
         await self.grp.update_one({'id': int(id)}, {'$set': {'settings': settings}})
 
-
     async def update_settings(self, id, settings):
         await self.grp.update_one({'id': int(id)}, {'$set': {'settings': settings}})        
-    
+
+
     async def get_settings(self, id):
         default = {
             'button': SINGLE_BUTTON,
