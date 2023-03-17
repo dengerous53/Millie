@@ -402,6 +402,12 @@ async def settings(client, message):
 
     settings = await get_settings(grp_id)
     try:
+        ad_user = query.from_user.id
+    if int(ad_user) in ADMINS:
+        pass
+    elif int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer("okDa", show_alert=True)
+
         if settings['is_shortlink']:
             settings = await get_settings(grp_id)
     except KeyError:
