@@ -1369,11 +1369,11 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 [
                 InlineKeyboardButton(
                     'ShortLink',
-                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}' if in ADMINS else await message.reply("Your Not Authorizer ⚠️", show_alert=True),
+                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}' if reply_to_message_id in ADMINS else await message.reply("Your Not Authorizer ⚠️", show_alert=True),
                 ),
                 InlineKeyboardButton(
                     '✅ ON' if settings["is_shortlink"] else '❌ OFF',
-                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}' if in ADMINS else await message.reply("Your Not Authorizer ⚠️", show_alert=True),
+                    callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}' if reply_to_message_id in ADMINS else await message.reply("Your Not Authorizer ⚠️", show_alert=True),
                 ),
                 ],
             ]
