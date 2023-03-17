@@ -124,7 +124,7 @@ PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'shorturllink.in')
 SHORTLINK_API = environ.get('SHORTLINK_API', '9ff6e1bac0a97a4594be4520ac15bcde76564d6a')
-IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))
+IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
 
       # URL Shortener 
 URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shorturllink.in')
