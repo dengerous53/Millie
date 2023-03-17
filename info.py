@@ -112,7 +112,11 @@ BUTTON_LOCK = bool(environ.get("BUTTON_LOCK", True))
 #url links
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'shorturllink.in')
 SHORTLINK_API = environ.get('SHORTLINK_API', '3a3935e37c74a2384f7a689c414f078ab6320785')
-IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False))
+
+IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', False)) if query.from_user.id in ADMINS:
+                                                        else:
+                                                            await query.answer("Your Not Authorizer ⚠️", show_alert=True)
+
 
 # Others
 IMDB_DELET_TIME = int(environ.get('IMDB_DELET_TIME', "300"))
