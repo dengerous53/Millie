@@ -354,8 +354,6 @@ async def unpaid_a_user(bot, message):
         await message.reply(f"Succesfully add to free user again {k.mention}")
 
 
-
-    
 @Client.on_message(filters.command('users') & filters.user(ADMINS))
 async def list_users(bot, message):
     # വാഴ മരത്തെ കളിയാക്കിയവർ തന്നെ പേടിച്ചു ഓടിപ്പോയി
@@ -364,12 +362,28 @@ async def list_users(bot, message):
     out = "Users Saved In DB Are:\n\n"
     async for user in users:
         out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
+        out += f"<code>{user['id']}</code>\n"
     try:
         await sps.edit_text(out)
     except MessageTooLong:
         with open('users.txt', 'w+') as outfile:
             outfile.write(out)
         await message.reply_document('users.txt', caption="List Of Users")
+
+@Client.on_message(filters.command('pusers') & filters.user(ADMINS))
+async def plist_users(bot, message):
+    sps = await message.reply('Getting List Of Users')
+    users = await db.get_paid_users()
+    out = "Users Saved In DB Are:\n\n"
+    async for user in users:
+        out += f"<a href=tg://user?id={user['id']}>{user['name']}</a>\n"
+        out += f"<code>{user['id']}</code>\n"
+    try:
+        await sps.edit_text(out)
+    except MessageTooLong:
+        with open('pusers.txt', 'w+') as outfile:
+            outfile.write(out)
+        await message.reply_document('pusers.txt', caption="List Of paid Users")
 
 @Client.on_message(filters.command('chats') & filters.user(ADMINS))
 async def list_chats(bot, message):
