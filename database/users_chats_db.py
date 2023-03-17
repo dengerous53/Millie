@@ -102,8 +102,7 @@ class Database:
 
     async def get_paid_users(self):
         users = self.col.find({'paid_status.is_paid': True})
-        p_users = [user['id'] async for user in users]
-        return p_users
+        return users
     
 
     async def delete_user(self, user_id):
