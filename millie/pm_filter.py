@@ -1427,13 +1427,7 @@ async def auto_filter(client, msg, spoll=False):
                     ),
                 ]
                 for file in files
-        ]
-
-    btn.insert(0,
-        [
-            InlineKeyboardButton(text="⚡HOW TO DOWNLOAD ⚡", url='https://t.me/MissValentinaa_Bot?start=ZmlsZV9CQUFEQlFBRDl3Z0FBcFBCb1ZUU180QjBxVHB4YWhZRQ')
-        ]
-    )
+            ]
         else:
             btn = [
                 [
@@ -1447,13 +1441,7 @@ async def auto_filter(client, msg, spoll=False):
                     ),
                 ]
                 for file in files
-        ]
-
-    btn.insert(0,
-        [
-            InlineKeyboardButton(text="⚡HOW TO DOWNLOAD ⚡", url='https://t.me/MissValentinaa_Bot?start=ZmlsZV9CQUFEQlFBRDl3Z0FBcFBCb1ZUU180QjBxVHB4YWhZRQ')
-        ]
-    )
+            ]
     else:
         if settings["button"]:
             btn = [
@@ -1462,7 +1450,8 @@ async def auto_filter(client, msg, spoll=False):
                         text=f"[{get_size(file.file_size)}] {file.file_name}", callback_data=f'{pre}#{file.file_id}'
                     ),
                 ]
-                
+                for file in files
+            ]
         else:
             btn = [
                 [
@@ -1477,7 +1466,6 @@ async def auto_filter(client, msg, spoll=False):
                 ]
                 for file in files
             ]
-    
 
     if offset != "":
         key = f"{message.chat.id}-{message.id}"
