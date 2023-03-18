@@ -555,7 +555,6 @@ async def get_token(bot, userid, link):
     token = ''.join(random.choices(string.ascii_letters + string.digits, k=7))
     TOKENS[user.id] = {token: False}
     link = await get_shortlink(f"https://t.me/{temp.U_NAME}?start=files_{file.file_id}")
-                ),
             ]
             for file in files
         ]
