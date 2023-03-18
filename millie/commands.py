@@ -11,7 +11,6 @@ from database.users_chats_db import db
 from info import *
 from utils import get_settings, get_size, is_subscribed, save_group_settings, temp
 from database.connections_mdb import active_connection
-from millie.pm_filter import setgs as settings
 import re
 import json
 import base64
