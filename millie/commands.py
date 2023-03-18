@@ -477,11 +477,11 @@ async def settings(client, message):
             ],
             [
                 InlineKeyboardButton(
-                    'ShortLink',
+                    'ShortLink, ADMINS', else await query.answer("oKda", show_alert=True)
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
                 InlineKeyboardButton(
-                    '✅ ON' if settings["is_shortlink", ADMINS] else '"❌ OFF", show_alert=True',
+                    '✅ ON' if settings["is_shortlink"] else '❌ OFF',
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
             ],
