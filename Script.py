@@ -57,7 +57,9 @@ For shorts video
 Click 👇👇 source button for source 
 
 <b>DEVS:</b>
-<a href=https://t.me/millie_rmvzz>Millie Bobby brown</a>"""
+✯ 𝙳𝙰𝙳𝙳𝚈 : <a href=https://t.me/renish_rgi>❁✗❍═❰ RENISH ❱═❍✗❁</a>
+✯ 𝚂𝚄𝙿𝙿𝙾𝚁𝚃 𝚒𝚍 : <a href=https://t.me/Millie_support>Millie Support</a>
+"""
     
     REPORT_TXT = """👉 HELP For REPORT 🚨
 
