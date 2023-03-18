@@ -13,7 +13,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
 settings = await get_settings(grp_id)
-    try:
         if settings['is_shortlink']:
             settings = await get_settings(grp_id)
     except KeyError:
