@@ -1347,7 +1347,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
 
 async def auto_filter(client, msg, spoll=False):
-    message = msg
+    if not spoll:
+        message = msg
         settings = await get_settings(message.chat.id)
         if message.text.startswith("/"): return  # ignore commands
         if re.findall("((^\/|^,|^!|^\.|^[\U0001F600-\U000E007F]).*)", message.text):
