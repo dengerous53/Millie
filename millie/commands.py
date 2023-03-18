@@ -477,7 +477,7 @@ async def settings(client, message):
             ],
             [
                 InlineKeyboardButton(
-                    'ShortLink' if int(ADMINS), else await query.answer("oKda", show_alert=True)
+                    'ShortLink',
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
                 InlineKeyboardButton(
