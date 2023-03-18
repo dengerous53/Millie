@@ -1427,8 +1427,9 @@ async def auto_filter(client, msg, spoll=False):
                     ),
                 ]
                 for file in files
-            ]
-    btn.insert(0, 
+        ]
+
+    btn.insert(0,
         [
             InlineKeyboardButton(text="⚡HOW TO DOWNLOAD ⚡", url='https://t.me/MissValentinaa_Bot?start=ZmlsZV9CQUFEQlFBRDl3Z0FBcFBCb1ZUU180QjBxVHB4YWhZRQ')
         ]
@@ -1446,8 +1447,9 @@ async def auto_filter(client, msg, spoll=False):
                     ),
                 ]
                 for file in files
-            ]
-    btn.insert(0, 
+        ]
+
+    btn.insert(0,
         [
             InlineKeyboardButton(text="⚡HOW TO DOWNLOAD ⚡", url='https://t.me/MissValentinaa_Bot?start=ZmlsZV9CQUFEQlFBRDl3Z0FBcFBCb1ZUU180QjBxVHB4YWhZRQ')
         ]
