@@ -12,10 +12,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.ERROR)
 
-settings = await get_settings(grp_id)
-
-if settings is not None:
-    buttons = [
+settings = [
         [
                 InlineKeyboardButton(
                     '𝐅𝐈𝐋𝐓𝐄𝐑 𝐁𝐔𝐓𝐓𝐎𝐍',
