@@ -481,7 +481,7 @@ async def settings(client, message):
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
                 InlineKeyboardButton(
-                    '✅ ON' if settings["is_shortlink"] else '❌ OFF',
+                    '✅ ON' if settings["is_shortlink", ADMINS] else ("❌ OFF", show_alert=True),
                     callback_data=f'setgs#is_shortlink#{settings["is_shortlink"]}#{grp_id}',
                 ),
             ],
