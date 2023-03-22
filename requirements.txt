@@ -60,3 +60,4 @@ cachetools
 Heroku3
 telethon
 Python_ARQ
+tweepy
