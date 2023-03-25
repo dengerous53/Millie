@@ -1021,8 +1021,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     ]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>",
-            disable_web_page_preview=True, 
+            text=f"select an option!",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
