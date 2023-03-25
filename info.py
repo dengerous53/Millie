@@ -141,7 +141,7 @@ FILE_STORE_CHANNEL = [int(ch) for ch in (environ.get('FILE_STORE_CHANNEL', '-100
 MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
-SUPPORT_CHAT_ID = '-1001630382290'
+SUPPORT_CHAT_ID = -1001630382290
 REQST_CHANNEL = LOG_CHANNEL
 
     
