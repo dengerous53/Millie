@@ -595,74 +595,51 @@ async def save_template(client, message):
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def requests(bot, message):
-    action, chat_id, message_id, user_id = query.data.split("-")
-    chat_id = int(chat_id)
-    message_id = int(message_id)
-    user_id = int(user_id)
-    
-    if action == "acceptnewreql":
-        await bot.answer_callback_query(query.id, text="Request accepted!")
-        await bot.edit_message_reply_markup(chat_id, message_id, reply_markup=None)
-        await bot.send_message(user_id, "Your request has been accepted!")
-        
-    elif action == "rejectnewreql":
-        await bot.answer_callback_query(query.id, text="Request rejected!")
-        await bot.edit_message_reply_markup(chat_id, message_id, reply_markup=None)
-        await bot.send_message(user_id, "Your request has been rejected!")
-      
-
-    chat_id = message.chat.id
-    reporter = str(message.from_user.id)
-    mention = message.from_user.mention
-    content = message.text.strip()
-    success = False
-
-    if not content:
-        await message.reply_text("<b>You must type about your request [Minimum 1 Character]. Requests can't be empty.</b>")
-        return
-
-    keywords = ["#request", "/request", "#Request", "/Req", "req"]
-    for keyword in keywords:
-        content = content.replace(keyword, "").strip()
-
-    if not content:
-        await message.reply_text("<b>Your request can't be empty after removing the keywords.</b>")
-        return
-
-    reply_to_message = message.reply_to_message
-    if reply_to_message is not None:
-        chat_id = reply_to_message.chat.id
-        message_id = reply_to_message.message_id
-        from_user = reply_to_message.from_user.id
-
-        await query.answer("Showing options")
-        btn = InlineKeyboardMarkup([[InlineKeyboardButton('Accept', callback_data=f'acceptnewreql-{chat_id}-{message_id}-{from_user}'),
-                                     InlineKeyboardButton('Reject', callback_data=f'rejectnewreql-{chat_id}-{message_id}-{from_user}')]])
-        await bot.edit_message_reply_markup(chat_id=chat_id, message_id=message_id, reply_markup=btn)
-
+        chat_id = message.chat.id
+        reporter = str(message.from_user.id)
+        mention = message.from_user.mention
+        success = True
+        content = message.text
+        keywords = ["#request", "/request", "#Request", "/Req", "/req"]
+        for keyword in keywords:
+            if keyword in content:
+                content = content.replace(keyword, "")
         try:
-            if REQST_CHANNEL is not None:
+            if REQST_CHANNEL is not None and len(content) >= 3:
                 btn = [[
-                        InlineKeyboardButton('View Request', url=f"{reply_to_message.link}"),
+                        InlineKeyboardButton('View Request', url=f"{message.link}"),
                         InlineKeyboardButton('Show Options', callback_data="movienewreq")
                       ]]
                 reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
                 success = True
+            elif len(content) >= 3:
+                for admin in ADMINS:
+                    btn = [[
+                        InlineKeyboardButton('View Request', url=f"{message.link}"),
+                        InlineKeyboardButton('Show Options', callback_data="movienewreq")
+                      ]]
+                    reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+                    success = True
             else:
-                await message.reply_text("<b>The request channel is not set up. Please contact the administrator.</b>")
+                if len(content) < 3:
+                    await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
+            if len(content) < 3:
+                success = False
         except Exception as e:
             await message.reply_text(f"Error: {e}")
-            return
+            pass
 
-        if success:
-            btn = [[
-                    InlineKeyboardButton('View Request', url=f"{reported_post.link}")
-                  ]]
-            await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply_text("<b>Please reply to a message with your request.</b>")
+        success = False
+    
+    if success:
+        btn = [[
+                InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")
+              ]]
+        await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
        
+
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
 async def send_msg(bot, message):
     if message.reply_to_message:
