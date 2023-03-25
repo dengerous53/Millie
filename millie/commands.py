@@ -518,7 +518,7 @@ async def requests(bot, message):
         mention = message.from_user.mention
         success = True
         content = message.text
-        keywords = ["#request", "/request", "#Request", "/Req", "req"]
+        keywords = ["#request", "/request", "#Request", "/Req", "/req"]
         for keyword in keywords:
             if keyword in content:
                 content = content.replace(keyword, "")
@@ -552,7 +552,7 @@ async def requests(bot, message):
     
     if success:
         btn = [[
-                InlineKeyboardButton('View Request', url=f"{message.reply_to_message.link}")
+                InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")
               ]]
         await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
