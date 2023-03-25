@@ -595,6 +595,22 @@ async def save_template(client, message):
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def requests(bot, message):
+    action, chat_id, message_id, user_id = query.data.split("-")
+    chat_id = int(chat_id)
+    message_id = int(message_id)
+    user_id = int(user_id)
+    
+    if action == "acceptnewreql":
+        await bot.answer_callback_query(query.id, text="Request accepted!")
+        await bot.edit_message_reply_markup(chat_id, message_id, reply_markup=None)
+        await bot.send_message(user_id, "Your request has been accepted!")
+        
+    elif action == "rejectnewreql":
+        await bot.answer_callback_query(query.id, text="Request rejected!")
+        await bot.edit_message_reply_markup(chat_id, message_id, reply_markup=None)
+        await bot.send_message(user_id, "Your request has been rejected!")
+      
+
     chat_id = message.chat.id
     reporter = str(message.from_user.id)
     mention = message.from_user.mention
@@ -645,25 +661,6 @@ async def requests(bot, message):
             await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
     else:
         await message.reply_text("<b>Please reply to a message with your request.</b>")
-
-
- @Client.on_callback_query(filters.regex("acceptnewreql|rejectnewreql"))
-async def process_request(bot, query):
-    action, chat_id, message_id, user_id = query.data.split("-")
-    chat_id = int(chat_id)
-    message_id = int(message_id)
-    user_id = int(user_id)
-    
-    if action == "acceptnewreql":
-        await bot.answer_callback_query(query.id, text="Request accepted!")
-        await bot.edit_message_reply_markup(chat_id, message_id, reply_markup=None)
-        await bot.send_message(user_id, "Your request has been accepted!")
-        
-    elif action == "rejectnewreql":
-        await bot.answer_callback_query(query.id, text="Request rejected!")
-        await bot.edit_message_reply_markup(chat_id, message_id, reply_markup=None)
-        await bot.send_message(user_id, "Your request has been rejected!")
-      
 
        
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
