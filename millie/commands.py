@@ -622,6 +622,13 @@ async def requests(bot, message):
             await message.reply_text(f"Error: {e}")
             pass
 
+    elif query.data =="rejectnewreq":
+        await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")
+        await message.reply_text("request has successfully registered")
+    elif query.data =="acceptnewreq":
+        await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")
+        await message.reply_text("request has successfully accepted")
+
     else:
         success = False
     
