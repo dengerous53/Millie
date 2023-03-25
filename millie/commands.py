@@ -592,22 +592,19 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
-@Client.on_callback_query(filters.regex(r'^movieoreq'))
-async def requests_files(bot, query):
+@Client.on_callback_query(filters.regex(r'^newreq'))
+async def handle_new_request(bot, query):
     if query.data.startswith('acceptnewreql'):
-        await query.answer("request successfully accepted")
-        _, raju, chat, lst_msg_id, from_user = query.data.split("#")
-        await bot.send_message(int(from_user),
-                               f'Your Submission for movie {chat} has been accepted by our moderators.',
-                               reply_to_message_id=int(lst_msg_id))
+        await query.answer("Request successfully accepted")
+        _, chat_id, message_id, from_user_id = query.data.split("-")
+        await bot.send_message(int(from_user_id), f'Your submission for movie {chat_id} has been accepted by our moderators.', reply_to_message_id=int(message_id))
     elif query.data.startswith('rejectnewreql'):
-        await query.answer("request successfully rejected")
-        _, raju, chat, lst_msg_id, from_user = query.data.split("#")
-        await bot.send_message(int(from_user),
-                               f'Your Submission for movie {chat} has been rejected by our moderators.',
-                               reply_to_message_id=int(lst_msg_id))
+        await query.answer("Request successfully rejected")
+        _, chat_id, message_id, from_user_id = query.data.split("-")
+        await bot.send_message(int(from_user_id), f'Your submission for movie {chat_id} has been rejected by our moderators.', reply_to_message_id=int(message_id))
     else:
         pass
+
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def requests(bot, message):
@@ -630,24 +627,19 @@ async def requests(bot, message):
         return
 
     try:
-        if REQST_CHANNEL is not None:
-            btn = [[
-                    InlineKeyboardButton('View Request', url=f"{message.link}"),
-                    InlineKeyboardButton('Show Options', callback_data="movienewreq")
-                  ]]
-            reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-            success = True
-        else:
-            await message.reply_text("<b>The request channel is not set up. Please contact the administrator.</b>")
-    except Exception as e:
-        await message.reply_text(f"Error: {e}")
-        return
-
-    if success:
+    if REQST_CHANNEL is not None:
         btn = [[
-                InlineKeyboardButton('View Request', url=f"{reported_post.link}")
+                InlineKeyboardButton('View Request', url=f"{message.link}"),
+                InlineKeyboardButton('Accept', callback_data=f'acceptnewreql-{chat_id}-{message.message_id}-{message.from_user.id}'),
+                InlineKeyboardButton('Reject', callback_data=f'rejectnewreql-{chat_id}-{message.message_id}-{message.from_user.id}')
               ]]
-        await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
+        reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+        success = True
+    else:
+        await message.reply_text("<b>The request channel is not set up. Please contact the administrator.</b>")
+except Exception as e:
+    await message.reply_text(f"Error: {e}")
+    return
 
        
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
