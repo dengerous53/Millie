@@ -592,6 +592,22 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
+@Client.on_callback_query(filters.regex(r'^movieoreq'))
+async def requests_files(bot, query):
+    if query.data.startswith('acceptnewreql'):
+        await query.answer("request successfully accepted")
+        _, raju, chat, lst_msg_id, from_user = query.data.split("#")
+        await bot.send_message(int(from_user),
+                               f'Your Submission for movie {chat} has been accepted by our moderators.',
+                               reply_to_message_id=int(lst_msg_id))
+    elif query.data.startswith('rejectnewreql'):
+        await query.answer("request successfully rejected")
+        _, raju, chat, lst_msg_id, from_user = query.data.split("#")
+        await bot.send_message(int(from_user),
+                               f'Your Submission for movie {chat} has been rejected by our moderators.',
+                               reply_to_message_id=int(lst_msg_id))
+    else:
+        pass
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def requests(bot, message):
