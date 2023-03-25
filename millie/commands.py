@@ -633,7 +633,7 @@ async def requests(bot, message):
         mention = message.from_user.mention
         success = True
         content = message.text
-        keywords = ["#request", "/request", "#Request", "/Request"]
+        keywords = ["#request", "/request", "#Request", "/Req"]
         for keyword in keywords:
             if keyword in content:
                 content = content.replace(keyword, "")
