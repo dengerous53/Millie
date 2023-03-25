@@ -631,7 +631,7 @@ async def requests(bot, message):
         btn = [[
                 InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")
               ]]
-        await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
+        newreqmsg = await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
