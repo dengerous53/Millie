@@ -1008,14 +1008,14 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-    elif query.data == "showreq":
+    elif query.data == "movienewreq":
         buttons = [[
-            InlineKeyboardButton('Accept Index',
-                                 callback_data=f'reqstnew#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
+            InlineKeyboardButton("Accept movie or series request",
+                                 callback_data="acceptnewreq")
         ],
         [
-            InlineKeyboardButton('Reject Index',
-                                 callback_data=f'reqstnew#reject#{chat_id}#{message.id}#{message.from_user.id}'),
+            InlineKeyboardButton("Reject movie or series request",
+                                 callback_data="rejectnewreq"),
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
