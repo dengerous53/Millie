@@ -613,6 +613,12 @@ async def requests(bot, message):
                       ]]
                 reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
                 success = True
+            elif query.data =="rejectnewreq":
+                await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")
+                await message.reply_text("request has successfully registered")
+            elif query.data =="acceptnewreq":
+                await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")
+                await message.reply_text("request has successfully accepted")
             else:
                 if len(content) < 3:
                     await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
@@ -621,13 +627,6 @@ async def requests(bot, message):
         except Exception as e:
             await message.reply_text(f"Error: {e}")
             pass
-
-    elif query.data =="rejectnewreq":
-        await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")
-        await message.reply_text("request has successfully registered")
-    elif query.data =="acceptnewreq":
-        await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")
-        await message.reply_text("request has successfully accepted")
 
     else:
         success = False
