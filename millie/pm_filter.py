@@ -1009,6 +1009,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "movienewreq":
+        reporter = str(message.from_user.id)
+        mention = message.from_user.mention
+        content = message.text
         buttons = [[
             InlineKeyboardButton("Accept movie or series request",
                                  callback_data="acceptnewreq")
