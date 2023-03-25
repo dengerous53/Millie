@@ -1009,9 +1009,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
             parse_mode=enums.ParseMode.HTML
         )
     elif query.data == "movienewreq":
-        reporter = str(message.from_user.id)
-        mention = message.from_user.mention
-        content = message.text
         buttons = [[
             InlineKeyboardButton("Accept movie or series request",
                                  callback_data="acceptnewreq")
@@ -1022,7 +1019,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
-            text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>",
+            text=f"select an option!\n\naccept\n reject",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
