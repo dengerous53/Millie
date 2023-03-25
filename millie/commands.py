@@ -478,7 +478,7 @@ async def settings(client, message):
         )
 
 
-@Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")) & filters.group)
+@Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def requests(bot, message):
     if REQST_CHANNEL is None: return # Must add REQST_CHANNEL and SUPPORT_CHAT_ID to use this feature
     if message.reply_to_message == message.chat.id:
