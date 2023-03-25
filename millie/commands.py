@@ -593,7 +593,7 @@ async def save_template(client, message):
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
 
-@Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")) & filters.group)
+@Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")) & filters.group & filters.private)
 async def requests(bot, message):
     if REQST_CHANNEL is None or SUPPORT_CHAT_ID is None: return # Must add REQST_CHANNEL and SUPPORT_CHAT_ID to use this feature
     if message.reply_to_message == message.chat.id:
