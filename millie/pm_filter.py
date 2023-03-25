@@ -1008,7 +1008,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-    elif query.data == "show_req":
+    elif query.data == "showreq":
         buttons = [[
             InlineKeyboardButton('Accept Index',
                                  callback_data=f'reqstnew#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
