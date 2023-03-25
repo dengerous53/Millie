@@ -1008,6 +1008,24 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
+    elif query.data == 'show_req':
+        buttons = [
+        [
+            InlineKeyboardButton('Accept Index',
+                                 callback_data=f'reqstnew#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
+        ],
+        [
+            InlineKeyboardButton('Reject Index',
+                                 callback_data=f'reqstnew#reject#{chat_id}#{message.id}#{message.from_user.id}'),
+        ]
+    ]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>",
+            disable_web_page_preview=True, 
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
     elif query.data == "chatbot":
         buttons = [[
             InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='help')
