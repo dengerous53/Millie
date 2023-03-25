@@ -594,7 +594,7 @@ async def save_template(client, message):
 
 
 @Client.on_callback_query(filters.regex(r'^reqstnew'))
-async def index_files(bot, query):
+async def request_files(bot, query):
     if query.data.startswith('reqstnew_cancel'):
         temp.CANCEL = True
         return await query.answer("Cancelling Request")
