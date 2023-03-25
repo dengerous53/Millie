@@ -595,42 +595,38 @@ async def save_template(client, message):
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def requests(bot, message):
-    if message.chat.id:
-        chat_id = message.chat.id
-        reporter = str(message.from_user.id)
-        mention = message.from_user.mention
-        success = True
-        content = message.text
-        keywords = ["#request", "/request", "#Request", "/Req", "req"]
-        for keyword in keywords:
-            if keyword in content:
-                content = content.replace(keyword, "")
-        try:
-            if REQST_CHANNEL is not None and len(content) >= 3:
-                btn = [[
-                        InlineKeyboardButton('View Request', url=f"{message.link}"),
-                        InlineKeyboardButton('Show Options', callback_data="movienewreq")
-                      ]]
-                reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
-            elif query.data =="rejectnewreq":
-                await message.reply_text("request has successfully registered")
-                await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")               
-            elif query.data =="acceptnewreq":
-                await message.reply_text("request has successfully accepted")
-                await bot.send_message(chat_id=reporter, text=f”your movie or series request has been rejected")               
-            else:
-                if len(content) < 3:
-                    await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
-            if len(content) < 3:
-                success = False
-        except Exception as e:
-            await message.reply_text(f"Error: {e}")
-            pass
-
-    else:
-        success = False
+    chat_id = message.chat.id
+    reporter = str(message.from_user.id)
+    mention = message.from_user.mention
+    content = message.text.strip()
+    success = False
     
+    if not content:
+        await message.reply_text("<b>You must type about your request [Minimum 1 Character]. Requests can't be empty.</b>")
+        return
+
+    keywords = ["#request", "/request", "#Request", "/Req", "req"]
+    for keyword in keywords:
+        content = content.replace(keyword, "").strip()
+
+    if not content:
+        await message.reply_text("<b>Your request can't be empty after removing the keywords.</b>")
+        return
+
+    try:
+        if REQST_CHANNEL is not None:
+            btn = [[
+                    InlineKeyboardButton('View Request', url=f"{message.link}"),
+                    InlineKeyboardButton('Show Options', callback_data="movienewreq")
+                  ]]
+            reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+            success = True
+        else:
+            await message.reply_text("<b>The request channel is not set up. Please contact the administrator.</b>")
+    except Exception as e:
+        await message.reply_text(f"Error: {e}")
+        return
+
     if success:
         btn = [[
                 InlineKeyboardButton('View Request', url=f"{reported_post.link}")
