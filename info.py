@@ -142,7 +142,7 @@ MELCOW_NEW_USERS = is_enabled((environ.get('MELCOW_NEW_USERS', "True")), True)
 PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 SUPPORT_CHAT_ID = LOG_CHANNEL
-
+REQST_CHANNEL = LOG_CHANNEL
     
 SESSION_STRING = "1BJWap1sBuzNehGtsV99qoGF8ICaLfjg5VzVWgBCHmcm_fjmYB5T8mKleh2P63JASV6BGY9dikr80IdHhwh1ZbVSGYOhWOntH6ThDWegMIgza7pkVbDLWeOoxb9ueWiWUj-RA8CLRlziCDGN07bkyN1U9xcs4d1mdpbzM2BLgC1cnGl7y8CNRM8pTgx4TqfvJ53JHo3HuhABnY5OdL3_PkXOrTrT2M-hEBn1HKrXUo9cHuy-qYowdeYWxe4AlXNI3wRKjKI2cBToq7i5M8NRuCt2O6zAmBcgSQWM5uOWRl-85aJrmgZL6Shf_SoBOCEBxFGj9QmqXBBBYocaGn3BnpE-Zap2gnnw=" 
      # for short link 
