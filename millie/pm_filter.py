@@ -1008,17 +1008,15 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )
-    elif query.data == 'show_req':
-        buttons = [
-        [
+    elif query.data == "show_req":
+        buttons = [[
             InlineKeyboardButton('Accept Index',
                                  callback_data=f'reqstnew#accept#{chat_id}#{last_msg_id}#{message.from_user.id}')
         ],
         [
             InlineKeyboardButton('Reject Index',
                                  callback_data=f'reqstnew#reject#{chat_id}#{message.id}#{message.from_user.id}'),
-        ]
-    ]
+        ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=f"select an option!",
