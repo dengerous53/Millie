@@ -625,12 +625,13 @@ async def handle_requests(bot, message):
 
 @Client.on_callback_query(filters.regex("movienewreq"))
 async def show_request_options(bot, query):
+    reporter = f"{query.from_user.first_name} ({query.from_user.id})"
     buttons = [[
         InlineKeyboardButton("Accept movie or series request", callback_data="acceptnewreq"),
         InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
-    await query.message.edit_text(text="Select an option:\n for {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
+    await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
 
         
 
