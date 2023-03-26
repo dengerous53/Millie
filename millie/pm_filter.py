@@ -1190,11 +1190,22 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
     elif query.data == "chatbot":
         buttons = [[
-            InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='help')
+            InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='renish')
         ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await query.message.edit_text(
             text=script.CHATBOT_TXT,
+            disable_web_page_preview=True, 
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+    elif query.data == "chatbot":
+        buttons = [[
+            InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='help')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.REQUEST_TXT,
             disable_web_page_preview=True, 
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
