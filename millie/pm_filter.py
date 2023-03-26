@@ -871,7 +871,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
              ],[
                  InlineKeyboardButton("REQUEST BOT", url="https://telegram.me/Movies_series_Requestbot")
                ]]
-       btn3 = [[
+        btn3 = [[
                  InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
@@ -885,7 +885,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your request has been accepted by our admins. Please wait for the reply ! \n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
         else:
             await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-        
+         
     elif query.data.startswith("unavailable"):
         ident, from_user = query.data.split("#")
         btn = [[
@@ -893,6 +893,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
               ]]
         btn2 = [[
                  InlineKeyboardButton("View Status", url=f"{query.message.link}")
+               ]]
+        btn3 = [[
+                 InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
