@@ -633,6 +633,23 @@ async def show_request_options(bot, query):
     reply_markup = InlineKeyboardMarkup(buttons)
     await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
 
+@Client.on_callback_query(filters.regex("acceptnewreq"))
+async def accept_request(bot, query):
+    request_message = query.message.reply_to_message
+    if request_message:
+        reporter = f"{request_message.from_user.first_name} ({request_message.from_user.id})"
+        await query.message.edit_text(f"Request from {reporter} has been accepted!")
+    else:
+        await query.answer("Sorry, the request message cannot be found!", show_alert=True)
+
+@Client.on_callback_query(filters.regex("rejectnewreq"))
+async def reject_request(bot, query):
+    request_message = query.message.reply_to_message
+    if request_message:
+        reporter = f"{request_message.from_user.first_name} ({request_message.from_user.id})"
+        await query.message.edit_text(f"Request from {reporter} has been rejected!")
+    else:
+        await query.answer("Sorry, the request message cannot be found!", show_alert=True)
         
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
