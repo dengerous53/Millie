@@ -587,120 +587,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
         )
 
 
-    elif query.data.startswith("show_option"):
-        ident, from_user = query.data.split("#")
-        btn = [[
-                InlineKeyboardButton("Unavailable", callback_data=f"unavailable#{from_user}"),
-                InlineKeyboardButton("Uploaded", callback_data=f"uploaded#{from_user}")
-             ],[
-                InlineKeyboardButton("Already Available", callback_data=f"already_available#{from_user}")
-              ]]
-        btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
-               ]]
-        if query.from_user.id in ADMINS:
-            user = await client.get_users(from_user)
-            reply_markup = InlineKeyboardMarkup(btn)
-            await query.message.edit_reply_markup(reply_markup)
-            await query.answer("Here are the options !")
-            try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your request has been accepted by our admins. Please wait for the reply !</b>", reply_markup=InlineKeyboardMarkup(btn2))
-            except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your request has been accepted by our admins. Please wait for the reply ! \n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-        
-    elif query.data.startswith("unavailable"):
-        ident, from_user = query.data.split("#")
-        btn = [[
-                InlineKeyboardButton("⚠️ Unavailable ⚠️", callback_data=f"unalert#{from_user}")
-              ]]
-        btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
-               ]]
-        if query.from_user.id in ADMINS:
-            user = await client.get_users(from_user)
-            reply_markup = InlineKeyboardMarkup(btn)
-            content = query.message.text
-            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
-            await query.message.edit_reply_markup(reply_markup)
-            await query.answer("Set to Unavailable !")
-            try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Sorry Your requested movie is unavailable. So our moderators can't upload it.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-            except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Sorry Your requested movie is unavailable. So our moderators can't upload it.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-
-    elif query.data.startswith("uploaded"):
-        ident, from_user = query.data.split("#")
-        btn = [[
-                InlineKeyboardButton("✅ Uploaded ✅", callback_data=f"upalert#{from_user}")
-              ]]
-        btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
-               ]]
-        if query.from_user.id in ADMINS:
-            user = await client.get_users(from_user)
-            reply_markup = InlineKeyboardMarkup(btn)
-            content = query.message.text
-            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
-            await query.message.edit_reply_markup(reply_markup)
-            await query.answer("Set to Uploaded !")
-            try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your requested movie has been uploaded by our moderators. Kindly search again.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-            except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your requested movie has been uploaded by our moderators. Kindly search again.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-
-    elif query.data.startswith("already_available"):
-        ident, from_user = query.data.split("#")
-        btn = [[
-                InlineKeyboardButton("🟢 Already Available 🟢", callback_data=f"alalert#{from_user}")
-              ]]
-        btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
-               ]]
-        if query.from_user.id in ADMINS:
-            user = await client.get_users(from_user)
-            reply_markup = InlineKeyboardMarkup(btn)
-            content = query.message.text
-            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
-            await query.message.edit_reply_markup(reply_markup)
-            await query.answer("Set to Already Available !")
-            try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your requested movie is already available on our bot's database. Kindly search again.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-            except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your requested movie is already available on our bot's database. Kindly search again.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-
-    elif query.data.startswith("alalert"):
-        ident, from_user = query.data.split("#")
-        if int(query.from_user.id) == int(from_user):
-            user = await client.get_users(from_user)
-            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Already Available !", show_alert=True)
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-
-    elif query.data.startswith("upalert"):
-        ident, from_user = query.data.split("#")
-        if int(query.from_user.id) == int(from_user):
-            user = await client.get_users(from_user)
-            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Uploaded !", show_alert=True)
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-        
-    elif query.data.startswith("unalert"):
-        ident, from_user = query.data.split("#")
-        if int(query.from_user.id) == int(from_user):
-            user = await client.get_users(from_user)
-            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Unavailable !", show_alert=True)
-        else:
-            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
-
-
     elif query.data == "predvd":
         k = await client.send_message(chat_id=query.message.chat.id, text="<b>Deleting PreDVDs... Please wait...</b>")
         files, next_offset, total = await get_bad_files(
@@ -972,6 +858,118 @@ async def cb_handler(client: Client, query: CallbackQuery):
         await removebg_sticker(client, query.message)
     elif query.data == "pages":
         await query.answer("🤨 Curiosity is a little more, isn't it? 😁", show_alert=True)
+    elif query.data.startswith("show_option"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("Unavailable", callback_data=f"unavailable#{from_user}"),
+                InlineKeyboardButton("Uploaded", callback_data=f"uploaded#{from_user}")
+             ],[
+                InlineKeyboardButton("Already Available", callback_data=f"already_available#{from_user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Here are the options !")
+            try:
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your request has been accepted by our admins. Please wait for the reply !</b>", reply_markup=InlineKeyboardMarkup(btn2))
+            except UserIsBlocked:
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your request has been accepted by our admins. Please wait for the reply ! \n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+        
+    elif query.data.startswith("unavailable"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("⚠️ Unavailable ⚠️", callback_data=f"unalert#{from_user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            content = query.message.text
+            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Set to Unavailable !")
+            try:
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Sorry Your requested movie is unavailable. So our moderators can't upload it.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+            except UserIsBlocked:
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Sorry Your requested movie is unavailable. So our moderators can't upload it.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+
+    elif query.data.startswith("uploaded"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("✅ Uploaded ✅", callback_data=f"upalert#{from_user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            content = query.message.text
+            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Set to Uploaded !")
+            try:
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your requested movie has been uploaded by our moderators. Kindly search again.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+            except UserIsBlocked:
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your requested movie has been uploaded by our moderators. Kindly search again.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+
+    elif query.data.startswith("already_available"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("🟢 Already Available 🟢", callback_data=f"alalert#{from_user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            content = query.message.text
+            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Set to Already Available !")
+            try:
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Your requested movie is already available on our bot's database. Kindly search again.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+            except UserIsBlocked:
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Your requested movie is already available on our bot's database. Kindly search again.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+
+    elif query.data.startswith("alalert"):
+        ident, from_user = query.data.split("#")
+        if int(query.from_user.id) == int(from_user):
+            user = await client.get_users(from_user)
+            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Already Available !", show_alert=True)
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+
+    elif query.data.startswith("upalert"):
+        ident, from_user = query.data.split("#")
+        if int(query.from_user.id) == int(from_user):
+            user = await client.get_users(from_user)
+            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Uploaded !", show_alert=True)
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+        
+    elif query.data.startswith("unalert"):
+        ident, from_user = query.data.split("#")
+        if int(query.from_user.id) == int(from_user):
+            user = await client.get_users(from_user)
+            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Unavailable !", show_alert=True)
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
     elif query.data == "start":                        
         buttons = [[
             InlineKeyboardButton("➕️ 𝙰𝙳𝙳 𝙼𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙶𝚁𝙾𝚄𝙿 ➕️", url=f"http://t.me/{temp.U_NAME}?startgroup=true")
