@@ -593,7 +593,11 @@ async def save_template(client, message):
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
 reported_posts = {}
+# Define function to get reporter name
+def get_reporter_name(message):
+    return f"{message.from_user.first_name} ({message.from_user.id})"
 
+# Handle requests command and hashtags
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def handle_requests(bot, message):
     chat_id = message.chat.id
@@ -623,9 +627,9 @@ async def handle_requests(bot, message):
         await message.reply_text(f"Error: {e}")
         return
 
-    reported_posts[reported_post.message_id] = message.message_id  # Store reported post message ID in global dictionary
     await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")]]))
 
+# Show request options when "Show Options" button is pressed
 @Client.on_callback_query(filters.regex("movienewreq"))
 async def show_request_options(bot, query):
     reporter = get_reporter_name(query.message.reply_to_message)
@@ -634,14 +638,9 @@ async def show_request_options(bot, query):
         InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
-    reported_post_message_id = query.message.reply_to_message.message_id
-    if reported_post_message_id in reported_posts:
-        original_message_id = reported_posts[reported_post_message_id]
-        original_message = await bot.get_messages(chat_id=query.message.chat.id, message_ids=original_message_id)
-        await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
-    else:
-        await query.answer("Sorry, the reported post message ID cannot be found!", show_alert=True)
+    await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=types.ParseMode.HTML)
 
+# Handle accepting request when "Accept movie or series request" button is pressed
 @Client.on_callback_query(filters.regex("acceptnewreq"))
 async def accept_request(bot, query):
     request_message = query.message.reply_to_message
