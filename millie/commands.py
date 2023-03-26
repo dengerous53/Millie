@@ -593,60 +593,45 @@ async def save_template(client, message):
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
-async def requests(bot, message):
+async def handle_requests(bot, message):
     chat_id = message.chat.id
-    reporter = str(message.from_user.id)
+    reporter = f"{message.from_user.first_name} ({message.from_user.id})"
     mention = message.from_user.mention
-    success = True
-    content = message.text
+    content = message.text.strip()
     keywords = ["#request", "/request", "#Request", "/Req", "/req"]
     for keyword in keywords:
-        if keyword in content:
-            content = content.replace(keyword, "")
+        content = content.replace(keyword, "")
+
+    if len(content) < 3:
+        await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
+        return
+
+    btn = [[
+            InlineKeyboardButton('View Request', url=f"{message.link}"),
+            InlineKeyboardButton('Show Options', callback_data="movienewreq")
+          ]]
+
     try:
-        if REQST_CHANNEL is not None and len(content) >= 3:
-            btn = [[
-                    InlineKeyboardButton('View Request', url=f"{message.link}"),
-                    InlineKeyboardButton('Show Options', callback_data="movienewreq")
-                  ]]
-            reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-            success = True   
-        elif len(content) >= 3:
-            for admin in ADMINS:
-                btn = [[
-                    InlineKeyboardButton('View Request', url=f"{message.link}"),
-                    InlineKeyboardButton('Show Options', callback_data="movienewreq")
-                  ]]
-                reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
+        if REQST_CHANNEL is not None:
+            reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋: {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾: {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
         else:
-            if len(content) < 3:
-                await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
-            success = False
+            for admin in ADMINS:
+                reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋: {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾: {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
     except Exception as e:
         await message.reply_text(f"Error: {e}")
-        success = False
+        return
 
-    if success:
-        btn = [[
-                InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")
-              ]]
-        newreqmsg = await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
-    elif query.data == "movienewreq":
-        buttons = [[
-            InlineKeyboardButton("Accept movie or series request",
-                                 callback_data="acceptnewreq")
-        ],
-        [
-            InlineKeyboardButton("Reject movie or series request",
-                                 callback_data="rejectnewreq"),
-        ]]
-        reply_markup = InlineKeyboardMarkup(buttons)
-        await query.message.edit_text(
-            text=f"select an option!\n\naccept\n reject",
-            reply_markup=reply_markup,
-            parse_mode=enums.ParseMode.HTML
-        )    
+    await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")]]))
+
+@Client.on_callback_query(filters.regex("movienewreq"))
+async def show_request_options(bot, query):
+    buttons = [[
+        InlineKeyboardButton("Accept movie or series request", callback_data="acceptnewreq"),
+        InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
+    ]]
+    reply_markup = InlineKeyboardMarkup(buttons)
+    await query.message.edit_text(text="Select an option:", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
+
         
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
