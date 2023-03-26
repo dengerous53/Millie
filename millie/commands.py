@@ -637,8 +637,9 @@ async def show_request_options(bot, query):
 async def accept_request(bot, query):
     request_message = query.message.reply_to_message
     if request_message:
-        reporter = f"{request_message.from_user.first_name} ({request_message.from_user.id})"
-        await query.message.edit_text(f"Request from {reporter} has been accepted!")
+        reporter = request_message.from_user
+        await query.message.edit_text(f"Request from {reporter.first_name} ({reporter.id}) has been accepted!")
+        await bot.send_message(chat_id=reporter.id, text="Your request has been accepted!")
     else:
         await query.answer("Sorry, the request message cannot be found!", show_alert=True)
 
@@ -646,11 +647,12 @@ async def accept_request(bot, query):
 async def reject_request(bot, query):
     request_message = query.message.reply_to_message
     if request_message:
-        reporter = f"{request_message.from_user.first_name} ({request_message.from_user.id})"
-        await query.message.edit_text(f"Request from {reporter} has been rejected!")
+        reporter = request_message.from_user
+        await query.message.edit_text(f"Request from {reporter.first_name} ({reporter.id}) has been rejected!")
+        await bot.send_message(chat_id=reporter.id, text="Your request has been rejected!")
     else:
         await query.answer("Sorry, the request message cannot be found!", show_alert=True)
-        
+
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
 async def send_msg(bot, message):
