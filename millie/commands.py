@@ -630,7 +630,7 @@ async def show_request_options(bot, query):
         InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
-    await query.message.edit_text(text="Select an option:", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
+    await query.message.edit_text(text="Select an option:\n for {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
 
         
 
