@@ -595,7 +595,7 @@ async def save_template(client, message):
 reported_posts = {}
 # Define function to get reporter name
 def get_reporter_name(message):
-    return f"{message.from_user.first_name} ({message.from_user.id})"
+    return f"{message.from_user.id}"
 
 # Handle requests command and hashtags
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
