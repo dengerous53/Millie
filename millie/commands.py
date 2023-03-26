@@ -592,8 +592,7 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
-def get_reporter_name(message):
-    return f"{message.from_user.first_name} ({message.from_user.id})"
+reported_posts = {}
 
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def handle_requests(bot, message):
@@ -624,6 +623,7 @@ async def handle_requests(bot, message):
         await message.reply_text(f"Error: {e}")
         return
 
+    reported_posts[reported_post.message_id] = message.message_id  # Store reported post message ID in global dictionary
     await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")]]))
 
 @Client.on_callback_query(filters.regex("movienewreq"))
@@ -634,7 +634,13 @@ async def show_request_options(bot, query):
         InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
-    await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
+    reported_post_message_id = query.message.reply_to_message.message_id
+    if reported_post_message_id in reported_posts:
+        original_message_id = reported_posts[reported_post_message_id]
+        original_message = await bot.get_messages(chat_id=query.message.chat.id, message_ids=original_message_id)
+        await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=enums.ParseMode.HTML)
+    else:
+        await query.answer("Sorry, the reported post message ID cannot be found!", show_alert=True)
 
 @Client.on_callback_query(filters.regex("acceptnewreq"))
 async def accept_request(bot, query):
