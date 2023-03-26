@@ -596,34 +596,43 @@ async def save_template(client, message):
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def handle_requests(bot, message):
     chat_id = message.chat.id
-    reporter = f"{message.from_user.first_name} ({message.from_user.id})"
+    reporter = str(message.from_user.id)
     mention = message.from_user.mention
-    content = message.text.strip()
-    keywords = ["#request", "/request", "#Request", "/Req", "/req"]
+    success = True
+    content = message.text
+    keywords = ["#request", "/request", "#Request", "/Request", "/req", "/Req"]
     for keyword in keywords:
-        content = content.replace(keyword, "")
-
-    if len(content) < 3:
-        await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
-        return
-
-    btn = [[
-            InlineKeyboardButton('View Request', url=f"{message.link}"),
-            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
-          ]]
-
+        if keyword in content:
+            content = content.replace(keyword, "")
     try:
-        if REQST_CHANNEL is not None:
-            reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋: {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾: {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-        else:
+        if REQST_CHANNEL is not None and len(content) >= 3:
+            btn = [[
+                    InlineKeyboardButton('View Request', url=f"{message.link}"),
+                    InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                  ]]
+            reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+            success = True
+        elif len(content) >= 3:
             for admin in ADMINS:
-                reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋: {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾: {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+                btn = [[
+                    InlineKeyboardButton('View Request', url=f"{message.link}"),
+                    InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
+                  ]]
+                reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+                success = True
+        else:
+            if len(content) < 3:
+                await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
+                success = False
     except Exception as e:
         await message.reply_text(f"Error: {e}")
-        return
-
-    await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")]]))
-
+        success = False
+    
+    if success:
+        btn = [[
+                InlineKeyboardButton('View Request', url=f"{reported_post.link}")
+              ]]
+        await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
 async def send_msg(bot, message):
