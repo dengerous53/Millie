@@ -632,7 +632,22 @@ async def requests(bot, message):
                 InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")
               ]]
         newreqmsg = await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
-
+    elif query.data == "movienewreq":
+        buttons = [[
+            InlineKeyboardButton("Accept movie or series request",
+                                 callback_data="acceptnewreq")
+        ],
+        [
+            InlineKeyboardButton("Reject movie or series request",
+                                 callback_data="rejectnewreq"),
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=f"select an option!\n\naccept\n reject",
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )    
+        
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
 async def send_msg(bot, message):
