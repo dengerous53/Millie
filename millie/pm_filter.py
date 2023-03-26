@@ -867,7 +867,12 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("Already Available", callback_data=f"already_available#{from_user}")
               ]]
         btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+                 InlineKeyboardButton("SUPPORT GROUP", url="https://telegram.me/r_from_rgi_support"),
+             ],[
+                 InlineKeyboardButton("REQUEST BOT", url="https://telegram.me/Movies_series_Requestbot")
+               ]]
+       btn3 = [[
+                 InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
