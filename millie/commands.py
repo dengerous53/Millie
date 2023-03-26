@@ -592,10 +592,6 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
-reported_posts = {}
-# Define function to get reporter name
-def get_reporter_name(message):
-    return f"{message.from_user.id}"
 
 # Handle requests command and hashtags
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
@@ -614,7 +610,7 @@ async def handle_requests(bot, message):
 
     btn = [[
             InlineKeyboardButton('View Request', url=f"{message.link}"),
-            InlineKeyboardButton('Show Options', callback_data="movienewreq")
+            InlineKeyboardButton('Show Options', callback_data=f'show_option#{reporter}')
           ]]
 
     try:
@@ -629,39 +625,6 @@ async def handle_requests(bot, message):
 
     await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('JOIN CHANNEL', url="https://t.me/millie_robot_update")]]))
 
-# Show request options when "Show Options" button is pressed
-@Client.on_callback_query(filters.regex("movienewreq"))
-async def show_request_options(bot, query):
-    reporter = get_reporter_name(query.message.reply_to_message)
-    buttons = [[
-        InlineKeyboardButton("Accept movie or series request", callback_data="acceptnewreq"),
-        InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
-    ]]
-    reply_markup = InlineKeyboardMarkup(buttons)
-    await query.message.edit_text(text=f"Select an option:\nRequester: {reporter}", reply_markup=reply_markup, parse_mode=types.ParseMode.HTML)
-
-# Handle accepting request when "Accept movie or series request" button is pressed
-@Client.on_callback_query(filters.regex("acceptnewreq"))
-async def accept_request(bot, query):
-    request_message = query.message.reply_to_message
-    if request_message:
-        reporter = get_reporter_name(request_message)
-        reporter_mention = reporter.mention()
-        await query.message.edit_text(f"Request from {reporter_mention} has been accepted!")
-        await bot.send_message(chat_id=reporter.id, text="Your request has been accepted!")
-    else:
-        await query.answer("Sorry, the request message cannot be found!", show_alert=True)
-
-@Client.on_callback_query(filters.regex("rejectnewreq"))
-async def reject_request(bot, query):
-    request_message = query.message.reply_to_message
-    if request_message:
-        reporter = get_reporter_name(request_message)
-        reporter_mention = reporter.mention()
-        await query.message.edit_text(f"Request from {reporter_mention} has been rejected!")
-        await bot.send_message(chat_id=reporter.id, text="Your request has been rejected.")
-    else:
-        await query.answer("Sorry, the request message cannot be found!", show_alert=True)
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
 async def send_msg(bot, message):
