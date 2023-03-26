@@ -611,14 +611,6 @@ async def requests(bot, message):
                   ]]
             reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
             success = True
-        elif len(content) >= 3:
-            for admin in ADMINS:
-                btn = [[
-                    InlineKeyboardButton('View Request', url=f"{message.link}"),
-                    InlineKeyboardButton('Show Options', callback_data="movienewreq")
-                  ]]
-                reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
-                success = True
         elif query.data == "movienewreq":
         buttons = [[
             InlineKeyboardButton("Accept movie or series request",
@@ -633,8 +625,15 @@ async def requests(bot, message):
             text=f"select an option!\n\naccept\n reject",
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
-        )
-    
+        )    
+        elif len(content) >= 3:
+            for admin in ADMINS:
+                btn = [[
+                    InlineKeyboardButton('View Request', url=f"{message.link}"),
+                    InlineKeyboardButton('Show Options', callback_data="movienewreq")
+                  ]]
+                reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
+                success = True
         else:
             if len(content) < 3:
                 await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
