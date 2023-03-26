@@ -509,7 +509,7 @@ async def handle_requests(bot, message):
     
     if success:
         btn = [[
-                InlineKeyboardButton("🧧 VIEW STATUS 🧧", url="https://telegram.me/millie_robot_update")
+                InlineKeyboardButton("🧧 VIEW STATUS 🧧", url="https://telegram.me/Millie_power_robot")
                ]]
         await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
