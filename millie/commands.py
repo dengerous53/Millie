@@ -593,11 +593,10 @@ async def save_template(client, message):
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
 
-# Handle requests command and hashtags
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def handle_requests(bot, message):
     chat_id = message.chat.id
-    reporter = get_reporter_name(message)
+    reporter = f"{message.from_user.first_name} ({message.from_user.id})"
     mention = message.from_user.mention
     content = message.text.strip()
     keywords = ["#request", "/request", "#Request", "/Req", "/req"]
