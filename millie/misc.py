@@ -20,7 +20,7 @@ BUTTON_1 = [[
             InlineKeyboardButton('📑NOTES📑', callback_data='notes')
             ],[
             InlineKeyboardButton('🔒LOCKS🔒', callback_data='locks'),
-            InlineKeyboardButton('🤖CHATBOT🤖', callback_data='chatbot'),
+            InlineKeyboardButton('🎬 MOVIES 🎬', callback_data='movibot'),
             InlineKeyboardButton('🧧STATUS🧧', callback_data='stats')
             ],[
             InlineKeyboardButton('🎩MANUEL FIL.🎩', callback_data='manuelfilter'),
@@ -67,6 +67,7 @@ BUTTON_3 =  [[
             InlineKeyboardButton('🔊 AUDIO 🔊', callback_data='audl'),           
             InlineKeyboardButton('📹 VIDEO 📹', callback_data='vudl')
             ],[
+            InlineKeyboardButton('🤖CHATBOT🤖', callback_data='chatbot'),
             InlineKeyboardButton('🚨 REPORT 🚨', callback_data='repor')
             ],[
             InlineKeyboardButton('◀️BACK◀️', callback_data='millie'),
