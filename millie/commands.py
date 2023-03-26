@@ -592,10 +592,13 @@ async def save_template(client, message):
     await save_group_settings(grp_id, 'template', template)
     await sts.edit(f"Successfully changed template for {title} to\n\n{template}")
 
+def get_reporter_name(message):
+    return f"{message.from_user.first_name} ({message.from_user.id})"
+
 @Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
 async def handle_requests(bot, message):
     chat_id = message.chat.id
-    reporter = f"{message.from_user.first_name} ({message.from_user.id})"
+    reporter = get_reporter_name(message)
     mention = message.from_user.mention
     content = message.text.strip()
     keywords = ["#request", "/request", "#Request", "/Req", "/req"]
@@ -625,7 +628,7 @@ async def handle_requests(bot, message):
 
 @Client.on_callback_query(filters.regex("movienewreq"))
 async def show_request_options(bot, query):
-    reporter = f"{query.from_user.first_name} ({query.from_user.id})"
+    reporter = get_reporter_name(query.message.reply_to_message)
     buttons = [[
         InlineKeyboardButton("Accept movie or series request", callback_data="acceptnewreq"),
         InlineKeyboardButton("Reject movie or series request", callback_data="rejectnewreq")
@@ -637,7 +640,7 @@ async def show_request_options(bot, query):
 async def accept_request(bot, query):
     request_message = query.message.reply_to_message
     if request_message:
-        reporter = request_message.from_user
+        reporter = get_reporter_name(request_message)
         reporter_mention = reporter.mention()
         await query.message.edit_text(f"Request from {reporter_mention} has been accepted!")
         await bot.send_message(chat_id=reporter.id, text="Your request has been accepted!")
@@ -648,7 +651,7 @@ async def accept_request(bot, query):
 async def reject_request(bot, query):
     request_message = query.message.reply_to_message
     if request_message:
-        reporter = request_message.from_user
+        reporter = get_reporter_name(request_message)
         reporter_mention = reporter.mention()
         await query.message.edit_text(f"Request from {reporter_mention} has been rejected!")
         await bot.send_message(chat_id=reporter.id, text="Your request has been rejected.")
