@@ -619,6 +619,22 @@ async def requests(bot, message):
                   ]]
                 reported_post = await bot.send_message(chat_id=admin, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
                 success = True
+        elif query.data == "movienewreq":
+        buttons = [[
+            InlineKeyboardButton("Accept movie or series request",
+                                 callback_data="acceptnewreq")
+        ],
+        [
+            InlineKeyboardButton("Reject movie or series request",
+                                 callback_data="rejectnewreq"),
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=f"select an option!\n\naccept\n reject",
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )
+    
         else:
             if len(content) < 3:
                 await message.reply_text("<b>You must type about your request [Minimum 3 Characters]. Requests can't be empty.</b>")
