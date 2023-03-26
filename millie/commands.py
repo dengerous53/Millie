@@ -631,8 +631,8 @@ async def handle_requests(bot, message):
     
     if success:
         btn = [[
-                InlineKeyboardButton('View Request', url=f"{reported_post.link}")
-              ]]
+                InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
+               ]]
         await message.reply_text("<b>Your request has been added! Please wait for some time.</b>", reply_markup=InlineKeyboardMarkup(btn))
 
 @Client.on_message(filters.command("usend") & filters.user(ADMINS))
