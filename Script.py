@@ -460,8 +460,30 @@ Delete A Lot Of Messages From Groups!
 ➤ 𝐂𝐨𝐦𝐦𝐚𝐧𝐝𝐬 𝐚𝐧𝐝 𝐔𝐬𝐚𝐠𝐞:
 • /share - 𝚁𝚎𝚙𝚕𝚢 𝚆𝚒𝚝𝚑 𝙰𝚗𝚢 𝚃𝚎𝚡𝚝 𝚃𝚘 𝚂𝚎𝚗𝚍 𝚃𝚑𝚒𝚜 𝙲𝚘𝚖𝚖𝚊𝚗𝚍 """
 
+    REQUEST_TXT = """<b>
+🔥 HELP FOR REQUEST 🔥
+🔥 MOVIES & SERIES 🔥
 
+Command
 
+/Req /request #request 
+
+❤️How to request movie❤️
+👉 You can send DM or you can send in group 
+👉 You must type about your request [Minimum 3 Characters]. Requests can't be empty.
+
+EXAMPLE
+
+/Req pushpa
+/Request pushpa
+#request pushpa 
+
+You can use any of above
+
+🚨NOTE🚨
+
+DON'T USE ALL OF ABOVE
+</b>"""
 
     
 
