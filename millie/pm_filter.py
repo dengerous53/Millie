@@ -867,11 +867,6 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("Already Available", callback_data=f"already_available#{from_user}")
               ]]
         btn2 = [[
-                 InlineKeyboardButton("SUPPORT GROUP", url="https://telegram.me/r_from_rgi_support"),
-             ],[
-                 InlineKeyboardButton("REQUEST BOT", url="https://telegram.me/Movies_series_Requestbot")
-               ]]
-        btn3 = [[
                  InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
@@ -886,15 +881,36 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
          
+    elif query.data.startswith("reject_option"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("⚠️ REJECTED ⚠️", callback_data=f"unalert#{from_user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("SUPPORT GROUP", url="https://telegram.me/r_from_rgi_support"),
+             ],[
+                 InlineKeyboardButton("REQUEST BOT", url="https://telegram.me/Movies_series_Requestbot")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            content = query.message.text
+            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Set to Unavailable !")
+            try:
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Sorry Your requested movie is Rejected. So our moderators can't upload it.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+            except UserIsBlocked:
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Sorry Your requested movie is Rejected. So our moderators can't upload it.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+        else:
+            await query.answer("You don't have sufficiant rigts to do this !", show_alert=True)
+
     elif query.data.startswith("unavailable"):
         ident, from_user = query.data.split("#")
         btn = [[
                 InlineKeyboardButton("⚠️ Unavailable ⚠️", callback_data=f"unalert#{from_user}")
               ]]
         btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
-               ]]
-        btn3 = [[
                  InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
@@ -917,7 +933,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("✅ Uploaded ✅", callback_data=f"upalert#{from_user}")
               ]]
         btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+                 InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -939,7 +955,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("🟢 Already Available 🟢", callback_data=f"alalert#{from_user}")
               ]]
         btn2 = [[
-                 InlineKeyboardButton("View Status", url=f"{query.message.link}")
+                 InlineKeyboardButton("JOIN CHANNEL", url="https://telegram.me/millie_robot_update")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
