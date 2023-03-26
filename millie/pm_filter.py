@@ -887,9 +887,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
                 InlineKeyboardButton("⚠️ REJECTED ⚠️", callback_data=f"unalert#{from_user}")
               ]]
         btn2 = [[
-                 InlineKeyboardButton("SUPPORT GROUP", url="https://telegram.me/r_from_rgi_support"),
+                 InlineKeyboardButton("JOIN GROUP", url="https://telegram.me/R_MvzZ_Group"),
              ],[
-                 InlineKeyboardButton("REQUEST BOT", url="https://telegram.me/Movies_series_Requestbot")
+                 InlineKeyboardButton("TALK To ADMIN", url="https://telegram.me/Movies_series_Requestbot")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
