@@ -1,8 +1,8 @@
 import telebot
 import re
 from info import *
-# Initialize the bot with your bot token
-bot = telebot.TeleBot(BOT_TOKEN)
+from pyrogram import Client as bot
+#remove the token error 
 
 def update_filters(update, context):
     open('filters.txt', 'w').close() # create/clear the file
