@@ -974,9 +974,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.message.edit_reply_markup(reply_markup)
             await query.answer("Set to Unavailable !")
             try:
-                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Sorry Your request UNAVAILABLE! So our moderators can't upload it.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Sorry Your request is UNAVAILABLE! So it can't be uploaded!</b>", reply_markup=InlineKeyboardMarkup(btn2))
             except UserIsBlocked:
-                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Sorry Your requeste UNAVAILABLE! So our moderators can't upload it.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Sorry Your request is UNAVAILABLE! So it can't be uploaded!\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
         else:
             await query.answer("DONE ✅ !", show_alert=True)
 
