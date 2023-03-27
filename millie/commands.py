@@ -495,7 +495,7 @@ async def handle_requests(bot, message):
             btn = [[
                     InlineKeyboardButton('Accept Request & show options', callback_data=f'show_option#{reporter}'),
                   ],[
-                    InlineKeyboardButton(' REJECT REQUEST ', callback_data=f'reject_option#{reporter}')
+                    InlineKeyboardButton('Reject & show options', callback_data=f'reject_option#{reporter}')
                   ]]
             reported_post = await bot.send_message(chat_id=REQST_CHANNEL, text=f"<b>𝖱𝖾𝗉𝗈𝗋𝗍𝖾𝗋 : {mention} ({reporter})\n\n𝖬𝖾𝗌𝗌𝖺𝗀𝖾 : {content}</b>", reply_markup=InlineKeyboardMarkup(btn))
             success = True
