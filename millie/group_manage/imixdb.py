@@ -61,8 +61,6 @@ def export_filters(update, context):
         context.bot.send_message(chat_id=chat_id, text="No filters to export.")
 
 # Load custom filters from file
-with open('filters.txt', 'r') as f:
-    custom_filters = [line.strip() for line in f]
 
 # Define the message handler for incoming messages
 @bot.message_handler(func=lambda message: True)
