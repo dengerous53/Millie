@@ -4,6 +4,62 @@ from info import *
 # Initialize the bot with your bot token
 bot = telebot.TeleBot(BOT_TOKEN)
 
+def update_filters(update, context):
+    open('filters.txt', 'w').close() # create/clear the file
+    chat_id = update.message.chat_id
+    filters = []
+    with open('filters.txt', 'r') as f:
+        for line in f:
+            filters.append(line.strip())
+    context.bot.send_message(chat_id=chat_id, text="Current filters:\n" + "\n".join(filters))
+
+def add_filter(update, context):
+    open('filters.txt', 'w').close() # create/clear the file
+    chat_id = update.message.chat_id
+    filter_text = update.message.text.replace("/add_filter ", "")
+    with open('filters.txt', 'a') as f:
+        f.write(filter_text + "\n")
+    context.bot.send_message(chat_id=chat_id, text=f"Added filter: {filter_text}")
+
+def delete_filter(update, context):
+    open('filters.txt', 'w').close() # create/clear the file
+    chat_id = update.message.chat_id
+    filter_text = update.message.text.replace("/delete_filter ", "")
+    filters = []
+    with open('filters.txt', 'r') as f:
+        for line in f:
+            if line.strip() != filter_text:
+                filters.append(line.strip())
+    with open('filters.txt', 'w') as f:
+        f.write("\n".join(filters))
+    context.bot.send_message(chat_id=chat_id, text=f"Deleted filter: {filter_text}")
+
+def import_filters(update, context):
+    open('filters.txt', 'w').close() # create/clear the file
+    chat_id = update.message.chat_id
+    file = update.message.document
+    if file.mime_type == 'text/plain':
+        file_name = file.file_name or 'filters.txt'
+        file.get_file().download(file_name)
+        with open(file_name, 'r') as f:
+            for line in f:
+                context.bot_data.setdefault('filters', set()).add(line.strip())
+        context.bot.send_message(chat_id=chat_id, text="Filters imported successfully!")
+    else:
+        context.bot.send_message(chat_id=chat_id, text="Please upload a text file.")
+
+def export_filters(update, context):
+    open('filters.txt', 'w').close() # create/clear the file
+    chat_id = update.message.chat_id
+    filters = context.bot_data.get('filters', set())
+    if filters:
+        with open('filters.txt', 'w') as f:
+            f.write('\n'.join(filters))
+        with open('filters.txt', 'rb') as f:
+            context.bot.send_document(chat_id=chat_id, document=f, filename='filters.txt')
+    else:
+        context.bot.send_message(chat_id=chat_id, text="No filters to export.")
+
 # Load custom filters from file
 with open('filters.txt', 'r') as f:
     custom_filters = [line.strip() for line in f]
