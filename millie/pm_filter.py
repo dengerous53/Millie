@@ -894,6 +894,47 @@ async def cb_handler(client: Client, query: CallbackQuery):
             await query.answer("Done ✅ !", show_alert=True)
          
     elif query.data.startswith("reject_option"):
+        ident, from_user = query.data.split("#")      
+        btn = [[
+                 InlineKeyboardButton("JOIN GROUP", callback_data=f"rejectedreq#{from_user}"),
+             ],[
+                 InlineKeyboardButton("TALK To ADMIN", callback_data=f"reject_need#{from_user}")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            content = query.message.text
+            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Set to Unavailable !")
+        else:
+            await query.answer("DONE ✅!", show_alert=True)
+
+    elif query.data.startswith("rejectedreq"):
+        ident, from_user = query.data.split("#")
+        btn = [[
+                InlineKeyboardButton("⚠️ REJECTED ⚠️", callback_data=f"unalert#{from_user}")
+              ]]
+        btn2 = [[
+                 InlineKeyboardButton("JOIN GROUP", url="https://telegram.me/R_MvzZ_Group"),
+             ],[
+                 InlineKeyboardButton("TALK To ADMIN", url="https://telegram.me/Movies_series_Requestbot")
+               ]]
+        if query.from_user.id in ADMINS:
+            user = await client.get_users(from_user)
+            reply_markup = InlineKeyboardMarkup(btn)
+            content = query.message.text
+            await query.message.edit_text(f"<b><strike>{content}</strike></b>")
+            await query.message.edit_reply_markup(reply_markup)
+            await query.answer("Set to Unavailable !")
+            try:
+                await client.send_message(chat_id=int(from_user), text=f"<b>Hey {user.mention}, Sorry your request has been rejected. Either you have not joined our group or you have been banned. So join the group first or talk to our Admin.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+            except UserIsBlocked:
+                await client.send_message(chat_id=int(SUPPORT_CHAT_ID), text=f"<b>Hey {user.mention}, Sorry your request has been rejected. Either you have not joined our group or you have been banned. So join the group first or talk to our Admin.\n\nNote: This message is sent to this group because you've blocked the bot. To send this message to your PM, Must unblock the bot.</b>", reply_markup=InlineKeyboardMarkup(btn2))
+        else:
+            await query.answer("DONE ✅!", show_alert=True)
+
+    elif query.data.startswith("reject_need"):
         ident, from_user = query.data.split("#")
         btn = [[
                 InlineKeyboardButton("⚠️ REJECTED ⚠️", callback_data=f"unalert#{from_user}")
