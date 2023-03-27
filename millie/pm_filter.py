@@ -896,9 +896,9 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("reject_option"):
         ident, from_user = query.data.split("#")      
         btn = [[
-                 InlineKeyboardButton("JOIN GROUP", callback_data=f"rejectedreq#{from_user}"),
+                 InlineKeyboardButton("REJECT REQUEST", callback_data=f"rejectedreq#{from_user}"),
              ],[
-                 InlineKeyboardButton("TALK To ADMIN", callback_data=f"reject_need#{from_user}")
+                 InlineKeyboardButton("NEED DETAILS", callback_data=f"reject_need#{from_user}")
                ]]
         if query.from_user.id in ADMINS:
             user = await client.get_users(from_user)
@@ -937,7 +937,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("reject_need"):
         ident, from_user = query.data.split("#")
         btn = [[
-                InlineKeyboardButton("⚠️ REJECTED ⚠️", callback_data=f"unalert#{from_user}")
+                InlineKeyboardButton("⚠️ DETAILS ASKED ⚠️", callback_data=f"unalert#{from_user}")
               ]]
         btn2 = [[
                  InlineKeyboardButton("JOIN GROUP", url="https://telegram.me/R_MvzZ_Group"),
@@ -1028,7 +1028,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ident, from_user = query.data.split("#")
         if int(query.from_user.id) == int(from_user):
             user = await client.get_users(from_user)
-            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Already Available !", show_alert=True)
+            await query.answer(f"DONE ✅!", show_alert=True)
         else:
             await query.answer("DONE ✅ !", show_alert=True)
 
@@ -1036,7 +1036,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ident, from_user = query.data.split("#")
         if int(query.from_user.id) == int(from_user):
             user = await client.get_users(from_user)
-            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Uploaded !", show_alert=True)
+            await query.answer(f"DONE ✅ !", show_alert=True)
         else:
             await query.answer("DONE ✅ !", show_alert=True)
         
@@ -1044,7 +1044,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         ident, from_user = query.data.split("#")
         if int(query.from_user.id) == int(from_user):
             user = await client.get_users(from_user)
-            await query.answer(f"Hey {user.first_name}, Your Requested Movie is Unavailable !", show_alert=True)
+            await query.answer(f"DONE ✅!", show_alert=True)
         else:
             await query.answer("DONE ✅ !", show_alert=True)
     elif query.data == "start":                        
