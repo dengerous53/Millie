@@ -220,11 +220,11 @@ async def start(client, message):
                 protect_content=True
             )
         await verify_user(client, userid, token)
-    else:
-        return await message.reply_text(
-            text="<b>Invalid link or Expired link !</b>",
-            protect_content=True
-        )
+        else:
+            return await message.reply_text(
+                text="<b>Invalid link or Expired link !</b>",
+                protect_content=True
+            )
 
     files_ = await get_file_details(file_id)           
     if not files_:
