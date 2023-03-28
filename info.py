@@ -110,6 +110,11 @@ PMFILTER = bool(environ.get("PMFILTER", False))
 G_FILTER = bool(environ.get("G_FILTER", True))
 BUTTON_LOCK = bool(environ.get("BUTTON_LOCK", True))
 #url links
+    
+     # for short link 
+URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shorturllink.in')
+URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '74ec4052b0b4e419aa2d62437cd699b594423853')
+
 SHORTLINK_URL = URL_SHORTENR_WEBSITE
 SHORTLINK_API = URL_SHORTNER_WEBSITE_API
 IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True)) 
@@ -144,11 +149,6 @@ PROTECT_CONTENT = is_enabled((environ.get('PROTECT_CONTENT', "False")), False)
 PUBLIC_FILE_STORE = is_enabled((environ.get('PUBLIC_FILE_STORE', "True")), True)
 SUPPORT_CHAT_ID = LOG_CHANNEL
 REQST_CHANNEL = LOG_CHANNEL
-    
-SESSION_STRING = "1BJWap1sBuzNehGtsV99qoGF8ICaLfjg5VzVWgBCHmcm_fjmYB5T8mKleh2P63JASV6BGY9dikr80IdHhwh1ZbVSGYOhWOntH6ThDWegMIgza7pkVbDLWeOoxb9ueWiWUj-RA8CLRlziCDGN07bkyN1U9xcs4d1mdpbzM2BLgC1cnGl7y8CNRM8pTgx4TqfvJ53JHo3HuhABnY5OdL3_PkXOrTrT2M-hEBn1HKrXUo9cHuy-qYowdeYWxe4AlXNI3wRKjKI2cBToq7i5M8NRuCt2O6zAmBcgSQWM5uOWRl-85aJrmgZL6Shf_SoBOCEBxFGj9QmqXBBBYocaGn3BnpE-Zap2gnnw=" 
-     # for short link 
-URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shorturllink.in')
-URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '74ec4052b0b4e419aa2d62437cd699b594423853')
 
      # Auto Delete For Group Message (Self Delete) #
 SELF_DELETE_SECONDS = int(environ.get('SELF_DELETE_SECONDS', 1000))
