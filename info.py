@@ -110,8 +110,8 @@ PMFILTER = bool(environ.get("PMFILTER", False))
 G_FILTER = bool(environ.get("G_FILTER", True))
 BUTTON_LOCK = bool(environ.get("BUTTON_LOCK", True))
 #url links
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'shorturllink.in')
-SHORTLINK_API = environ.get('SHORTLINK_API', '3a3935e37c74a2384f7a689c414f078ab6320785')
+SHORTLINK_URL = URL_SHORTENR_WEBSITE
+SHORTLINK_API = URL_SHORTNER_WEBSITE_API
 IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True)) 
 VERIFY = bool(environ.get('VERIFY', True))
 
