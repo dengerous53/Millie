@@ -479,14 +479,14 @@ async def settings(client, message):
 
 
 
-@Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("#Request")))
+@Client.on_message((filters.command(["request", "Req"]) | filters.regex("#request") | filters.regex("@Millie_power_robot")| filters.regex("#Request")))
 async def handle_requests(bot, message):
     chat_id = message.chat.id
     reporter = str(message.from_user.id)
     mention = message.from_user.mention
     success = True
     content = message.text
-    keywords = ["#request", "/request", "#Request", "/Request", "/req", "/Req"]
+    keywords = ["#request", "/request", "#Request", "/Request", "/req", "/Req", "@Millie_power_robot"]
     for keyword in keywords:
         if keyword in content:
             content = content.replace(keyword, "")
