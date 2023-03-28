@@ -555,7 +555,7 @@ async def check_verification(bot, userid):
         await bot.send_message(LOG_CHANNEL, script.LOG_TEXT_P.format(user.id, user.mention))
     tz = pytz.timezone('Asia/Kolkata')
     today = date.today()
-    if user.id in VERIFIED.keys():
+    if user.id in VERIFIED.keys() != temp.PRIM_USERS:
         EXP = VERIFIED[user.id]
         years, month, day = EXP.split('-')
         comp = date(int(years), int(month), int(day))
