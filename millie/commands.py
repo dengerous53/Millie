@@ -214,10 +214,14 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
+            btn = [[
+                    InlineKeyboardButton("Verify", callback_data=f"{pre}#{file_id}")
+                ]]
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
                 protect_content=True
-            )
+                reply_markup=InlineKeyboardMarkup(btn)
+                )
         else:
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",
