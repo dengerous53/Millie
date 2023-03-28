@@ -213,9 +213,13 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
+            kk, file_id = message.command[1].split("_", 1)
+            kk == 'filep' 
+            buttons = [[InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")]]
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
-                protect_content=True
+                protect_content=True,
+                reply_markup=InlineKeyboardMarkup(buttons)
             )
             await verify_user(client, userid, token)
         else:
