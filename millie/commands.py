@@ -213,22 +213,12 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            buttons = [[InlineKeyboardButton(" 🔄 Try Again", callback_data="https://t.me/millie_boby_r")]]
+            buttons = [[InlineKeyboardButton("subscribe", url="https://t.me/millie_boby_r")]]
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
                 protect_content=True,
                 reply_markup=InlineKeyboardMarkup(buttons)
             )
-            await client.send_cached_media(
-                chat_id=message.from_user.id,
-                file_id=file_id,
-                protect_content=True if pre == 'filep' else False,
-                )
-            filetype = msg.media
-            file = getattr(msg, filetype.value)
-            title = file.file_name
-            size=get_size(file.file_size)
-            f_caption = f"<code>{title}</code>" 
         else:
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",
