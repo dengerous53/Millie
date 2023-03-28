@@ -205,20 +205,20 @@ async def start(client, message):
         
 
     elif data.split("-", 1)[0] == "verify":
-    userid = data.split("-", 2)[1]
-    token = data.split("-", 3)[2]
-    file_id = data.split("-", 4)[2] # Add this line to extract file_id
-    if str(message.from_user.id) != str(userid):
-        return await message.reply_text(
-            text="<b>Invalid link or Expired link !</b>",
-            protect_content=True
-        )
-    is_valid = await check_token(client, userid, token)
-    if is_valid == True:
-        await message.reply_text(
-            text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
-            protect_content=True
-        )
+        userid = data.split("-", 2)[1]
+        token = data.split("-", 3)[2]
+        file_id = data.split("-", 4)[2] # Add this line to extract file_id
+        if str(message.from_user.id) != str(userid):
+            return await message.reply_text(
+                text="<b>Invalid link or Expired link !</b>",
+                protect_content=True
+            )
+        is_valid = await check_token(client, userid, token)
+        if is_valid == True:
+            await message.reply_text(
+                text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
+                protect_content=True
+            )
         await verify_user(client, userid, token)
     else:
         return await message.reply_text(
