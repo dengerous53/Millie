@@ -213,7 +213,7 @@ async def start(client, message):
                 protect_content=True
             )
         is_valid = await check_token(client, userid, token)
-        if is_valid == True and temp.PRIM_USERS:
+        if is_valid == True:
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
                 protect_content=True
