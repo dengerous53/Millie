@@ -17,7 +17,7 @@ import aiohttp
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-VERIFY = True 
+
 BTN_URL_REGEX = re.compile(
     r"(\[([^\[]+?)\]\((buttonurl|buttonalert):(?:/{0,2})(.+?)(:same)?\))"
 )
