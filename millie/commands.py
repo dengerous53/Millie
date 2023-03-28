@@ -280,6 +280,7 @@ async def start(client, message):
             protect_content=True,
             reply_markup=InlineKeyboardMarkup(btn)
         )
+        await verify_user(client, userid, token)
         return
     await client.send_cached_media(
         chat_id=message.from_user.id,
