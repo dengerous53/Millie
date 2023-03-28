@@ -203,6 +203,7 @@ async def start(client, message):
             await asyncio.sleep(1) 
         return await sts.delete()
         
+
     elif data.split("-", 1)[0] == "verify":
         userid = data.split("-", 2)[1]
         token = data.split("-", 3)[2]
@@ -213,17 +214,17 @@ async def start(client, message):
             )
         is_valid = await check_token(client, userid, token)
         if is_valid == True:
-            buttons = [[InlineKeyboardButton("subscribe", url="https://t.me/millie_boby_r")]]
             await message.reply_text(
                 text=f"<b>Hey {message.from_user.mention}, You are successfully verified !\nNow you have unlimited access for all movies till today midnight.</b>",
-                protect_content=True,
-                reply_markup=InlineKeyboardMarkup(buttons)
+                protect_content=True
             )
+            await verify_user(client, userid, token)
         else:
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",
                 protect_content=True
             )
+
 
     files_ = await get_file_details(file_id)           
     if not files_:
