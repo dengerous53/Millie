@@ -212,7 +212,7 @@ async def start(client, message):
                 text="<b>Invalid link or Expired link !</b>",
                 protect_content=True
             )
-        is_valid = await check_token(client, userid, token, file_id)
+        is_valid = await check_token(client, userid, token)
         if is_valid == True:
             btn = [[
                     InlineKeyboardButton("Verify", callback_data=f"{file_id}")
@@ -224,9 +224,16 @@ async def start(client, message):
                 reply_markup=InlineKeyboardMarkup(btn)
                 )
         else:
+            try:
+                kk, file_id = message.command[1].split("_", 1)
+                pre = 'checksubp' if kk == 'filep' else 'checksub' 
+                btn.append([InlineKeyboardButton(" 🔄 Try Again", callback_data=f"{pre}#{file_id}")])
+            except (IndexError, ValueError):
+                btn.append([InlineKeyboardButton(" 🔄 Try Again", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
             return await message.reply_text(
                 text="<b>Invalid link or Expired link !</b>",
-                protect_content=True
+                protect_content=True,
+                Buttons=[[InlineKeyboardButton("📢 𝚄𝙿𝙳𝙰𝚃𝙴𝚂 📢", url="https://t.me/millie_robot_update")]
             )
 
     files_ = await get_file_details(file_id)           
