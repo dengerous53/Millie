@@ -528,7 +528,7 @@ async def check_token(bot, userid, token):
         return False
 
 async def get_token(bot, userid, link):
-    file_id = message.command[1].split("_", 1)
+    file_id = link.split("_", 1)
     user = await bot.get_users(userid)
     if not await db.is_user_exist(user.id):
         await db.add_user(user.id, user.first_name)
