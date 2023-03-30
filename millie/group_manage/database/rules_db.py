@@ -1,11 +1,8 @@
 from threading import RLock
 from time import time
 
-from millie.group_manage.database import MongoDB
-import logging
-
-LOGGER = logging.getLogger(__name__)
-LOGGER.setLevel(logging.INFO)
+from info import LOGGER
+from plugins.Group.database import MongoDB
 
 INSERTION_LOCK = RLock()
 
