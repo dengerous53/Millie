@@ -59,7 +59,7 @@ async def lock_perm(c: Client, m: Message):
     if lock_type == "all":
         try:
             await c.set_chat_permissions(chat_id, ChatPermissions())
-            await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked all permissions in {m.chat.id}")
+            await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nlocked all permissions in \n`{m.chat.id}`")
             LOGGER.info(f"{m.from_user.id} locked all permissions in {m.chat.id}")
         except ChatNotModified:
             pass
@@ -130,7 +130,6 @@ async def lock_perm(c: Client, m: Message):
                 can_pin_messages=pin,
             ),
         )
-        await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked selected permissions in {m.chat.id}")
         LOGGER.info(f"{m.from_user.id} locked selected permissions in {m.chat.id}")
     except ChatNotModified:
         pass
@@ -139,6 +138,7 @@ async def lock_perm(c: Client, m: Message):
     await m.reply_text(
         "Locked {} for this chat".format(perm),
     )
+    await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nlocked{lok} permissions in {m.chat.id}".format(lok=perm))       
     await prevent_approved(m)
     return
 
@@ -210,7 +210,7 @@ async def unlock_perm(c: Client, m: Message):
                 ),
             )
             await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
-            LOGGER.info(f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
+            LOGGER.info(f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nunlocked all permissions in {m.chat.id}")
         except ChatNotModified:
             pass
         except ChatAdminRequired:
@@ -279,7 +279,7 @@ async def unlock_perm(c: Client, m: Message):
         return
 
     try:
-        await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
+        await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nunlocked selected {lok}permissions in {m.chat.id}".format(lok=perm))  
         LOGGER.info(f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
         await c.set_chat_permissions(
             chat_id,
