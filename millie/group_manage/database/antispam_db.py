@@ -1,7 +1,7 @@
 from datetime import datetime
 from threading import RLock
 
-from plugins.Group.database import MongoDB
+from millie.group_manage.database import MongoDB
 
 INSERTION_LOCK = RLock()
 ANTISPAM_BANNED = set()
