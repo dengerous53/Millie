@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions, Message
-
+from millie.helper.admin_check import admin_fliter
 from millie.group_manage.database.approve_db import Approve
 from millie.group_manage.tr_engine import tlang
 from millie.group_manage.utils.custom_filters import command, restrict_filter
@@ -32,7 +32,7 @@ async def lock_types(_, m: Message):
     return
 
 
-@Client.on_message(command("lock") & restrict_filter)
+@Client.on_message(command("lock") & admin_fliter)
 async def lock_perm(c: Client, m: Message):
     if len(m.text.split()) < 2:
         await m.reply_text("Please enter a permission to lock!")
@@ -139,7 +139,7 @@ async def lock_perm(c: Client, m: Message):
     await prevent_approved(m)
     return
 
-@Client.on_message(command("locks") & restrict_filter)
+@Client.on_message(command("locks") & admin_fliter)
 async def view_locks(_, m: Message):
     chkmsg = await m.reply_text(tlang(m, "locks.check_perm_msg"))
     v_perm = m.chat.permissions
@@ -179,7 +179,7 @@ async def view_locks(_, m: Message):
     return
 
 
-@Client.on_message(command("unlock") & restrict_filter)
+@Client.on_message(command("unlock") & admin_fliter)
 async def unlock_perm(c: Client, m: Message):
     if len(m.text.split()) < 2:
         await m.reply_text("Please enter a permission to unlock!")
