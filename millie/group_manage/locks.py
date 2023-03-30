@@ -2,10 +2,11 @@ from pyrogram import Client, filters
 from pyrogram.errors import ChatAdminRequired, ChatNotModified, RPCError
 from pyrogram.types import ChatPermissions, Message
 from millie.helper.admin_check import admin_fliter
-
 from millie.group_manage.database.approve_db import Approve
 from millie.group_manage.tr_engine import tlang
-from millie.group_manage.utils.custom_filters import command
+from millie.group_manage.utils.custom_filters import command, restrict_filter
+from info import LOG_CHANNEL
+from utils import temp
 import logging
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -65,6 +66,7 @@ async def lock_perm(c: Client, m: Message):
         except ChatAdminRequired:
             await m.reply_text("Ehh no  permission :)")
         await m.reply_text("locked all 🔐")
+        await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: LOCKD ALL**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         await prevent_approved(m)
         return
 
@@ -137,6 +139,7 @@ async def lock_perm(c: Client, m: Message):
     await m.reply_text(
         "Locked {} for this chat".format(perm),
     )
+    await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: LOCKD {perm}**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
     await prevent_approved(m)
     return
 
@@ -213,6 +216,7 @@ async def unlock_perm(c: Client, m: Message):
         except ChatAdminRequired:
             await m.reply_text("I'm not Admin!")
         await m.reply_text("Unlock all 🔓")
+        await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: UNLOCKD ALL**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         await prevent_approved(m)
         return
 
@@ -299,6 +303,7 @@ async def unlock_perm(c: Client, m: Message):
     await m.reply_text(
         "Unlocked {} for this chat.".format(uperm),
     )
+    await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: UNLOCKD {uperm}**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
     await prevent_approved(m)
     return
 
@@ -317,6 +322,4 @@ async def prevent_approved(m: Message):
 
 
 
-__PLUGIN__ = "locks"
 
-__alt_name__ = ["grouplock", "lock", "grouplocks"]
