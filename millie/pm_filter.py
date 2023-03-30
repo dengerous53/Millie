@@ -214,6 +214,10 @@ async def advantage_spoll_choker(bot, query):
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
+    if int(user) != 0 and query.from_user.id != int(user):
+        return await query.answer("Hey, You are touching om other's property ! Search by yourself !", show_alert=True)
+    if movie_ == "close_spellcheck":
+        return await query.message.delete()
     movie = movies[(int(movie_))]
     await query.answer('Checking for Movie in database...')
     k = await manual_filters(bot, query.message, text=movie)
@@ -223,29 +227,15 @@ async def advantage_spoll_choker(bot, query):
             k = (movie, files, offset, total_results)
             await auto_filter(bot, query, k)
         else:
-            k = await query.message.edit('This Movie Not Found In DataBase')
-            await asyncio.sleep(10)
+            movie = movie.replace(" ", "+")
+            btn = [[
+                InlineKeyboardButton("Click Here To Check Spelling ✅", url=f"https://www.google.com/search?q={movie}")
+            ]]
+            reply_markup = InlineKeyboardMarkup(btn)
+            k = await query.message.edit('<b>Movie not found in database ! Check spelling on google !</b>')
+            await query.message.edit_reply_markup(reply_markup)
+            await asyncio.sleep(110)
             await k.delete()
-
-
-@Client.on_callback_query(filters.regex(r"^pmspolling"))
-async def pm_spoll_tester(bot, query):
-    _, user, movie_ = query.data.split('#')
-    if movie_ == "close_spellcheck":
-        return await query.message.delete()
-    movies = PM_SPELL_CHECK.get(query.message.reply_to_message.id)
-    if not movies:
-        return await query.answer("You are clicking on an old button which is expired.", show_alert=True)
-    movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
-    files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
-    if files:
-        k = (movie, files, offset, total_results)
-        await pm_AutoFilter(bot, query, k)
-    else:
-        k = await query.message.edit('This Movie Not Found In DataBase')
-        await asyncio.sleep(10)
-        await k.delete()
 
 
 @Client.on_callback_query()
