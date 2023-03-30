@@ -6,6 +6,7 @@ from millie.group_manage.database.approve_db import Approve
 from millie.group_manage.tr_engine import tlang
 from millie.group_manage.utils.custom_filters import command, restrict_filter
 from info import LOG_CHANNEL
+from utils import temp
 import logging
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
@@ -65,7 +66,7 @@ async def lock_perm(c: Client, m: Message):
         except ChatAdminRequired:
             await m.reply_text("Ehh no  permission :)")
         await m.reply_text("locked all 🔐")
-        await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nlocked all permissions in \n`{m.chat.id}`")
+        await c.send_message(LOG_CHANNEL, text=f"**USER**: {m.from_user.mention}\n**USER ID**:`{m.from_user.id}`\n**PERMISSIONS: LOCKD ALL**\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         await prevent_approved(m)
         return
 
@@ -138,7 +139,7 @@ async def lock_perm(c: Client, m: Message):
     await m.reply_text(
         "Locked {} for this chat".format(perm),
     )
-    await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nlocked permissions {perm} in {m.chat.id}")       
+    await c.send_message(LOG_CHANNEL, text=f"**USER**: {m.from_user.mention}\n**USER ID**:`{m.from_user.id}`\n**PERMISSIONS: LOCKD {perm}**\nin **CHAT**: `{m.chat.id}`")
     await prevent_approved(m)
     return
 
@@ -215,7 +216,7 @@ async def unlock_perm(c: Client, m: Message):
         except ChatAdminRequired:
             await m.reply_text("I'm not Admin!")
         await m.reply_text("Unlock all 🔓")
-        await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \n unlocked all permissions in {m.chat.id}")
+        await c.send_message(LOG_CHANNEL, text=f"**USER**: {m.from_user.mention}\n**USER ID**:`{m.from_user.id}`\n**PERMISSIONS: UNLOCKD ALL**\nin **CHAT**: `{m.chat.id}`")
         await prevent_approved(m)
         return
 
@@ -302,7 +303,7 @@ async def unlock_perm(c: Client, m: Message):
     await m.reply_text(
         "Unlocked {} for this chat.".format(uperm),
     )
-    await c.send_message(LOG_CHANNEL, text=f"user: {m.from_user.mention}\nid:`{m.from_user.id}` \nunlocked selected permissions {perm} in {m.chat.id}")  
+    await c.send_message(LOG_CHANNEL, text=f"**USER**: {m.from_user.mention}\n**USER ID**:`{m.from_user.id}`\n**PERMISSIONS: UNLOCKD {uperm}**\nin **CHAT**: `{m.chat.id}`")
     await prevent_approved(m)
     return
 
