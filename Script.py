@@ -62,8 +62,7 @@ Notes are great to save random tidbits of information; a phone number, a nice gi
 """
 
     LOCKS_TXT = """
-Coming soon....
-XxxxxxxxxxxxxxxxxxxxxxX
+❤️‍🔥❤️‍🔥NEW UPDATE ❤️‍🔥❤️‍🔥
 **Locks**
 Do stickers annoy you? or want to avoid people sharing links? or pictures? You're in the right place!
 The locks module allows you to lock away some common items in the telegram world; the bot will automatically delete them!
