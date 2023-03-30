@@ -1628,12 +1628,12 @@ async def advantage_spell_chok(msg):
         [
             InlineKeyboardButton(
                 text=movie_name.strip(),
-                callback_data=f"spoling#{reqstr1}#{k}",
+                callback_data=f"spolling#{reqstr1}#{k}",
             )
         ]
         for k, movie_name in enumerate(movielist)
     ]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spoling#{reqstr1}#close_spellcheck')])
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{reqstr1}#close_spellcheck')])
     reply_markup = InlineKeyboardMarkup(btn)
     await srh_msg.edit_text(
         text="<b>Hey, I couldn't find anything related to that !\n\nDid you mean anyone of these?</b>"
