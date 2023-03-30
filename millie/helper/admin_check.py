@@ -1,7 +1,5 @@
 from pyrogram.types import Message
 from pyrogram import filters, enums 
-from info import ADMINS, AUTH_USERS
-import os
 
 
 async def admin_check(message: Message) -> bool:
@@ -9,9 +7,6 @@ async def admin_check(message: Message) -> bool:
         return False
 
     if message.chat.type not in [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP]:
-        return False
-
-    if message.chat.type not in ["supergroup", "channel"]:
         return False
 
     if message.from_user.id in [
@@ -28,43 +23,12 @@ async def admin_check(message: Message) -> bool:
         chat_id=chat_id,
         user_id=user_id
     )
-    admin_strings = [enums.ChatMemberStatus.OWNER, enums.ChatMemberStatus.ADMINISTRATOR,"creator","administrator"]
+    admin_strings = [enums.ChatMemberStatus.OWNER, enums.ChatMemberStatus.ADMINISTRATOR]
     # https://git.colinshark.de/PyroBot/PyroBot/src/branch/master/pyrobot/modules/admin.py#L69
     if check_status.status not in admin_strings:
         return False
     else:
         return True
-
-USE_AS_BOT = os.environ.get("USE_AS_BOT", True)
-
-def f_sudo_filter(filt, client, message):
-    return bool(
-        message.from_user.id in AUTH_USERS
-    )
-
-
-sudo_filter = filters.create(
-    func=f_sudo_filter,
-    name="SudoFilter"
-)
-
-
-def onw_filter(filt, client, message):
-    if USE_AS_BOT:
-        return bool(
-            True # message.from_user.id in ADMINS
-        )
-    else:
-        return bool(
-            message.from_user and
-            message.from_user.is_self
-        )
-
-
-f_onw_fliter = filters.create(
-    func=onw_filter,
-    name="OnwFilter"
-)
 
 async def admin_filter_f(filt, client, message):
     return await admin_check(message)
