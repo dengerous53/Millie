@@ -59,6 +59,7 @@ async def lock_perm(c: Client, m: Message):
     if lock_type == "all":
         try:
             await c.set_chat_permissions(chat_id, ChatPermissions())
+            await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked all permissions in {m.chat.id}")
             LOGGER.info(f"{m.from_user.id} locked all permissions in {m.chat.id}")
         except ChatNotModified:
             pass
@@ -129,8 +130,8 @@ async def lock_perm(c: Client, m: Message):
                 can_pin_messages=pin,
             ),
         )
-        LOGGER.info(f"{m.from_user.id} locked selected permissions in {m.chat.id}")
         await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked selected permissions in {m.chat.id}")
+        LOGGER.info(f"{m.from_user.id} locked selected permissions in {m.chat.id}")
     except ChatNotModified:
         pass
     except ChatAdminRequired:
@@ -172,8 +173,8 @@ async def view_locks(_, m: Message):
                 vinvite=vinvite,
                 vpin=vpin,
             )
-            LOGGER.info(f"{m.from_user.id} used locks cmd in {m.chat.id}")
             await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} used locks cmd in {m.chat.id}")
+            LOGGER.info(f"{m.from_user.id} used locks cmd in {m.chat.id}")
             await chkmsg.edit_text(permission_view_str)
 
         except RPCError as e_f:
@@ -209,8 +210,8 @@ async def unlock_perm(c: Client, m: Message):
                     can_pin_messages=True,
                 ),
             )
-            LOGGER.info(f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
             await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
+            LOGGER.info(f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
         except ChatNotModified:
             pass
         except ChatAdminRequired:
@@ -279,8 +280,8 @@ async def unlock_perm(c: Client, m: Message):
         return
 
     try:
-        LOGGER.info(f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
         await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
+        LOGGER.info(f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
         await c.set_chat_permissions(
             chat_id,
             ChatPermissions(
@@ -316,7 +317,6 @@ async def prevent_approved(m: Message):
         except (ChatAdminRequired, ChatNotModified, RPCError):
             continue
         LOGGER.info(f"Approved {i} in {m.chat.id}")
-        await self.send_message(LOG_CHANNEL, text=f"Approved {i} in {m.chat.id}")
         await sleep(0.1)
     return
 
