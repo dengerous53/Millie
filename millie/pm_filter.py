@@ -1637,27 +1637,6 @@ async def advantage_spell_chok(msg):
             text="<b>Click On The Correct spelling Given Below 👇</b>"
         )
     SPELL_CHECK[msg.id] = movielist
-    ouvery = msg.text
-    check = ouvery.replace(" ", "+")
-    BTN = [[
-        InlineKeyboardButton("🔍ɢᴏᴏɢʟᴇ🔎", url=f'https://google.com/search?q={check}')
-    ]]
-    await msg.reply_text(
-        text="<b><i>Bʀᴏ, Cʜᴇᴄᴋ ᴛʜᴇ sᴘᴇʟʟɪɴɢ ᴏғ ʏᴏᴜʀ Rᴇǫᴜᴇsᴛᴇᴅ Mᴏᴠɪᴇ Gᴏᴏɢʟᴇ. Iғ ʏᴏᴜ ᴀʀᴇ ʀᴇǫᴜᴇsᴛɪɴɢ ғᴏʀ Tʜᴇᴀᴛʀᴇ Pʀɪɴᴛ Fɪʟᴇ ʏᴏᴜ ᴡᴏɴ'ᴛ ɢᴇᴛ ɪᴛ 😁.</i></b>", 
-        reply_markup=InlineKeyboardMarkup(BTN)
-    )
-    btn = [[
-        InlineKeyboardButton(
-            text=movie.strip(),
-            callback_data=f"spolling#{user}#{k}",
-        )
-    await srh_msg.edit_reply_markup(reply_markup)
-        await asyncio.sleep(30)
-        await srh_msg.delete()
-        return
-    movielist += [movie.get('title') for movie in movies]
-    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
-    SPELL_CHECK[mv_id] = movielist
     btn = [
         [
             InlineKeyboardButton(
