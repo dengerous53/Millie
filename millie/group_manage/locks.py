@@ -59,7 +59,7 @@ async def lock_perm(c: Client, m: Message):
     if lock_type == "all":
         try:
             await c.set_chat_permissions(chat_id, ChatPermissions())
-            await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked all permissions in {m.chat.id}")
+            await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked all permissions in {m.chat.id}")
             LOGGER.info(f"{m.from_user.id} locked all permissions in {m.chat.id}")
         except ChatNotModified:
             pass
@@ -130,7 +130,7 @@ async def lock_perm(c: Client, m: Message):
                 can_pin_messages=pin,
             ),
         )
-        await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked selected permissions in {m.chat.id}")
+        await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} locked selected permissions in {m.chat.id}")
         LOGGER.info(f"{m.from_user.id} locked selected permissions in {m.chat.id}")
     except ChatNotModified:
         pass
@@ -173,7 +173,6 @@ async def view_locks(_, m: Message):
                 vinvite=vinvite,
                 vpin=vpin,
             )
-            await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} used locks cmd in {m.chat.id}")
             LOGGER.info(f"{m.from_user.id} used locks cmd in {m.chat.id}")
             await chkmsg.edit_text(permission_view_str)
 
@@ -210,7 +209,7 @@ async def unlock_perm(c: Client, m: Message):
                     can_pin_messages=True,
                 ),
             )
-            await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
+            await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
             LOGGER.info(f"{m.from_user.id} unlocked all permissions in {m.chat.id}")
         except ChatNotModified:
             pass
@@ -280,7 +279,7 @@ async def unlock_perm(c: Client, m: Message):
         return
 
     try:
-        await self.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
+        await c.send_message(LOG_CHANNEL, text=f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
         LOGGER.info(f"{m.from_user.id} unlocked selected permissions in {m.chat.id}")
         await c.set_chat_permissions(
             chat_id,
