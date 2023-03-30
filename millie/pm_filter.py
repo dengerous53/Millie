@@ -1587,13 +1587,21 @@ async def advantage_spell_chok(msg):
         r"\b(pl(i|e)*?(s|z+|ease|se|ese|(e+)s(e)?)|((send|snd|giv(e)?|gib)(\sme)?)|movie(s)?|new|latest|br((o|u)h?)*|^h(e|a)?(l)*(o)*|mal(ayalam)?|t(h)?amil|file|that|find|und(o)*|kit(t(i|y)?)?o(w)?|thar(u)?(o)*w?|kittum(o)*|aya(k)*(um(o)*)?|full\smovie|any(one)|with\ssubtitle(s)?)",
         "", msg.text, flags=re.IGNORECASE)  # plis contribute some common words
     query = query.strip() + " movie"
-    g_s = await search_gagala(query)
-    g_s += await search_gagala(msg.text)
-    gs_parsed = []
-    if not g_s:
-        k = await msg.reply("I couldn't find any movie in that name.")
-        await asyncio.sleep(8)
-        await k.delete()
+    try:
+        movies = await get_poster(mv_rqst, bulk=True)
+    except Exception as e:
+        logger.exception(e)
+        reqst_gle = mv_rqst.replace(" ", "+")
+        button = [[
+                   InlineKeyboardButton("Click Here To Check Spelling ✅", url=f"https://www.google.com/search?q={reqst_gle}")
+        ]]
+        reply_markup = InlineKeyboardMarkup(button)
+        await srh_msg.edit_text(
+            text="<b>Click On The Correct spelling Given Below 👇</b>"
+        )
+        await srh_msg.edit_reply_markup(reply_markup)
+        await asyncio.sleep(60)
+        await srh_msg.delete()
         return
     regex = re.compile(r".*(imdb|wikipedia).*", re.IGNORECASE)  # look for imdb / wiki results
     gs = list(filter(regex.match, g_s))
@@ -1620,10 +1628,14 @@ async def advantage_spell_chok(msg):
     movielist += [(re.sub(r'(\-|\(|\)|_)', '', i, flags=re.IGNORECASE)).strip() for i in gs_parsed]
     movielist = list(dict.fromkeys(movielist))  # removing duplicates
     if not movielist:
-        k = await msg.reply("I couldn't find anything related to that. Check your spelling")
-        await asyncio.sleep(8)
-        await k.delete()
-        return
+        reqst_gle = mv_rqst.replace(" ", "+")
+        button = [[
+                   InlineKeyboardButton("Click Here To Check Spelling ✅", url=f"https://www.google.com/search?q={reqst_gle}")
+        ]]
+        reply_markup = InlineKeyboardMarkup(button)
+        await srh_msg.edit_text(
+            text="<b>Click On The Correct spelling Given Below 👇</b>"
+        )
     SPELL_CHECK[msg.id] = movielist
     ouvery = msg.text
     check = ouvery.replace(" ", "+")
@@ -1639,10 +1651,30 @@ async def advantage_spell_chok(msg):
             text=movie.strip(),
             callback_data=f"spolling#{user}#{k}",
         )
-    ] for k, movie in enumerate(movielist)]
-    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spolling#{user}#close_spellcheck')])
-    await msg.reply("I couldn't find anything related to that\nDid you mean any one of these?",
-                    reply_markup=InlineKeyboardMarkup(btn))
+    await srh_msg.edit_reply_markup(reply_markup)
+        await asyncio.sleep(30)
+        await srh_msg.delete()
+        return
+    movielist += [movie.get('title') for movie in movies]
+    movielist += [f"{movie.get('title')} {movie.get('year')}" for movie in movies]
+    SPELL_CHECK[mv_id] = movielist
+    btn = [
+        [
+            InlineKeyboardButton(
+                text=movie_name.strip(),
+                callback_data=f'spolling#{user}#close_spellcheck',
+            )
+        ]
+        for k, movie_name in enumerate(movielist)
+    ]
+    btn.append([InlineKeyboardButton(text="Close", callback_data=f'spoling#{reqstr1}#close_spellcheck')])
+    reply_markup = InlineKeyboardMarkup(btn)
+    await srh_msg.edit_text(
+        text="<b>Hey, I couldn't find anything related to that !\n\nDid you mean anyone of these?</b>"
+    )
+    await srh_msg.edit_reply_markup(reply_markup)
+    await asyncio.sleep(60)
+    await srh_msg.delete()
 
 async def manual_filters(client, message, text=False):
     group_id = message.chat.id
