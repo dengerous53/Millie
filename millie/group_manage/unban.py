@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from millie.helper.admin_check import admin_check
 from millie.helper.extract import extract_time, extract_user                               
 from utils import temp 
+from info import LOG_CHANNEL
 
 @Client.on_message(filters.command(["unban", "unmute"]))
 async def un_ban_user(bot, message):
