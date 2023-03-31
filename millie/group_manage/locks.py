@@ -66,7 +66,7 @@ async def lock_perm(c: Client, m: Message):
         except ChatAdminRequired:
             await m.reply_text("Ehh no  permission :)")
         await m.reply_text("locked all 🔐")
-        await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: LOCKD ALL**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+        await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: LOCKD ALL**\n\nin **CHAT NAME**: {m.chat.title}\n**CHAT ID** `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         await prevent_approved(m)
         return
 
@@ -139,7 +139,7 @@ async def lock_perm(c: Client, m: Message):
     await m.reply_text(
         "Locked {} for this chat".format(perm),
     )
-    await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: LOCKD {perm}**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+    await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: LOCKD {perm}**\n\nin **CHAT NAME**: {m.chat.title}\n**CHAT ID** `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
     await prevent_approved(m)
     return
 
@@ -216,7 +216,7 @@ async def unlock_perm(c: Client, m: Message):
         except ChatAdminRequired:
             await m.reply_text("I'm not Admin!")
         await m.reply_text("Unlock all 🔓")
-        await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: UNLOCKD ALL**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+        await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: UNLOCKD ALL**\n\nin **CHAT NAME**: {m.chat.title}\n**CHAT ID** `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         await prevent_approved(m)
         return
 
@@ -303,7 +303,7 @@ async def unlock_perm(c: Client, m: Message):
     await m.reply_text(
         "Unlocked {} for this chat.".format(uperm),
     )
-    await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: UNLOCKD {uperm}**\n\nin **CHAT**: `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+    await c.send_message(LOG_CHANNEL, text=f"**LOCKS**\n\n**USER**: {m.from_user.mention}\n\n**USER ID**:`{m.from_user.id}`\n\n**PERMISSIONS: UNLOCKD {uperm}**\n\nin **CHAT NAME**: {m.chat.title}\n**CHAT ID** `{m.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
     await prevent_approved(m)
     return
 
