@@ -41,7 +41,7 @@ async def mute_user(bot, message):
 
 
 @Client.on_message(filters.command("tmute"))
-async def temp_mute_user(_, message):
+async def temp_mute_user(bot, message):
     is_admin = await admin_check(message)
     if not is_admin:
         return
