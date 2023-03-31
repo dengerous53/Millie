@@ -3,6 +3,7 @@ from pyrogram.types import ChatPermissions
 from millie.helper.admin_check import admin_check
 from millie.helper.extract import extract_time, extract_user                               
 from utils import temp 
+From info import LOG_CHANNEL
 
 @Client.on_message(filters.command("mute"))
 async def mute_user(bot, message):
