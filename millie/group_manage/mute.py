@@ -27,7 +27,7 @@ async def mute_user(bot, message):
                 f"{user_first_name}"
                 " Lavender's mouth is shut! 🤐"
             )
-            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: {message.from_user.mention}\n\n**USER ID**:`{message.from_user.id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: <a href='tg://user?id={user_id}'>{user_first_name}</a> \n\n**USER ID**:`{user_id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         else:
             await message.reply_text(
                 "👍🏻 "
@@ -36,7 +36,7 @@ async def mute_user(bot, message):
                 "</a>"
                 " The mouth is closed! 🤐"
             )
-            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: {message.from_user.mention}\n\n**USER ID**:`{message.from_user.id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: <a href='tg://user?id={user_id}'>{user_first_name}</a>\n\n**USER ID**:`{user_id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         
 
 
@@ -81,7 +81,7 @@ async def temp_mute_user(bot, message):
                 f"{user_first_name}"
                 f" muted for {message.command[1]}!"
             )
-            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: {message.from_user.mention}\n\n**USER ID**:`{message.from_user.id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: <a href='tg://user?id={user_id}'>{user_first_name}</a>\n\n**USER ID**:`{user_id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         else:
             await message.reply_text(
                 "Be quiet for a while! 😠"
@@ -91,7 +91,7 @@ async def temp_mute_user(bot, message):
                 " Mouth "
                 f" muted for {message.command[1]}!"
             )
-            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: {message.from_user.mention}\n\n**USER ID**:`{message.from_user.id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
+            await bot.send_message(LOG_CHANNEL, text=f"**MUTE**\n\n**USER**: <a href='tg://user?id={user_id}'>{user_first_name}</a>\n\n**USER ID**:`{user_id}`\n\n**PERMISSIONS: MUTED**\n\nin **CHAT NAME**: {message.chat.title}\n**CHAT ID** `{message.chat.id}`\n\n\n**POWERD BY:** {temp.B_LINK}")
         
 
 
