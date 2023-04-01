@@ -69,13 +69,14 @@ BUTTON_3 =  [[
             ],[
             InlineKeyboardButton('🤖CHATBOT🤖', callback_data='chatbot'),
             InlineKeyboardButton('🚨 REPORT 🚨', callback_data='repor')
+            InlineKeyboardButton('🔍G-TRANSLETOR🔍', callback_data='gtrgtr')
             ],[
             InlineKeyboardButton('◀️BACK◀️', callback_data='millie'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),           
             InlineKeyboardButton('▶️NEXT▶️', callback_data='help')
             ]]
 
-
+ 
 
 @Client.on_message(filters.command('help'))
 def helpmsg(client, message):
