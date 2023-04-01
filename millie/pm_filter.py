@@ -1437,6 +1437,16 @@ async def cb_handler(client: Client, query: CallbackQuery):
             reply_markup=reply_markup,
             parse_mode=enums.ParseMode.HTML
         )      
+    elif query.data == "gtrgtr":
+        buttons = [[
+            InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='renish')
+        ]]
+        reply_markup = InlineKeyboardMarkup(buttons)
+        await query.message.edit_text(
+            text=script.TRANSLETOR_TXT,
+            reply_markup=reply_markup,
+            parse_mode=enums.ParseMode.HTML
+        )      
     elif query.data == "repor":
         buttons = [[
             InlineKeyboardButton('𝙱𝙰𝙲𝙺', callback_data='renish')
