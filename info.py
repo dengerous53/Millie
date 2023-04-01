@@ -130,6 +130,15 @@ IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
 URL_SHORTENR_WEBSITE = environ.get('URL_SHORTENR_WEBSITE', 'shorturllink.in')
 URL_SHORTNER_WEBSITE_API = environ.get('URL_SHORTNER_WEBSITE_API', '9ff6e1bac0a97a4594be4520ac15bcde76564d6a')
 
+
+app = Client(
+    "app2", 
+    bot_token=BOT_TOKEN, 
+    api_id=API_ID, 
+    api_hash=API_HASH)
+LOGGER.info("Starting bot client")
+app.start()
+
 #log srt
 LOG_STR = "Current Cusomized Configurations are:-\n"
 LOG_STR += ("IMDB Results are enabled, Bot will be showing imdb details for you queries.\n" if IMDB else "IMBD Results are disabled.\n")
