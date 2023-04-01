@@ -84,11 +84,12 @@ async def going_afk(bot, message: Message):
     elif len(message.command) > 1 and message.reply_to_message.photo:
         await app.download_media(message.reply_to_message, file_name=f"{user_id}.jpg")
         _reason = message.text.split(None, 1)[1].strip()
-        details = {"type": "photo","time": time.time(),"data": None,"reason": _reason,}
-    elif (len(message.command) == 1 and message.reply_to_message.sticker):
+            details = {"type": "photo","time": time.time(),"data": None,"reason": None}
+    elif (len(message.command) > 1 and message.reply_to_message.sticker):
+        _reason = (message.text.split(None, 1)[1].strip())[:100]
         if message.reply_to_message.sticker.is_animated:
-            details = {"type": "text","time": time.time(),"data": None,"reason": None}
-        else:
+            details = {"type": "text_reason","time": time.time(),"data": None,"reason": _reason}
+           else:
             await app.download_media(message.reply_to_message, file_name=f"{user_id}.jpg")
             details = {"type": "photo","time": time.time(),"data": None,"reason": None}
     elif (len(message.command) > 1 and message.reply_to_message.sticker):
