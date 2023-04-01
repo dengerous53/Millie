@@ -484,7 +484,20 @@ You can use any of above
 DON'T USE ALL OF ABOVE
 </b>"""
 
-    
+    TRANSPARENT_TXT = """<b>
+❤️‍🔥❤️‍🔥NEW UPDATE ❤️‍🔥❤️‍🔥
+✅🔍 GOOGLE TRANSLATOR 🔍✅
+
+Reply your massage with command
+/tr <leng>
+To translate your massage
+
+EXAMPLE
+X. If you want to translate in Hindi
+Reply massage /tr hi
+X. If you want to translate in English
+Reply your massage /tr en
+ </b>"""   
 
 
     
