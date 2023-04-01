@@ -68,8 +68,11 @@ BUTTON_3 =  [[
             InlineKeyboardButton('📹 VIDEO 📹', callback_data='vudl')
             ],[
             InlineKeyboardButton('🤖CHATBOT🤖', callback_data='chatbot'),
-            InlineKeyboardButton('🚨 REPORT 🚨', callback_data='repor')
+            InlineKeyboardButton('🚨 REPORT 🚨', callback_data='repor'),
             InlineKeyboardButton('🔍G-TRANSLETOR🔍', callback_data='gtrgtr')
+            ],[
+            InlineKeyboardButton('🦠COVID-19🦠', callback_data='covid'),
+            InlineKeyboardButton('💽AUD-BOOK💽', callback_data='abook')
             ],[
             InlineKeyboardButton('◀️BACK◀️', callback_data='millie'),
             InlineKeyboardButton('🏠HOME🏠', callback_data='start'),           
