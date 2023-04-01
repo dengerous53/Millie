@@ -78,8 +78,8 @@ Or ban from group & admin
 👉 /Report  - 𝖳𝗈 𝗋𝖾𝗉𝗈𝗋𝗍 𝖺 𝗎𝗌𝖾𝗋 𝗍𝗈 𝗍𝗁𝖾 𝖺𝖽𝗆𝗂𝗇𝗌 (𝗋𝖾𝗉𝗅𝗒 𝗍𝗈 𝖺 𝗆𝖾𝗌𝗌𝖺𝗀𝖾)."""
     
     AFK_TXT = """
-Coming soon....
-XxxxxxxxxxxxxxxxxxxxxxX
+❤️‍🔥❤️‍🔥NEW update ❤️‍🔥❤️‍🔥
+AFK
 When someone mentions you in a chat, 
 the user will be notified you are AFK. 
 You can even provide a reason for going AFK,
