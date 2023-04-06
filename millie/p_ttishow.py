@@ -54,7 +54,7 @@ async def save_group(bot, message):
                     except:
                         pass
                 temp.MELCOW['welcome'] = await message.reply_video(video="https://graph.org/file/3eef7b862f930efa4496a.mp4", caption=WELCOM_TEXT.format(user=u.mention, chat=message.chat.title))
-                await asyncio.sleep(1)
+                await asyncio.sleep(30)
                 await temp.MELCOW['welcome'].delete()
 
 
